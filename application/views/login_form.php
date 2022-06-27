@@ -38,7 +38,7 @@
 <div class="login-box">
   <div class="login-logo">
     <a ><b> <strong>DIPLOMACY </strong> </b></a>
-    <p style="font-size: 30px;"> Sistem Assesmen OBE PS TIN</p>
+    <p style="font-size: 30px;"> Sistem Assesmen OBE PS TIN.</p>
   </div>
   <!-- /.login-logo -->
   <div class="card">
