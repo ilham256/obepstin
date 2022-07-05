@@ -317,10 +317,10 @@
 									</div>
 								</div>
 								<div class="float-end margin-top-50">
-									<button type="button" class="btn btn-default waves-effect waves-light"><i class='fa fa-download'></i> Download</button>
+									<a onclick="return confirm('Apakah anda ingin mencetak laporan ?')" href="" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
 								</div>
 							</div>
-							<!-- /.invoice-box -->
+							<!-- /.invoice-box --> 
 						</div>
 						<!-- /.col-xs-12 -->
 					</div>

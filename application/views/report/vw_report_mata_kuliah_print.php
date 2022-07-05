@@ -1,61 +1,10 @@
-<div class="row small-spacing">
-	<div class="col-lg-12 col-xs-12">
-		<div class="box-content">
-			<h4 class="box-title">Laporan</h4>
-			<ul class="nav nav-tabs" id="myTabs" role="tablist">
-				<li class="nav-item" role="presentation">
-					<a href="<?php echo site_url('report')?>" ><button class="nav-link">Kinerja CPL Mahasiswa</button></a>
-				</li>
-				<li class="nav-item" role="presentation">
-					<a href="<?php echo site_url('report')?>" ><button class="nav-link">Kinerja CPMK Mahasiswa</button></a>
-				</li>
-				<li class="nav-item" role="presentation">
-					<a href="<?php echo site_url('report')?>" ><button class="nav-link">Rapor Mahasiswa</button></a>
-				</li>
-				<li class="nav-item" role="presentation">
-					<a href="<?php echo site_url('report/mata_kuliah')?>" ><button class="nav-link active" id="cpl-tab" data-bs-toggle="tab" data-bs-target="#cpl" type="button" role="tab" aria-controls="cpl" aria-selected="true">Rapor Mata Kuliah</button></a>
-				</li>
-				<li class="nav-item" role="presentation">
-					<a href="<?php echo site_url('report/relevansi_ppm')?>" ><button class="nav-link">Relevansi PPM</button></a>
-				</li>
-				<li class="nav-item" role="presentation">
-					<a href="<?php echo site_url('report/efektivitas_cpl')?>" ><button class="nav-link">Efektivitas CPL</button></a>
-				</li> 
-			</ul> 
-			<div class="tab-content" id="myTabContent">
-				
-					<form role="form" id="contactform" action="<?php echo site_url('report/mata_kuliah')?>" method="post">
-						<div class="row mb-3">
-							<label for="angkatan" class="col-sm-3 col-form-label">Silahkan Pilih Tahun Angkatan</label>
-							<div class="row mb-3">
-								<label for="angkatan" class="col-sm-3 col-form-label">Masukan Tahun Angkatan</label>
-								<div class="col-sm-6"> 
-									<input type="text" name="tahun" class="form-control" placeholder="- Tahun Angkatan -" required>
-								</div>
-							</div>
-						</div>		
-						<div class="row mb-3">
-							<label for="angkatan" class="col-sm-3 col-form-label">Silahkan Pilih Mata Kuliah</label>
-							<div class="col-sm-6">
-								<div class="input-group">
-								<select id="cpl" class="form-select" name="mk">
-									<option value="<?php echo $simpanan_mk; ?>" style="background: lightblue;"><?php echo $simpanan_mk; ?></option>
-									<?php $i = 1; foreach($mata_kuliah as $d) { ?>
-									<option value="<?php echo $d->kode_mk; ?>"><?php echo $d->nama_kode." (".$d->nama_mata_kuliah.")"; ?></option>
-									<?php $i++; } ?>
-								</select>
-								<button type="submit" class="btn btn-primary" name="pilih_4" value="pilih_4">Pilih</button> 
-								</div>
-							</div>
-						</div>		
-					</form>
-					<br>
-					<div id="printContent">
-						<div class="row small-spacing">
-						<div class="col-xs-12">
+		
+				<br>
+					<div class="row small-spacing">
+						<div class="col-xs-30">
 							<div class="invoice-box">
 								<div class="row">
-									<div class="col-md-12 col-xs-12 text-center">
+									<div class="col-md-20 col-xs-20 text-center">
 										<p><strong>INSTITUT PERTANIAN BOGOR<br>
 										DEPARTEMEN TEKNOLOGI INDUSTRI PERTANIAN<br>
 										P.S. TEKNIK INDUSTRI PERTANIAN
@@ -63,47 +12,32 @@
 										</strong>
 										</p>
 									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-3 col-xs-12">
-										Nama Mata Kuliah
-									</div>
-									<div class="col-md-6 col-xs-12">
-										<?php echo $data_mk["0"]->nama_mata_kuliah; ?>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-3 col-xs-12">
-										Kode TM-2018 & 2019
-									</div>
-									<div class="col-md-6 col-xs-12">
-										<?php echo $data_mk["0"]->nama_kode; ?>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-3 col-xs-12">
-										Kode K-2020
-									</div> 
-									<div class="col-md-6 col-xs-12">
-										<?php echo $data_mk["0"]->nama_kode_2; ?>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-3 col-xs-12">
-										Beban SKS
-									</div>
-									<div class="col-md-6 col-xs-12">
-										<?php echo $data_mk["0"]->sks; ?>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-3 col-xs-12">
-										Dosen Pengajar
-									</div>
-									<div class="col-md-6 col-xs-12">
-										<?php echo $data_mk["0"]->dosen; ?><br><br>
-									</div>
-								</div>
+								</div> 
+								<table>
+									<tbody>
+										<tr>
+											<td>Nama Mata Kuliah</td>
+											<td style="text-align: left;"><?php echo $data_mk["0"]->nama_mata_kuliah; ?></td>
+										</tr>
+										<tr>
+											<td>Kode TM-2018 & 2019</td>
+											<td style="text-align: left;"><?php echo $data_mk["0"]->nama_kode; ?></td>
+										</tr>
+										<tr>
+											<td>Kode K-2020</td>
+											<td style="text-align: left;"><?php echo $data_mk["0"]->nama_kode_2; ?></td>
+										</tr>
+										<tr>
+											<td>Beban SKS</td>
+											<td style="text-align: left;"><?php echo $data_mk["0"]->sks; ?></td>
+										</tr>
+										<tr>
+											<td>Dosen Pengajar</td>
+											<td style="text-align: left;"><?php echo $data_mk["0"]->dosen; ?></td>
+										</tr>
+									</tbody>
+								</table>
+								<br>
 								<div class="row">
 									<div class="col-md-12 col-xs-12 text-center">
 										<p><strong>CPMK Langsung
@@ -153,7 +87,6 @@
 														echo $k."%";
 													?></td>
 													<?php $a++; } ?>
-													
 												</tr>
 												<tr>
 													<td>Baik</td>
@@ -222,7 +155,49 @@
 									</div>
 								</div>
 								<br>
-
+								<br>
+								<br>
+								<br>
+								<br>
+								<br>
+								<br>
+								<br>
+								<br>
+								<div class="row">
+									<div class="col-md-20 col-xs-20 text-center">
+										<p><strong>INSTITUT PERTANIAN BOGOR<br>
+										DEPARTEMEN TEKNOLOGI INDUSTRI PERTANIAN<br>
+										P.S. TEKNIK INDUSTRI PERTANIAN
+										<br><br>
+										</strong>
+										</p>
+									</div>
+								</div> 
+								<table>
+									<tbody>
+										<tr>
+											<td>Nama Mata Kuliah</td>
+											<td style="text-align: left;"><?php echo $data_mk["0"]->nama_mata_kuliah; ?></td>
+										</tr>
+										<tr>
+											<td>Kode TM-2018 & 2019</td>
+											<td style="text-align: left;"><?php echo $data_mk["0"]->nama_kode; ?></td>
+										</tr>
+										<tr>
+											<td>Kode K-2020</td>
+											<td style="text-align: left;"><?php echo $data_mk["0"]->nama_kode_2; ?></td>
+										</tr>
+										<tr>
+											<td>Beban SKS</td>
+											<td style="text-align: left;"><?php echo $data_mk["0"]->sks; ?></td>
+										</tr>
+										<tr>
+											<td>Dosen Pengajar</td>
+											<td style="text-align: left;"><?php echo $data_mk["0"]->dosen; ?></td>
+										</tr>
+									</tbody>
+								</table>
+								<br>
 								<div class="row">
 									<div class="col-md-12 col-xs-12 text-center">
 										<p><strong>CPMK Tak Langsung
@@ -235,36 +210,14 @@
 										<canvas id="rapor_matakuliah_tl" class="chartjs-chart" width="480" height="220"></canvas>
 									</div>
 								</div>
-								<br>
-								<div class="float-end margin-top-50">
-
-									<form role="form" id="contactform" action="<?php echo site_url('report/download_report_mata_kuliah')?>" method="post" target="_blank">
-
-										<input type="hidden" name="tahun" value="<?php echo $tahun_mk ?>">
-										<input type="hidden" name="mk" value="<?php echo $simpanan_mk ?>">
-
-										<button onclick="return confirm('Apakah anda ingin mencetak report ?')" type="submit" class="btn btn-default waves-effect waves-light" name="download" value="download"><i class='fa fa-download'></i> Download</button>
-
-									</form>
-
-									
-								</div>
-							</div>
 							<!-- /.invoice-box -->
 						</div>
 						<!-- /.col-xs-12 -->
 					</div>
-					</div>
 					<!-- /.row small-spacing -->
 				
-			</div>
-			
 
-		</div>
-		<!-- /.box-content -->
-	</div>
-	<!-- /.col-lg-9 col-xs-12 -->
-</div>
+
 
 <!-- chart.js Chart -->
 <script src="<?php echo base_url() ?>assets/plugin/chart/node_modules/chartjs-plugin-error-bars/node_modules/chart.js/dist/Chart.bundle.min.js"></script>
@@ -472,6 +425,8 @@
 			});			
 
 		}
+
+
 
 	
 </script>
