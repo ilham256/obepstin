@@ -41,7 +41,7 @@
 								<select id="cpl" class="form-select" name="mk">
 									<option value="<?php echo $simpanan_mk; ?>" style="background: lightblue;"><?php echo $simpanan_mk; ?></option>
 									<?php $i = 1; foreach($mata_kuliah as $d) { ?>
-									<option value="<?php echo $d->kode_mk; ?>"><?php echo $d->nama_kode." (".$d->nama_mata_kuliah.")"; ?></option>
+									<option value="<?php echo $d->kode_mk; ?>"><?php echo $d->nama_kode_2." (".$d->nama_mata_kuliah.")"; ?></option>
 									<?php $i++; } ?>
 								</select>
 								<button type="submit" class="btn btn-primary" name="pilih_4" value="pilih_4">Pilih</button> 
@@ -102,6 +102,14 @@
 									</div>
 									<div class="col-md-6 col-xs-12">
 										<?php echo $data_mk["0"]->dosen; ?><br><br>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-3 col-xs-12">
+										Angkatan
+									</div>
+									<div class="col-md-6 col-xs-12">
+										<?php echo $tahun_mk; ?><br><br>
 									</div>
 								</div>
 								<div class="row">

@@ -7,7 +7,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>Home - Sistem Asesmen OBE PS TIN</title>
+	<title>Home - Sistem Asesmen OBE PS TIN</title> 
 
 	<!-- Themify Icon -->
 	<link rel="stylesheet" href="<?php echo base_url() ?>assets/fonts/themify-icons/themify-icons.css">
@@ -301,10 +301,12 @@
 
 	<script src="<?php echo base_url() ?>assets/scripts/main.min.js"></script>
 
+	<!-- Select2 -->
+	<script src="<?php echo base_url();?>assets/Adminlte/plugins/select2/js/select2.full.min.js"></script>
+
 	<script>
 
 		
- 
 			
 		function saveDeskriptor() {
 			$("#formDeskriptor").submit();
@@ -322,6 +324,21 @@
 	    });
 	  });
 	</script>
+
+	<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+
+    
+
+  })
+</script>
 
 </body>
 </html>
