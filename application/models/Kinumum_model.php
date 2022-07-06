@@ -59,11 +59,11 @@ class kinumum_model extends CI_Model
 
 	public function get_mahasiswa_tahun($tahun)  
 	{
+		$status = array('Aktif','Lulus');
 		$query = $this->db->select('*');
 		$query->from('mahasiswa');
 		$query->where('tahun_masuk',$tahun);
-		$query->where('StatusAkademik','Aktif');
-		$query->Or_where('StatusAkademik','Lulus');
+		$query->where_in('StatusAkademik','Aktif','Lulus');
 
 		return $query->get()->result();
 	}

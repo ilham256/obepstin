@@ -471,7 +471,7 @@ class Report extends CI_Controller {
 
 		$mahasiswa_2 = $this->kinumum_model->get_mahasiswa_tahun($arr['tahun_mk']);
 		$mahasiswa = [];
-
+ 
 		foreach ($mahasiswa_2 as $key) { 
 			$data_m = array(
                         "Nim" => $key->nim,
@@ -604,7 +604,8 @@ class Report extends CI_Controller {
 		//echo '<pre>';  var_dump($arr['nilai_diagram_cpl']); echo '</pre>';
 		//echo '<pre>';  var_dump($arr['target_cpl']); echo '</pre>';
 		//echo '<pre>';  var_dump($arr['nilai_mk_raport_keseluruhan']); echo '</pre>';
-		//echo '<pre>';  var_dump($arr['jumlah']); echo '</pre>';
+		//echo '<pre>';  var_dump($arr['tahun_mk']); echo '</pre>';
+		//echo '<pre>';  var_dump($mahasiswa_2); echo '</pre>';
 		$this->load->view('vw_template', $arr);
 
 	}

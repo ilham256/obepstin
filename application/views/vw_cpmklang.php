@@ -52,8 +52,7 @@
 									<?php } ?>
 								</tr> 
 							</tfoot>
-
-							<tbody>
+ 							<tbody>
 			                    <?php $i = 1; foreach($data_mahasiswa as $r) { ?>
 			                    <tr>
 			                        <td><?php echo $r["Nim"]	; ?></td>

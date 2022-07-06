@@ -273,7 +273,7 @@
 	</div>
 	<!-- /.col-lg-9 col-xs-12 -->
 </div>
-
+<?php  //echo '<pre>';  var_dump($nilai_mk_raport_keseluruhan); echo '</pre>';?>
 <!-- chart.js Chart -->
 <script src="<?php echo base_url() ?>assets/plugin/chart/node_modules/chartjs-plugin-error-bars/node_modules/chart.js/dist/Chart.bundle.min.js"></script>
 <script src="<?php echo base_url() ?>assets/plugin/chart/node_modules/chartjs-plugin-error-bars/build/Plugin.Errorbars.js"></script>
@@ -484,4 +484,3 @@
 	
 </script>
 
-<?php  //echo '<pre>';  var_dump($mk_cpmk[0]); echo '</pre>';?>

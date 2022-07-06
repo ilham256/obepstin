@@ -35,6 +35,10 @@
 											<td>Dosen Pengajar</td>
 											<td style="text-align: left;"><?php echo $data_mk["0"]->dosen; ?></td>
 										</tr>
+										<tr>
+											<td>Angkatan</td>
+											<td style="text-align: left;"><?php echo $tahun_mk; ?></td>
+										</tr>
 									</tbody>
 								</table>
 								<br>
