@@ -41,7 +41,7 @@ class Kinumum extends CI_Controller {
 		$arr['tahun_masuk'] =  $this->mahasiswa_model->get_tahun_masuk();
 
 		$simpan_tahun = $this->mahasiswa_model->get_tahun_masuk_min();
-		$tahun = 2017;
+		$tahun = 2018;
 
         $arr['simpanan_tahun'] = $tahun;
         $arr['t_simpanan_tahun'] = ($simpan_tahun["0"]->tahun_masuk)+1;
@@ -88,7 +88,7 @@ class Kinumum extends CI_Controller {
 		}
 		// Menentukan Nilai yang dimasukan kedalam diagram
 
-		foreach ($arr['data_cpl'] as $key_0) {
+		foreach ($arr['data_cpl'] as $key_0) { 
 			$dt = [];
 			foreach ($mahasiswa as $key ) {
 				$n = 0;
@@ -147,7 +147,8 @@ class Kinumum extends CI_Controller {
 		$arr['nilai_cpl_mahasiswa'] = $nilai_cpl_mahasiswa;
 		$this->load->view('vw_template', $arr);
 
-		//echo '<pre>';  var_dump($mahasiswa); echo '</pre>';
+		//echo '<pre>';  var_dump($tahun); echo '</pre>';
+		//echo '<pre>';  var_dump($mahasiswa_2); echo '</pre>';
 		//echo '<pre>';  var_dump($mahasiswa["0"]["Nim"]); echo '</pre>';
 		//echo '<pre>';  var_dump($mahasiswa); echo '</pre>';
 		//echo '<pre>';  var_dump($nilai_cpmk); echo '</pre>';

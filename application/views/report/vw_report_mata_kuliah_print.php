@@ -40,7 +40,7 @@
 											<td style="text-align: left;"><?php echo $tahun_mk; ?></td>
 										</tr>
 									</tbody>
-								</table>
+								</table> 
 								<br>
 								<div class="row">
 									<div class="col-md-12 col-xs-12 text-center">
