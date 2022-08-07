@@ -23,7 +23,7 @@
 					<a href="<?php echo site_url('report/efektivitas_cpl')?>" ><button class="nav-link">Efektivitas CPL</button></a>
 				</li>
 			</ul> 
-			<div class="tab-content" id="myTabContent">
+			<div class="tab-content" id="myTabContent"> 
 				
 				<div class="box-content"> 
 					<div class="row row-inline-block small-spacing js__isotope_items">
@@ -107,11 +107,12 @@
 <script>
 	var arr = <?php echo json_encode($nilai_diagram_cpl); ?>;
 	var ppm = <?php echo json_encode($nilai_diagram_ppm); ?>;
-	var nama_cpl = <?php echo json_encode($nama_cpl); ?>;
+	var nama_cpl = <?php echo json_encode($nama_cpl); ?>; 
 	var nama_ppm = <?php echo json_encode($nama_ppm); ?>;
 	var warna = ['#008000', '#6495ED', '#FF8C00','#DC143C', '#946b3a', '#7a5931','#614729', '#493620', '#322618','#1d170f','#7209b7', '#560bad', '#480ca8','#3a0ca3', '#3f37c9', '#4361ee','#4895ef', '#4cc9f0'];
 
 
+	console.log(nama_cpl);
 	console.log(arr);
 
 
@@ -195,16 +196,9 @@
 				
 			},
 			scale: { 
-				reverse: !1,
-				ticks: {
-					beginAtZero: true,
-				      min: 0,
-				      max: 6,
-				      steps: 1,
-				      fontColor: 'blue',
-				      fontSize: 13,
-				},
-			pointLabels: { fontSize: 17 /* must be a number it translates to pixels */ }
+				 y: {
+			        beginAtZero: true
+			      }
 			},
 			plugins: {
 

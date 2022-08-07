@@ -15,7 +15,7 @@ class report_model extends CI_Model
 	//			where semester_id = '.$semester_id.' order by id';
 	//	$query = $this->db->query($sql);
 	//	return $query->result();
-	//}
+	//} 
 
 	public function get_cpmklang_select($data_tahun_masuk,$data_mata_kuliah)  
 	{
@@ -52,7 +52,7 @@ class report_model extends CI_Model
 			$query->where('nim',$nim);
 			return $query->get()->result();
 		}
-
+ 
 
 	public function get_cpmklang()   
 	{
@@ -156,5 +156,75 @@ class report_model extends CI_Model
 		$query->where('id_cpl_langsung',$cpl);
 		return $query->get()->result();
 	}
+
+	public function get_psd()   
+	{
+		$query = $this->db->select('*');
+		$query->from('psd'); 
+		$query->order_by('nama'); 
+		return $query->get()->result();
+	}
+
+	public function get_dosen()   
+	{
+		$query = $this->db->select('*');
+		$query->from('dosen'); 
+		return $query->get()->result();
+	}
+
+	public function get_nilai_epbm_dosen($tahun,$semester,$d)   
+	{
+		$query = $this->db->select('*');
+		$query->from('nilai_epbm_dosen'); 
+		$query->where('tahun',$tahun);
+		$query->where('semester',$semester);
+		$query->where('kode_epbm_mk_has_dosen',$d);
+		return $query->get()->result();
+	}
+	
+	public function get_nilai_epbm_mk($tahun,$semester,$d)   
+	{
+		$query = $this->db->select('*');
+		$query->from('nilai_epbm_mata_kuliah');
+		$query->where('tahun',$tahun); 
+		$query->where('semester',$semester);
+		$query->where('kode_epbm_mk',$d);
+		return $query->get()->result();
+	} 
+
+	public function get_epbm_mata_kuliah_has_dosen()   
+	{
+		$query = $this->db->select('*');
+		$query->from('epbm_mata_kuliah_has_dosen'); 
+		return $query->get()->result();
+	}
+
+	public function get_epbm_mata_kuliah_has_dosen_select($dosen)   
+	{
+		$query = $this->db->select('*');
+		$query->from('epbm_mata_kuliah_has_dosen'); 
+		$query->join('epbm_mata_kuliah','epbm_mata_kuliah.kode_epbm_mk = epbm_mata_kuliah_has_dosen.kode_epbm_mk');
+		$query->join('mata_kuliah','mata_kuliah.kode_mk = epbm_mata_kuliah.kode_mk');
+		$query->where('NIP',$dosen);
+		return $query->get()->result();
+	}
+
+	public function get_tahun()   
+	{
+		$query = $this->db->select('tahun');
+		$query->from('nilai_epbm_dosen'); 
+		$query->distinct();
+		return $query->get()->result();
+	}
+
+
+	public function get_epbm_mata_kuliah()   
+	{
+		$query = $this->db->select('*');
+		$query->from('epbm_mata_kuliah'); 
+		$query->join('mata_kuliah','mata_kuliah.kode_mk = epbm_mata_kuliah.kode_mk');
+		return $query->get()->result();
+	}
+	
 }
 ?>

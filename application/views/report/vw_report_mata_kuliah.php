@@ -137,10 +137,11 @@
 										<table class="table table-striped table-bordered display">
 											<thead>
 												<tr>
-													<th ></th>
+													<th></th>
 													<?php $i = 1; foreach($mk_raport as $d) { ?>
 													<th style="text-align: center;"><?php echo $d; ?></th>
 													<?php $i++; } ?>
+													<th>Target</th>
 													
 												</tr>
 											</thead>
@@ -161,6 +162,7 @@
 														echo $k."%";
 													?></td>
 													<?php $a++; } ?>
+													<td style="color: blue;"><?php echo $target_cpl[0]->target_jumlah_mahasiswa_sangat_baik_cpl.' %'; ?></td>
 													
 												</tr>
 												<tr>
@@ -179,6 +181,7 @@
 														echo $k."%";
 													?></td>
 													<?php $a++; } ?>
+													<td style="color: blue;"><?php echo $target_cpl[0]->target_jumlah_mahasiswa_baik_cpl.' %'; ?></td>
 												</tr>
 												<tr>
 													<td>Cukup</td>
@@ -196,6 +199,7 @@
 														echo $k."%";
 													?></td>
 													<?php $a++; } ?>
+													<td style="color: blue;"><?php echo $target_cpl[0]->target_jumlah_mahasiswa_cukup_cpl.' %'; ?></td>
 												</tr>
 												<tr>
 													<td>Kurang</td>
@@ -213,6 +217,7 @@
 														echo $k."%";
 													?></td>
 													<?php $a++; } ?>
+													<td></td>
 												</tr>
 												<tr>
 													<td>Total</td>
@@ -224,6 +229,7 @@
 														echo $k."%";
 													?></td>
 													<?php $a++; } ?>
+													<td></td>
 												</tr>
 											</tbody>
 										</table>

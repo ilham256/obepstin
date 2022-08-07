@@ -22,7 +22,7 @@
 									<?php $i = 1; foreach($tahun_masuk as $d) { ?>
 									<option value="<?php echo $d->tahun_masuk; ?>"><?php echo $d->tahun_masuk.'/'.($d->tahun_masuk+1); ?></option>
 									<?php $i++; } ?>
-								</select> 
+								</select>  
 							</div>
 							<label class="col-sm-1 col-form-label">s/d</label> 
 							<div class="col-sm-3">
@@ -50,16 +50,17 @@
 
 		    			$jml_mk = count($list_angkatan);
 
-						for ($i=0; $i<$jml_mk; $i++) {
+						
 						?>
-							<div class="col-md-6 col-sm-6 col-tb-6 col-xs-12 js__isotope_item beauty" style="">
-								<div class="text-right"><strong>Angkatan <?php echo $list_angkatan[$i]; ?></strong></div>
-								<canvas id="evaluasi_cpl_pertama<?php echo $i ?>" class="chartjs-chart" width="480" height="220"></canvas>
+							<div class="col-md-12 col-sm-12" style="">
+								<div class="text-right"><strong>Data Analisis Kinerja CPL</strong></div>
+								<br>
+								<canvas id="evaluasi_cpl_pertama" class="chartjs-chart" width="480" height="220"></canvas>
 								<br>
 							</div>
 
 						<?php
-						}
+						
 						//echo '<pre>';  var_dump($list_angkatan); echo '</pre>';
 						?>
 						</div>
@@ -84,158 +85,137 @@
             return Math.round(15 * Math.random()) + min
         };
 
-		var e = {},
-        barData = function(mk) {
-			var data = {
-				labels: ["MK " + mk],
-				datasets: [{
-					label: "CPMK A",
-					backgroundColor: "rgba(58,201,214,1)",
-					borderColor: "rgba(58,201,214,1)",
-					pointBackgroundColor: "rgba(58,201,214,1)",
-					pointBorderColor: "#fff",
-					pointHoverBackgroundColor: "#fff",
-					pointHoverBorderColor: "rgba(58,201,214,1)",
-					data: [o(60), o(60), o(60), o(60), o(60), o(60), o(60), o(60)]
-				}, {
-					label: "CPMK B",
-					backgroundColor: "rgba(24,138,226,1)",
-					borderColor: "rgba(24,138,226,1)",
-					pointBackgroundColor: "rgba(24,138,226,1)",
-					pointBorderColor: "#fff",
-					pointHoverBackgroundColor: "#fff",
-					pointHoverBorderColor: "rgba(24,138,226,1)",
-					data: [o(70), o(70), o(70), o(70), o(70), o(70), o(70), o(70)]
-				}, {
-					label: "CPMK C",
-					backgroundColor: "rgba(63,81,181,1)",
-					borderColor: "rgba(63,81,181,1)",
-					pointBackgroundColor: "rgba(63,81,181,1)",
-					pointBorderColor: "#fff",
-					pointHoverBackgroundColor: "#fff",
-					pointHoverBorderColor: "rgba(63,81,181,1)",
-					data: [o(80), o(80), o(80), o(80), o(80), o(80), o(80), o(80)]
-				}]
-			};
-
-            return data;
-        };
-
-
 	var arr = <?php echo json_encode($nilai_cpl); ?>;
 	var arr_max = <?php echo json_encode($nilai_std_max); ?>;
 	var arr_min = <?php echo json_encode($nilai_std_min); ?>;
 	var target = <?php echo json_encode($target); ?>;
-
+	var nama_cpl = <?php echo json_encode($nama_cpl); ?>;
+	var tahun_masuk_select = <?php echo json_encode($tahun_masuk_select); ?>;
+	
 	console.log(arr);
+	console.log(nama_cpl);
 
-
-
+	var title = 'Nilai'
 	var data_target_cpl = <?php echo $katkin[0]->nilai_target_pencapaian_cpl; ?>;
+	var warna = ['#FF8C00','#DC143C', '#946b3a', '#7a5931','#614729', '#493620', '#322618','#1d170f','#7209b7', '#560bad', '#480ca8','#3a0ca3', '#3f37c9', '#4361ee','#4895ef', '#4cc9f0'];
+
+
+	
 	var datai = [];
 	var a = arr.length
-	for (var i = 0; i < a; i++) {
-		datai[i] = {
-				labels: ["CPL 1", "CPL 2", "CPL 3", "CPL 4", "CPL 5", "CPL 6", "CPL 7", "CPL 8"],
-				datasets: [{
-					label: "Rata-rata",
-					backgroundColor: "rgba(24,138,226,0)",
-					borderColor: "rgba(24,138,226,0.7)",
-					pointBackgroundColor: "rgba(24,138,226,0.01)",
-					pointStyle: 'line',
-					pointBorderColor: "#fff",
-					pointHoverBackgroundColor: "#fff",
-					pointHoverBorderColor: "rgba(24,138,226,0.01)",
-					data: arr[i],
-				}, {
-					label: "Target",
-					backgroundColor: "rgba(204,15,15,0)",
-					borderColor: "rgba(204,15,15,0.7)",
-					pointBackgroundColor: "rgba(204,15,15,0.01)",
-					pointStyle: 'line',
-					pointBorderColor: "#fff",
-					pointHoverBackgroundColor: "#fff",
-					pointHoverBorderColor: "rgba(204,15,15,0.01)",
-					data: target[i],
-				}, {
-					label: "Standar deviasi Bawah",
-					backgroundColor: "rgba(24,138,226,0)",
-					pointStyle: 'line',
-					pointBackgroundColor: "rgba(106,90,205,1)",
-					borderColor: "rgba(28,138,226,0.2)",
-					data: arr_min[i],
-
-				}, {
-					label: "Standar deviasi Atas",
-					backgroundColor: "rgba(24,138,226,0)",
-					pointStyle: 'line',
-					pointBackgroundColor: "rgba(106,90,205,1)",
-					borderColor: "rgba(50,80,220,0.2)",
-					data: arr_max[i],
-				}]
-			}
-
-	}
-	 
-
-
- 
-		var e = {},
-        radarData = function() {
+	
+		radarDataError = function() {
 			var data = {
-				labels: ["CPL 1", "CPL 2", "CPL 3", "CPL 4", "CPL 5", "CPL 6", "CPL 7", "CPL 8"],
-				datasets: [{
-					label: "Rata-rata",
-					backgroundColor: "rgba(24,138,226,0)",
-					borderColor: "rgba(24,138,226,0.2)",
-					pointBackgroundColor: "rgba(24,138,226,0.01)",
-					pointBorderColor: "#fff",
-					pointHoverBackgroundColor: "#fff",
-					pointHoverBorderColor: "rgba(24,138,226,0.01)",
-					data: [70, 60, 75, 70, 72, 80, 68, 40],
-				}, {
-					label: "Target",
-					backgroundColor: "rgba(204,15,15,0)",
-					borderColor: "rgba(0,15,15,0.2)",
-					pointBackgroundColor: "rgba(204,15,15,0.01)",
-					pointBorderColor: "#fff",
-					pointHoverBackgroundColor: "#fff",
-					pointHoverBorderColor: "rgba(204,15,15,0.01)",
-					data: [o(80), o(80), o(80), o(80), o(80), o(80), o(80), o(10)]
-				}]
+				labels: nama_cpl,
+				datasets: []
 			};
 
+			for (var j = 0; j < arr.length; j++) {
+			data.datasets.push(
+				{
+				label: tahun_masuk_select[j],
+				backgroundColor: warna[j],
+				borderColor: warna[j],
+				pointBackgroundColor: warna[j],
+				pointBorderColor: "#00FF00",
+				borderWidth: 1,
+				data: arr[j],
+				}
+				)
+			}
             return data;
         };
 
+
+
+    var cpl_descriptions = [
+		"Mampu mengidentifikasi, menganalisis, dan menyelesaikan permasalahan keteknikan agroindustri, yang mencakup sistem, proses, manajemen, dan lingkungan, melalui penerapan pengetahuan matematika, IPA, keteknikan dan teknologi informasi, menggunakan teknik dan perangkat-perangkat modern", 
+		"Mampu merancang sistem/komponen, proses dan produk agroindustri untuk memenuhi kebutuhan yang diinginkan dalam kendala yang realistis.", 
+		"Merancang dan melaksanakan penelitian menggunakan metode ilmiah dan keteknikan dan menganalisis serta menginterpretasikan data yang dihasilkan", 
+		"Menyadari pentingnya dan memiliki kemampuan untuk terlibat dalam pembelajaran sepanjang hayat", 
+		"Berkomunikasi secara tertulis dan lisan dengan efektif", 
+		"Berperan secara efektif dalam tim multidisiplin dan multikultur", 
+		"Mampu memahami penerapan etika dan profesionalisme dalam menyelesaikan permasalahan keteknikan agroindustri dalam konteks ekonomi, lingkungan, masyarakat dan isu-isu kontemporer lainnya.", 
+		"Mampu mentransformasi ide-ide bisnis berbasis ilmu pengetahuan dan teknologi ke dalam konsep bisnis agroindustri (teknoprener)"];	
+	var length_line = 68;
 	var options = { 
-				legend: {
-					position: "right",
-					labels: {  
-						usePointStyle: true,			        
-					      	}
-					}, 
-				scale: {
-					reverse: !1,
-					gridLines: {
-					},
-					ticks: { 
-						max : 100,
-						beginAtZero: !0
+			
+			legend: {
+				position: "right",
+				labels: {  
+			        fontColor:'green',
+			        fontSize: 14,  
+			        boxWidth:27,
+			        usePointStyle: true,			        
+			      } 
+			},
+
+			elements: {
+				line: {
+					borderWidth: 4
+				},
+				
+			},
+
+			scales: {
+				yAxes: [{
+					stacked: false,
+                 	ticks: {
+                        beginAtZero: true 
+                    }
+				}]
+
+			},
+
+			plugins: {
+				filler: {
+					propagate: false
+				},
+				'samples-filler-analyser': {
+					target: 'chart-analyser'
+				}
+			},
+			interaction: {
+				intersect: false
+			},
+			tooltips: {
+				callbacks: {
+					label: function(tooltipItem, data) {
+						var label = data.datasets[tooltipItem.datasetIndex].label || '';
+						if (label) {
+							label += ': ';
+						}
+						label += Math.round(tooltipItem.yLabel * 100) / 100;
+
+						var labels = [label];
+
+						var desc = cpl_descriptions[tooltipItem.index];
+
+						while (desc.length>length_line) {
+							var desc_line = desc.substring(0, length_line);
+							var spaceIndex = desc_line.lastIndexOf(" ") + 1;
+							var sentence = desc_line.substr(0, spaceIndex);
+							desc = desc.substring(spaceIndex);
+							labels.push(sentence);
+						}
+						labels.push(desc);
+
+						return labels;
 					}
 				}
-			};
+			}
+		};
 
-	for (var i = 0; i<=10; i++) {
-		var ctxEvaluasiCPL = document.getElementById('evaluasi_cpl_pertama' + i);
+	
+		var ctxEvaluasiCPL = document.getElementById('evaluasi_cpl_pertama');
 
 		if (ctxEvaluasiCPL != null) {
 			var chartCPL = new Chart(ctxEvaluasiCPL, {
-				type: 'radar',
-				data: datai[i],
-				options: options
+				type: 'bar',
+				data: radarDataError(),
+				options: options,
 			});
 		}
-	}
 
 </script>
+<?php  //echo '<pre>';  var_dump($nilai_cpl); echo '</pre>';?>

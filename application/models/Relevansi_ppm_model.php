@@ -24,7 +24,7 @@ class relevansi_ppm_model extends CI_Model
 	}
 
 
-
+ 
 
 	public function get_cpl()   
 	{

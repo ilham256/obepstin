@@ -20,7 +20,10 @@
 				</li>
 				<li class="nav-item" role="presentation">
 					<a href="<?php echo site_url('report/efektivitas_cpl')?>" ><button class="nav-link">Efektivitas CPL</button></a>
-				</li> 
+				</li>
+				<li class="nav-item" role="presentation">
+					<a href="<?php echo site_url('report/report_epbm')?>" ><button class="nav-link">Rekap EPBM</button></a>
+				</li>
 			</ul> 
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade <?php echo $status_aktif_3; ?>" role="tabpanel" id="cpl" aria-labelledby="cpl-tab">
@@ -50,7 +53,7 @@
 							</form>
 							<div> 
 
-							</div>		 					
+							</div>		 	 				
 						
 
 						<div class="row">

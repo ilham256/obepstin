@@ -69,7 +69,7 @@
 
 	if (ctxCPLTahun != null) {
 		var options = {
-			legend: {
+			legend: { 
 				position: "bottom"
 			},
 			scales: {

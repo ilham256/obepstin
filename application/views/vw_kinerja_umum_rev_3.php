@@ -19,7 +19,7 @@
 						</div>
 					</div>
 				</div>
-			</form> 
+			</form>  
 			<br> 
 			<div class="col-lg-7 col-xs-12">
 				<canvas id="pemenuhan_cpl" class="chartjs-chart" width="480" height="320" style="font-size: 30;"></canvas>
@@ -33,6 +33,7 @@
 							<?php $i = 1; foreach($data_cpl as $d) { ?>
 							<th><?php echo $d->nama; ?></th>
 							<?php $i++; } ?>
+							<th> Target </th>
 							
 						</tr>
 					</thead>
@@ -53,6 +54,7 @@
 								echo $k."%";
 							?></td>
 							<?php $a++; } ?>
+							<td style="color: blue;"><?php echo $target_cpl[0]->target_jumlah_mahasiswa_sangat_baik_cpl.' %'; ?></td>
 						</tr>
 						<tr>
 							<td>Baik</td>
@@ -70,6 +72,7 @@
 								echo $k."%";
 							?></td>
 							<?php $a++; } ?>
+							<td style="color: blue;"><?php echo $target_cpl[0]->target_jumlah_mahasiswa_baik_cpl.' %'; ?></td>
 						</tr>
 						<tr>
 							<td>Cukup</td>
@@ -87,6 +90,7 @@
 								echo $k."%";
 							?></td>
 							<?php $a++; } ?>
+							<td style="color: blue;"><?php echo $target_cpl[0]->target_jumlah_mahasiswa_cukup_cpl.' %'; ?></td>
 						</tr>
 						<tr>
 							<td>Kurang</td>
@@ -104,6 +108,7 @@
 								echo $k."%";
 							?></td>
 							<?php $a++; } ?>
+							<td></td>
 						</tr>
 						<tr>
 							<td>Total</td>
@@ -115,6 +120,7 @@
 								echo $k."%";
 							?></td>
 							<?php $a++; } ?>
+							<td></td>
 						</tr>
 					</tbody>
 				</table>
@@ -272,3 +278,7 @@
 	} 
 	
 </script>
+
+
+
+

@@ -31,6 +31,7 @@ class Report extends CI_Controller {
     	$this->load->model('katkin_model'); 
     	$this->load->model('kinumum_model');
     	$this->load->model('kincpl_model');
+    	$this->load->model('epbm_model');
 
     	}
  
@@ -239,7 +240,7 @@ class Report extends CI_Controller {
     	
     	
 
-    	function curl($url){ 
+    	function curl($url){  
 		    $ch = curl_init(); 
 		    $headers = array(
 			   'accept: text/plain',
@@ -927,4 +928,137 @@ class Report extends CI_Controller {
 		$this->load->view('vw_template', $arr);
 
 	}
+
+	public function report_epbm_copy()
+	{ 
+		$arr['breadcrumbs'] = 'report';
+		$arr['content'] = 'report/vw_report_epbm';
+
+		
+		$arr['data_epbm_dosen'] = $this->report_model->get_epbm_mata_kuliah_has_dosen();
+		$arr['data_epbm_mk'] = $this->report_model->get_epbm_mata_kuliah();
+		$arr['data_dosen'] = $this->report_model->get_dosen();
+		$arr['data_psd'] = $this->report_model->get_psd();
+		$arr['psd'] = [];
+
+		$arr['tahun'] = '2015';
+		$arr['semester'] = 'Ganjil';
+		$arr['dosen'] = '196106301986032003';
+		$arr['mk'] = 'TIN213 / 1';
+
+		if (!empty($this->input->post('pilih', TRUE))) {		
+				
+			//$mk_1 = $this->input->post('mk', TRUE); 
+			//$arr['simpanan_mk'] = $mk_1;
+
+			$arr['tahun'] = $this->input->post('tahun', TRUE); 
+			$arr['semester'] = $this->input->post('semester', TRUE); 
+			$arr['dosen'] = $this->input->post('dosen', TRUE); 
+			$arr['mk'] = $this->input->post('mk', TRUE); 
+
+		}
+
+
+		$arr['data_nilai_epbm_mk'] = $this->report_model->get_nilai_epbm_mk($arr['tahun'],$arr['semester'],$arr['mk']);
+		$arr['data_nilai_epbm_dosen'] = $this->report_model->get_nilai_epbm_dosen($arr['tahun'],$arr['semester'],$arr['mk']."_".$arr['dosen']);
+
+		$arr['data_diagram_epbm_mk'] = [];
+		$arr['data_diagram_epbm_dosen'] = [];
+
+
+		for ($i=1; $i < count($arr['data_nilai_epbm_mk']); $i++) { 
+			array_push($arr['psd'], $arr['data_psd'][$i]->nama);
+			array_push($arr['data_diagram_epbm_mk'], $arr['data_nilai_epbm_mk'][$i]->nilai);
+			array_push($arr['data_diagram_epbm_dosen'], $arr['data_nilai_epbm_dosen'][$i]->nilai);
+		}
+
+
+
+		//echo '<pre>';  var_dump($arr['tahun']); echo '</pre>';
+		//echo '<pre>';  var_dump($arr['semester']); echo '</pre>';
+		//echo '<pre>';  var_dump($arr['dosen']); echo '</pre>';
+		//echo '<pre>';  var_dump($arr['mk']); echo '</pre>';
+		$this->load->view('vw_template', $arr);
+ 
+	}
+
+	public function report_epbm()
+	{ 
+		$arr['breadcrumbs'] = 'report';
+		$arr['content'] = 'report/vw_report_epbm_2';
+
+		$arr['data_epbm_dosen'] = $this->report_model->get_epbm_mata_kuliah_has_dosen();
+		$arr['data_epbm_mk'] = $this->report_model->get_epbm_mata_kuliah();
+		$arr['data_dosen'] = $this->report_model->get_dosen();
+		$arr['data_psd'] = $this->report_model->get_psd();
+		$arr['psd'] = [];
+
+		$arr['tahun'] = '2015';
+		$arr['semester'] = 'Ganjil';
+		$arr['dosen'] = '196106301986032003';
+
+		if (!empty($this->input->post('pilih', TRUE))) {		
+			//$mk_1 = $this->input->post('mk', TRUE); 
+			//$arr['simpanan_mk'] = $mk_1;
+			//$arr['tahun'] = $this->input->post('tahun', TRUE); 
+			//$arr['semester'] = $this->input->post('semester', TRUE); 
+			$arr['dosen'] = $this->input->post('dosen', TRUE); 
+		}
+
+		$arr['data_epbm_dosen_select'] = $this->report_model->get_epbm_mata_kuliah_has_dosen_select($arr['dosen']);
+		$arr['data_tahun'] = $this->report_model->get_tahun();
+		$arr['data_semester'] = ['Ganjil','Genap'];
+
+		$arr['data_nilai_epbm_mk'] = [];
+		$arr['data_nilai_epbm_dosen'] = [];
+		$arr['data_diagram_epbm_mk'] = [];
+		$arr['data_diagram_epbm_dosen'] = [];
+		$arr['kode_epbm_dosen'] = [];
+		$arr['nama_mata_kuliah'] = [];
+		$arr['nama_tahun'] = [];
+		$arr['nama_semester'] = [];
+
+		foreach ($arr['data_tahun'] as $key1) {
+			foreach ($arr['data_semester'] as $key2) {
+				foreach ($arr['data_epbm_dosen_select'] as $key) {
+					$data_nilai_epbm_mk = $this->report_model->get_nilai_epbm_mk($key1->tahun,$key2,$key->kode_epbm_mk);
+					$data_nilai_epbm_dosen = $this->report_model->get_nilai_epbm_dosen($key1->tahun,$key2,$key->kode_epbm_mk."_".$arr['dosen']);
+
+					$data_diagram_epbm_mk = [];
+					$data_diagram_epbm_dosen = [];
+					$psd = [];
+					//echo '<pre>';  var_dump($data_nilai_epbm_mk); echo '</pre>';		
+
+					if (!empty($data_nilai_epbm_dosen)) {
+						for ($i=1; $i < count($data_nilai_epbm_mk); $i++) { 
+							array_push($psd, $arr['data_psd'][$i]->nama);
+							array_push($data_diagram_epbm_mk, $data_nilai_epbm_mk[$i]->nilai);
+							array_push($data_diagram_epbm_dosen, $data_nilai_epbm_dosen[$i]->nilai);
+						}
+
+						array_push($arr['data_nilai_epbm_mk'], $data_nilai_epbm_mk);
+						array_push($arr['data_nilai_epbm_dosen'], $data_nilai_epbm_dosen);
+						array_push($arr['psd'], $psd);
+						array_push($arr['data_diagram_epbm_mk'], $data_diagram_epbm_mk);
+						array_push($arr['data_diagram_epbm_dosen'], $data_diagram_epbm_dosen);
+						array_push($arr['kode_epbm_dosen'], $key->kode_epbm_mk);
+						array_push($arr['nama_mata_kuliah'], $key->nama_mata_kuliah);
+						array_push($arr['nama_tahun'], $key1->tahun);
+						array_push($arr['nama_semester'], $key2);
+					}
+				}
+			}
+		}
+		//echo '<pre>';  var_dump($arr['data_tahun']); echo '</pre>';
+		//echo '<pre>';  var_dump($arr['kode_epbm_dosen']); echo '</pre>';
+		//echo '<pre>';  var_dump($arr['nama_mata_kuliah']); echo '</pre>';
+		//echo '<pre>';  var_dump($arr['data_epbm_dosen_select']); echo '</pre>';
+		//echo '<pre>';  var_dump($arr['data_nilai_epbm_mk']); echo '</pre>';
+		//echo '<pre>';  var_dump($arr['data_nilai_epbm_dosen']); echo '</pre>';
+		//echo '<pre>';  var_dump($arr['data_diagram_epbm_mk']); echo '</pre>';
+		//echo '<pre>';  var_dump($arr['data_diagram_epbm_dosen']); echo '</pre>';
+		$this->load->view('vw_template', $arr);
+ 
+	}
 } 
+ 

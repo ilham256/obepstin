@@ -93,7 +93,7 @@
 								</select>
 							</div>
 						</div>
-					</form>
+					</form> 
 					<div class="box-content">		
 						<div class="col-md-9 col-sm-12" style="">
 							<canvas id="evaluasi_cpl2" class="chartjs-chart" width="480" height="220"></canvas>

@@ -48,8 +48,15 @@ class Evaluasi_l extends MY_Controller {
         $arr['tahun_masuk'] =  $this->mahasiswa_model->get_tahun_masuk();
         $arr['tahun_masuk_max'] =  $this->mahasiswa_model->get_tahun_masuk_max();
         $arr['katkin'] =  $this->katkin_model->get_katkin();
-
+  
         $arr['data_cpl'] = $this->kinumum_model->get_cpl();
+        $arr['nama_cpl'] = [];
+
+        foreach ($arr['data_cpl'] as $key ) {
+            array_push($arr['nama_cpl'], $key->nama);
+        }
+
+
 
         $rumus_cpl = $this->kinumum_model->get_cpl_rumus_deskriptor();
         $rumus_deskriptor = $this->kinumum_model->get_deskriptor_rumus_cpmk();
@@ -168,13 +175,9 @@ class Evaluasi_l extends MY_Controller {
                 }
 
                 $dt_avg = array_sum($dt)/$j;
-
-                if($dt_avg < 50){
-                    $dt_avg = 50;
-                }
-                
+            
                 array_push($nilai_cpl_mahasiswa_1, $dt);
-                array_push($nilai_cpl_average_1, $dt_avg);
+                array_push($nilai_cpl_average_1, round($dt_avg));
                 array_push($nilai_std_max_1, $dt_avg+5);
                 array_push($nilai_std_min_1, $dt_avg-5);
                 array_push($target_1, $target["0"]->nilai_target_pencapaian_cpl);
