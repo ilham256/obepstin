@@ -75,7 +75,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => 'https://tin.ipb.ac.id/',
 	// 'username' => 'root',
 	// 'password' => '',
 	// 'database' => 'spk',
