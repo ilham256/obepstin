@@ -112,6 +112,8 @@ class Cpmklang extends CI_Controller {
         
         if ( ! $this->upload->do_upload('file')){
         	$error = array('error' => $this->upload->display_errors());
+            print_r($error);
+            return false;
         }
         else{
         	$data = array('Upload File Excel' => $this->upload->data());
@@ -123,12 +125,12 @@ class Cpmklang extends CI_Controller {
         $inputFileName = './uploads/'.$config['file_name'];
          
         try {
-                $inputFileType = IOFactory::identify($inputFileName);
-                $objReader = IOFactory::createReader($inputFileType);
-                $objPHPExcel = $objReader->load($inputFileName);
-            } catch(Exception $e) {
-                die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
-            }
+            $inputFileType = IOFactory::identify($inputFileName);
+            $objReader = IOFactory::createReader($inputFileType);
+            $objPHPExcel = $objReader->load($inputFileName);
+        } catch(Exception $e) {
+            die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
+        }
  
         
         $highestSheet = $objPHPExcel->getSheetCount();
@@ -248,7 +250,7 @@ class Cpmklang extends CI_Controller {
         $arr['breadcrumbs'] = 'cpmklang';
         $arr['content'] = 'vw_data_nilai_berhasil_disimpan';
         $this->load->view('vw_template', $arr);
-        redirect('Cpmklang/data_tersimpan','refresh');
+        //redirect('Cpmklang/data_tersimpan','refresh');
     
  
     }
