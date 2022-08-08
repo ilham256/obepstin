@@ -213,7 +213,7 @@ class Cpmklang extends CI_Controller {
                         "id_matakuliah_has_cpmk"=> 0,
                         "nilai_langsung"=> 0
 
-                );
+                ); 
                 $masukan = $save_data;
                 }else {                            
                      $save_data = array(
