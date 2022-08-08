@@ -213,7 +213,7 @@ class Cpmklang extends CI_Controller {
                         "id_matakuliah_has_cpmk"=> 0,
                         "nilai_langsung"=> 0
 
-                ); 
+                );
                 $masukan = $save_data;
                 }else {                            
                      $save_data = array(
@@ -242,7 +242,7 @@ class Cpmklang extends CI_Controller {
 
         //echo '<pre>';  var_dump($kode_mk); echo '</pre>'; 
        // echo '<pre>';  var_dump($cek_kode_mk); echo '</pre>'; 
-        //unlink($inputFileName);
+        unlink($inputFileName);
 
         //redirect('Cpmklang','refresh');
         $arr['breadcrumbs'] = 'cpmklang';

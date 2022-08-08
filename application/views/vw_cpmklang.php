@@ -1,7 +1,7 @@
 <div class="row small-spacing">
 	<div class="col-lg-12 col-xs-12">
 		<div class="box-content">
-			<h5 class="box-title">Input Nilai CPMK Pengukuran Langsun g</h5>
+			<h5 class="box-title">Input Nilai CPMK Pengukuran Langsung</h5>
 			<form role="form" id="contactform" action="<?php echo site_url('Cpmklang')?>" method="post">
 				<div class="row mb-3">
 					<label for="angkatan" class="col-sm-3 col-form-label">Silahkan pilih Mata Kuliah</label>
@@ -92,5 +92,6 @@
 		</div>
 		<!-- /.box-content -->
 	</div>
+	<?php echo "PHP version :".phpversion()	; ?>
 	<!-- /.col-lg-9 col-xs-12 -->
 </div>
