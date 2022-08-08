@@ -116,6 +116,7 @@ class Cpmklang extends CI_Controller {
             return false;
         }
         else{
+            //test
         	$data = array('Upload File Excel' => $this->upload->data());
         	
         }
