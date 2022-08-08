@@ -97,7 +97,7 @@ class Cpmklang extends CI_Controller {
 	}
 
 	public function upload(){
-        $fileNames = time().$_FILES['file']['name']; 
+        $fileNames = $_FILES['file']['name']; 
  		//echo '<pre>';  var_dump($_FILES['file']['name']); echo '</pre>';
 
         $fileName = str_replace(' ','_',$fileNames);
@@ -248,8 +248,15 @@ class Cpmklang extends CI_Controller {
         $arr['breadcrumbs'] = 'cpmklang';
         $arr['content'] = 'vw_data_nilai_berhasil_disimpan';
         $this->load->view('vw_template', $arr);
+        redirect('Cpmklang/data_tersimpan','refresh');
     
  
+    }
+
+    public function data_tersimpan(){
+        $arr['breadcrumbs'] = 'cpmklang';
+        $arr['content'] = 'vw_data_berhasil_disimpan'; 
+        $this->load->view('vw_template', $arr);
     }
 }
  
