@@ -77,6 +77,27 @@
 						</table>
 					</div> 
 					<div class="col-md-3 col-sm-12">
+						<div class="row small-spacing">
+							<div class="col-lg-12 col-xs-12">
+								 <?php if ($error == true): ?>
+								<div class="box-content">
+						     
+						          <div class="col-12">
+						              <div class="alert alert-warning">
+						                <?= $message; ?>
+						              </div>
+						              <!-- /.card-body -->
+						            <!-- /.card -->
+						            </div>  
+								
+								</div>
+						     	 <?php endif ?>
+
+								<!-- /.box-content -->
+							</div>
+							<!-- /.col-lg-9 col-xs-12 -->
+						</div>
+						 
 						<form role="form" id="contactform" action="<?php echo site_url('Cpmklang/upload')?>" method="post" enctype="multipart/form-data">
 						<input type="file" id="input-file-to-destroy" name="file" class="dropify" />
 						<p class="help margin-top-10">Format file Excel (.xls atau .xlsx), Maksimum ukuran file 5 MB</p>

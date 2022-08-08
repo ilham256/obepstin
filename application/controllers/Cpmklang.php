@@ -39,6 +39,8 @@ class Cpmklang extends CI_Controller {
 	{ 
 		$arr['breadcrumbs'] = 'cpmklang';
 		$arr['content'] = 'vw_cpmklang';
+        $arr['error'] = '';
+        $arr['message'] = '';
 		$arr['mata_kuliah'] =  $this->Matakuliah_model->get_matakuliah();
 		$arr['tahun_masuk'] =  $this->mahasiswa_model->get_tahun_masuk();
         $arr['simpanan_tahun'] = " - Pilih Tahun - ";
@@ -111,145 +113,147 @@ class Cpmklang extends CI_Controller {
         $this->load->library('upload', $config);
         
         if ( ! $this->upload->do_upload('file')){
-        	$error = array('error' => $this->upload->display_errors());
-            print_r($error);
-            return false;
+        	$error = $this->upload->display_errors();
+            $arr['error'] = true;
+            $arr['message'] = $error;
+             $arr['content'] = 'vw_cpmklang';
         }
         else{
+            $arr['error'] = false;
             //test
         	$data = array('Upload File Excel' => $this->upload->data());
-        	
+        	$media = $this->upload->data('file');
+            //echo '<pre>';  var_dump($config); echo '</pre>';
+            $inputFileName = './uploads/'.$config['file_name'];
+             try {
+                $inputFileType = IOFactory::identify($inputFileName);
+                $objReader = IOFactory::createReader($inputFileType);
+                $objPHPExcel = $objReader->load($inputFileName);
+
+
+                $highestSheet = $objPHPExcel->getSheetCount();
+
+                $arr['datas'] = [];
+
+                for ($p=0; $p < $highestSheet; $p++) { 
+                    
+                    $sheet = $objPHPExcel->getSheet($p);
+
+                    $highestRow = $sheet->getHighestRow();
+                    $highestColumn = $sheet->getHighestColumn();
+
+                    $row_mk = $sheet->rangeToArray('A' . 13 . ':' . $highestColumn . 13,
+                                                        NULL,
+                                                        TRUE,
+                                                        FALSE); 
+                    $kode_mk_1 = $row_mk[0][2];
+                    $kode_mk_2 = str_replace(" ", "", $kode_mk_1 );
+                    $kode_mk = str_replace(":", "", $kode_mk_2 );
+
+                    $cek_kode_mk = $this->cpmklang_model->cek_matakuliah_kode_2($kode_mk);
+
+                    if (!empty($cek_kode_mk)) {
+                        $kode_mk = $cek_kode_mk["0"]->kode_mk;
+                    }else {
+                        $cek_kode_mk = $this->cpmklang_model->cek_matakuliah_kode_3($kode_mk);
+                    } 
+
+                    if (!empty($cek_kode_mk)) {
+                        $kode_mk = $cek_kode_mk["0"]->kode_mk;
+                    }
+
+                    $row_cpmk = $sheet->rangeToArray('F' . 19 . ':' . $highestColumn . 19,
+                                                        NULL,
+                                                        TRUE,
+                                                        FALSE);
+                    $row_cpmk_1 = array_reduce($row_cpmk, 'array_merge', array());
+                    $row_cpmk_2 = str_replace("CMPK", "CPMK", $row_cpmk_1);
+                    $row_nilai_cpmk = str_replace(" ", "_", $row_cpmk_2);
+
+                
+
+
+                    $i = 0;
+                     foreach ($row_nilai_cpmk as $key) {
+                         # code...
+                         
+                        for ($row = 20; $row <= $highestRow; $row++){                  //  Read a row of data into an array                 
+                            $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row,
+                                                            NULL,
+                                                            TRUE,
+                                                            FALSE);
+                            $rowNilai = $sheet->rangeToArray('F' . $row . ':' . $highestColumn . $row,
+                                                            NULL,
+                                                            TRUE,
+                                                            FALSE);
+                            //Sesuaikan sama nama kolom tabel di database 
+
+                            $data_cek =  $this->cpmklang_model->cek_matakuliah_has_cpmk($kode_mk.'_'.$key);
+
+                            if (empty($data_cek)) {
+                                $save_data = array(
+                                    "id_nilai"=> "Data_CPMK_Kosong",
+                                    "nim"=> 0,
+                                    "id_matakuliah_has_cpmk"=> 0,
+                                    "nilai_langsung"=> 0
+
+                                );
+                                $masukan = array(
+                                    "id_nilai"=> "Data_CPMK_Kosong",
+                                    "nim"=> 0,
+                                    "id_matakuliah_has_cpmk"=> $kode_mk.'_'.$key,
+                                    "nilai_langsung"=> 0
+
+                                );
+                            }
+                            elseif ($rowData[0][1] == NULL) {
+                                $save_data = array(
+                                    "id_nilai"=> "Data_Kosong",
+                                    "nim"=> 0,
+                                    "id_matakuliah_has_cpmk"=> 0,
+                                    "nilai_langsung"=> 0
+
+                            );
+                            $masukan = $save_data;
+                            }else {                            
+                                 $save_data = array(
+                                    "id_nilai"=> $rowData[0][1].'_'.$kode_mk.'_'.$key,
+                                    "nim"=> $rowData[0][1],
+                                    "id_matakuliah_has_cpmk"=> $kode_mk.'_'.$key,
+                                    "nilai_langsung"=> $rowData[0][5+$i]
+
+                            );
+                             $masukan = $save_data;
+                            }
+                            //sesuaikan nama dengan nama tabel
+                             
+                            array_push($arr['datas'],$masukan);
+                            $insert = $this->cpmklang_model->update_excel($save_data);
+                            //delete_files($media['file_path']);
+                                 
+                        }
+                        $i++;
+                     }
+
+
+
+                }
+
+                 //echo '<pre>';  var_dump($kode_mk); echo '</pre>'; 
+               // echo '<pre>';  var_dump($cek_kode_mk); echo '</pre>'; 
+                unlink($inputFileName);
+                $arr['content'] = 'vw_data_nilai_berhasil_disimpan';
+            } catch(Exception $e) {
+                $arr['error'] = true;
+                $message = 'Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage();
+                $arr['message'] = $message;
+                $arr['content'] = 'vw_cpmklang';
+            }
+
         }
         //redirect('mahasiswa','refresh');
-        $media = $this->upload->data('file');
-        //echo '<pre>';  var_dump($config); echo '</pre>';
-        $inputFileName = './uploads/'.$config['file_name'];
-         
-        try {
-            $inputFileType = IOFactory::identify($inputFileName);
-            $objReader = IOFactory::createReader($inputFileType);
-            $objPHPExcel = $objReader->load($inputFileName);
-        } catch(Exception $e) {
-            die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
-        }
- 
-        
-        $highestSheet = $objPHPExcel->getSheetCount();
-
-        $arr['datas'] = [];
-
-        for ($p=0; $p < $highestSheet; $p++) { 
-            
-        $sheet = $objPHPExcel->getSheet($p);
-
-        $highestRow = $sheet->getHighestRow();
-        $highestColumn = $sheet->getHighestColumn();
-
-        $row_mk = $sheet->rangeToArray('A' . 13 . ':' . $highestColumn . 13,
-                                            NULL,
-                                            TRUE,
-                                            FALSE); 
-        $kode_mk_1 = $row_mk[0][2];
-        $kode_mk_2 = str_replace(" ", "", $kode_mk_1 );
-        $kode_mk = str_replace(":", "", $kode_mk_2 );
-
-        $cek_kode_mk = $this->cpmklang_model->cek_matakuliah_kode_2($kode_mk);
-
-        if (!empty($cek_kode_mk)) {
-            $kode_mk = $cek_kode_mk["0"]->kode_mk;
-        }else {
-            $cek_kode_mk = $this->cpmklang_model->cek_matakuliah_kode_3($kode_mk);
-        } 
-
-        if (!empty($cek_kode_mk)) {
-            $kode_mk = $cek_kode_mk["0"]->kode_mk;
-        }
-
-        $row_cpmk = $sheet->rangeToArray('F' . 19 . ':' . $highestColumn . 19,
-                                            NULL,
-                                            TRUE,
-                                            FALSE);
-        $row_cpmk_1 = array_reduce($row_cpmk, 'array_merge', array());
-        $row_cpmk_2 = str_replace("CMPK", "CPMK", $row_cpmk_1);
-        $row_nilai_cpmk = str_replace(" ", "_", $row_cpmk_2);
-
-        
-
-
-         $i = 0;
-         foreach ($row_nilai_cpmk as $key) {
-             # code...
-             
-            for ($row = 20; $row <= $highestRow; $row++){                  //  Read a row of data into an array                 
-                $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row,
-                                                NULL,
-                                                TRUE,
-                                                FALSE);
-                $rowNilai = $sheet->rangeToArray('F' . $row . ':' . $highestColumn . $row,
-                                                NULL,
-                                                TRUE,
-                                                FALSE);
-                //Sesuaikan sama nama kolom tabel di database 
-
-                $data_cek =  $this->cpmklang_model->cek_matakuliah_has_cpmk($kode_mk.'_'.$key);
-
-                if (empty($data_cek)) {
-                    $save_data = array(
-                        "id_nilai"=> "Data_CPMK_Kosong",
-                        "nim"=> 0,
-                        "id_matakuliah_has_cpmk"=> 0,
-                        "nilai_langsung"=> 0
-
-                    );
-                    $masukan = array(
-                        "id_nilai"=> "Data_CPMK_Kosong",
-                        "nim"=> 0,
-                        "id_matakuliah_has_cpmk"=> $kode_mk.'_'.$key,
-                        "nilai_langsung"=> 0
-
-                    );
-                }
-                elseif ($rowData[0][1] == NULL) {
-                    $save_data = array(
-                        "id_nilai"=> "Data_Kosong",
-                        "nim"=> 0,
-                        "id_matakuliah_has_cpmk"=> 0,
-                        "nilai_langsung"=> 0
-
-                );
-                $masukan = $save_data;
-                }else {                            
-                     $save_data = array(
-                        "id_nilai"=> $rowData[0][1].'_'.$kode_mk.'_'.$key,
-                        "nim"=> $rowData[0][1],
-                        "id_matakuliah_has_cpmk"=> $kode_mk.'_'.$key,
-                        "nilai_langsung"=> $rowData[0][5+$i]
-
-                );
-                 $masukan = $save_data;
-                }
-                //sesuaikan nama dengan nama tabel
-                 
-                array_push($arr['datas'],$masukan);
-                $insert = $this->cpmklang_model->update_excel($save_data);
-                //delete_files($media['file_path']);
-                     
-            }
-            $i++;
-         }
-
-
-
-        }
-
-
-        //echo '<pre>';  var_dump($kode_mk); echo '</pre>'; 
-       // echo '<pre>';  var_dump($cek_kode_mk); echo '</pre>'; 
-        unlink($inputFileName);
-
         //redirect('Cpmklang','refresh');
         $arr['breadcrumbs'] = 'cpmklang';
-        $arr['content'] = 'vw_data_nilai_berhasil_disimpan';
         $this->load->view('vw_template', $arr);
         //redirect('Cpmklang/data_tersimpan','refresh');
     
