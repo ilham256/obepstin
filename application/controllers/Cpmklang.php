@@ -242,7 +242,7 @@ class Cpmklang extends CI_Controller {
 
         //echo '<pre>';  var_dump($kode_mk); echo '</pre>'; 
        // echo '<pre>';  var_dump($cek_kode_mk); echo '</pre>'; 
-        unlink($inputFileName);
+        //unlink($inputFileName);
 
         //redirect('Cpmklang','refresh');
         $arr['breadcrumbs'] = 'cpmklang';
