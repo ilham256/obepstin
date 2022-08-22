@@ -116,7 +116,7 @@ class mahasiswa extends CI_Controller {
                 'data' => $data_mahasiswa); 
  
            $this->load->view('vw_excel_mahasiswa',$data);
-      }
+      } 
    
  
 public function upload(){

@@ -546,7 +546,7 @@ class Report extends CI_Controller {
 		    	$arr['tahun_masuk_rapor_mahasiswa'] = '-';
 			}
 
-
+			$arr['title_print'] = "Report Mahasiswa ".$arr['nama_rapor_mahasiswa']."-".$arr['nim_rapor_mahasiswa'];
 			$this->load->view('vw_template_print', $arr);
 
 		}
