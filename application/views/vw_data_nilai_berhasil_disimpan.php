@@ -1,15 +1,7 @@
 <div class="row small-spacing">
 	<div class="col-lg-12 col-xs-12">
 		<div class="box-content">
-      <?php if ($error == true): ?>
-          <div class="col-12">
-              <div class="alert alert-warning">
-                <?= $message; ?>
-              </div>
-              <!-- /.card-body -->
-            <!-- /.card -->
-            </div>  
-       <?php else: ?>
+
             <?php foreach ($datas as $key) { ?>
     
               <div class="col-12">
@@ -28,7 +20,7 @@
             
 
             <?php } ?>
-      <?php endif ?>
+
 		
 		</div>
 		<!-- /.box-content -->

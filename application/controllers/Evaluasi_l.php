@@ -41,6 +41,8 @@ class Evaluasi_l extends MY_Controller {
      
 
     public function index() {
+
+
         $arr['breadcrumbs'] = 'evaluasi_l';
         $arr['content'] = 'analisis_evaluasi_pengukuran_langsung/analisis_kinerja_cpl_vw';
 
@@ -117,8 +119,7 @@ class Evaluasi_l extends MY_Controller {
             curl_close($ch);    
             return $output;
         }
-
-
+   
         foreach ($arr['tahun_masuk_select'] as $tahun) {
             
             $nilai_std_max_1 = [];
@@ -127,7 +128,7 @@ class Evaluasi_l extends MY_Controller {
             $nilai_cpl_mahasiswa_1 = [];
             $target_1 = [];
         
-            $send = curl("https://api.ipb.ac.id/v1/Mahasiswa/DaftarMahasiswa/PerDepartemen?departemenId=160&strata=S1&tahunMasuk=".$tahun); 
+            $send = $this->curl("https://api.ipb.ac.id/v1/Mahasiswa/DaftarMahasiswa/PerDepartemen?departemenId=160&strata=S1&tahunMasuk=".$tahun); 
 
             // mengubah JSON menjadi array
             $mahasiswa = json_decode($send, TRUE);
@@ -202,6 +203,20 @@ class Evaluasi_l extends MY_Controller {
         //echo '<pre>';  var_dump($arr['cpl_2']); echo '</pre>';
         //echo '<pre>';  var_dump($arr['tahun_masuk_select']); echo '</pre>';
         $this->load->view('vw_template', $arr);
+    }
+
+     public function curl($url){
+        $ch = curl_init(); 
+        $headers = array(
+           'accept: text/plain',
+           'X-IPBAPI-TOKEN: Bearer 86f2760d-7293-36f4-833f-1d29aaace42e'
+         );
+        curl_setopt($ch, CURLOPT_URL, $url); 
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        $output = curl_exec($ch);
+        curl_close($ch);    
+        return $output;
     }
 
     public function evaluasi_kinerja_cpl()
