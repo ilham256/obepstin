@@ -10,7 +10,7 @@
 										<p><strong>INSTITUT PERTANIAN BOGOR<br>
 										DEPARTEMEN TEKNOLOGI INDUSTRI PERTANIAN<br>
 										P.S. TEKNIK INDUSTRI PERTANIAN
-										<br><br>
+										<br><br> 
 										</strong>
 										</p>
 									</div>

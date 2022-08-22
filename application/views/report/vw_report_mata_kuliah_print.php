@@ -13,7 +13,7 @@
 										</p>
 									</div>
 								</div> 
-								<table>
+								<table>  
 									<tbody>
 										<tr>
 											<td>Nama Mata Kuliah</td>

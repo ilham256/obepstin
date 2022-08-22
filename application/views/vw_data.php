@@ -33,7 +33,7 @@
 									<?php } ?>
 								</tr> 
 							</tfoot>
-
+ 
 							<tbody>
 			                    <?php $i = 1; foreach($data_mahasiswa as $r) { ?>
 			                    <tr>
@@ -49,14 +49,18 @@
 													} } } ?>
 			                    	</td>
 									<?php } ?>
-
-
-			                        
-			                    </tr>
+                                </tr>
 			                    <?php $i++; } ?>
-
 							</tbody>
 						</table>
+
+						<form role="form" id="contactform" action="<?php echo site_url('data/export_excel')?>" method="post" target="_blank">
+
+							<input type="hidden" name="tahun" value="<?php echo $simpanan_tahun ?>">
+
+							<button onclick="return confirm('Apakah anda ingin mendownload data excel CPL ?')" type="submit" class="btn btn-default waves-effect waves-light" name="download" value="download"><i class='fa fa-download'></i> Download</button>
+
+						</form>
 				</div>
 
 		</div>
