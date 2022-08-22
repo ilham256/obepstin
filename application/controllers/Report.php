@@ -601,13 +601,13 @@ class Report extends CI_Controller {
 			array_push($arr['nilai_mk_raport_tak_langsung'], $dt_avg);
 	
 		}
-		//echo '<pre>';  var_dump($arr['cpl']); echo '</pre>';
-		//echo '<pre>';  var_dump($arr['nilai_diagram_cpl']); echo '</pre>';
-		//echo '<pre>';  var_dump($arr['target_cpl']); echo '</pre>';
+		echo '<pre>';  var_dump($arr['cpl']); echo '</pre>';
+		echo '<pre>';  var_dump($arr['nilai_diagram_cpl']); echo '</pre>';
+		echo '<pre>';  var_dump($mahasiswa_2); echo '</pre>';
 		//echo '<pre>';  var_dump($arr['nilai_mk_raport_keseluruhan']); echo '</pre>';
 		//echo '<pre>';  var_dump($arr['tahun_mk']); echo '</pre>';
 		//echo '<pre>';  var_dump($mahasiswa_2); echo '</pre>';
-		$this->load->view('vw_template', $arr);
+		//$this->load->view('vw_template', $arr);
 
 	}
  
