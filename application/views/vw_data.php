@@ -50,11 +50,11 @@
 			                    	</td>
 									<?php } ?>
                                 </tr>
-			                    <?php $i++; } ?>
+			                    <?php $i++; } ?> 
 							</tbody>
 						</table>
 
-						<form role="form" id="contactform" action="<?php echo site_url('data/export_excel')?>" method="post" target="_blank">
+						<form role="form" id="contactform" action="<?php echo site_url('data/export_excel/')?>" method="post" target="_blank">
 
 							<input type="hidden" name="tahun" value="<?php echo $simpanan_tahun ?>">
 
