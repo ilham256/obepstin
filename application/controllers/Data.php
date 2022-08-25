@@ -151,8 +151,8 @@ class Data extends CI_Controller {
 		//echo "nlai CPMK";
 		//echo '<pre>';  var_dump($nilai_cpmk); echo '</pre>';
 		//echo '<pre>';  var_dump($this->kinumum_model->get_nilai_cpmk()); echo '</pre>';
-
- public function export_excel(){
+	}
+ 	public function export_excel(){
  		// mengubah JSON menjadi array
 		$arr['tahun_masuk'] =  $this->mahasiswa_model->get_tahun_masuk();
 
@@ -243,7 +243,29 @@ class Data extends CI_Controller {
         $this->load->view('vw_excel_cpl',$data);
       }
 
+      public function data_cpmk(){
+      	$arr['breadcrumbs'] = 'data_cpmk';
+		$arr['content'] = 'vw_data_cpmk'; 
 
 
-	 
+		$arr['data_cpl'] = $this->kinumum_model->get_cpl();
+		$rumus_cpl = $this->kinumum_model->get_cpl_rumus_deskriptor();
+        $arr['data_rumus_deskriptor'] = $this->kinumum_model->get_deskriptor_rumus_cpmk();
+        $arr['nilai'] = [];
+        $nim = "F34180058";
+
+        if (!empty($this->input->post('pilih', TRUE))) {
+			$nim = $this->input->post('nim', TRUE); 
+		}
+
+        foreach ($arr['data_rumus_deskriptor'] as $key) {
+        	$nilai = $this->kinumum_model->get_nilai_cpmk_select($nim."_".$key->id_matakuliah_has_cpmk);
+        	array_push($arr['nilai'], $nilai);
+        }
+		//echo '<pre>';  var_dump($nilai_cpmk); echo '</pre>';
+		//echo '<pre>';  var_dump($rumus_deskriptor); echo '</pre>';
+      	$this->load->view('vw_template', $arr);
+      }
+
 }
+ 

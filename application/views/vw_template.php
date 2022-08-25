@@ -178,6 +178,17 @@
 						</li>
 					</ul>
 				</li>
+				<li <?php echo ($breadcrumbs == 'data' || $breadcrumbs == 'data_cpmk' ? ' class = "current active"' : '') ?>>
+					<a class="waves-effect parent-item js__control" href="<?php echo site_url('data') ?>"><i class="menu-icon ti-layers"></i>Data<span class="menu-arrow fa fa-angle-down"></span></a>
+					<ul class="sub-menu js__content">
+						<li <?php echo ($breadcrumbs == 'data' ? ' class = "current"' : '') ?>>
+							<a href="<?php echo site_url('data') ?>">Data CPL</a>
+						</li>
+						<li <?php echo ($breadcrumbs == 'data_cpmk' ? ' class = "current"' : '') ?>>
+							<a href="<?php echo site_url('data/data_cpmk') ?>">Data CPMK Mahasiswa</a>
+						</li>
+					</ul>
+				</li>
 				<li <?php echo ($breadcrumbs == 'data' ? ' class = "current active"' : '') ?>>
 					<a class="waves-effect" href="<?php echo site_url('data') ?>"><i class="menu-icon ti-layers"></i>Data CPL</a>
 				</li>

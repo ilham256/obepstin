@@ -75,7 +75,13 @@ class kinumum_model extends CI_Model
 		return $query->get()->result();
 	}
 
-
+	public function get_nilai_cpmk_select($id)  
+	{
+		$query = $this->db->select('*');
+		$query->from('nilai_cpmk');
+		$query->where('id_nilai',$id);
+		return $query->get()->result();
+	}
 }  
 
 ?>
