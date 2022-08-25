@@ -252,12 +252,14 @@ class Data extends CI_Controller {
 		$rumus_cpl = $this->kinumum_model->get_cpl_rumus_deskriptor();
         $arr['data_rumus_deskriptor'] = $this->kinumum_model->get_deskriptor_rumus_cpmk();
         $arr['nilai'] = [];
-        $nim = "F34180058";
+        $nim = "-";
 
         if (!empty($this->input->post('pilih', TRUE))) {
-			$nim = $this->input->post('nim', TRUE); 
+			$nim = $this->input->post('nim', TRUE);  
 		}
-
+ 
+		$arr['data_mahasiswa'] = $this->kinumum_model->get_data_mahasiswa($nim);
+        
         foreach ($arr['data_rumus_deskriptor'] as $key) {
         	$nilai = $this->kinumum_model->get_nilai_cpmk_select($nim."_".$key->id_matakuliah_has_cpmk);
         	array_push($arr['nilai'], $nilai);

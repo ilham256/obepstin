@@ -68,6 +68,14 @@ class kinumum_model extends CI_Model
 		return $query->get()->result();
 	}
 
+	public function get_data_mahasiswa($nim)  
+	{
+		$query = $this->db->select('*');
+		$query->from('mahasiswa');
+		$query->where('nim',$nim);
+		return $query->get()->result();
+	}
+
 	public function get_nilai_cpmk()  
 	{
 		$query = $this->db->select('*');
