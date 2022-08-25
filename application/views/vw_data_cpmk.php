@@ -13,6 +13,29 @@
 							</div> 
 					</form> 
 			<br>
+			<table>
+				<tbody>
+					<tr>
+						<td>Nim</td>
+						<td><?php if (empty($data_mahasiswa)) {
+							echo "-";
+						} else{echo " : ".$data_mahasiswa[0]->nim	;} ?></td>
+					</tr>
+					<tr>
+						<td>Nama Mahasiswa</td>
+						<td><?php if (empty($data_mahasiswa)) {
+							echo "-";
+						} else{echo " : ".$data_mahasiswa[0]->nama	;} ?></td>
+					</tr>
+					<tr>
+						<td>Angkatan</td>
+						<td><?php if (empty($data_mahasiswa)) {
+							echo "-";
+						} else{echo " : ".$data_mahasiswa[0]->tahun_masuk	;} ?></td>
+					</tr>
+				</tbody>
+			</table>
+			<br>
 			<div class="col-md-12 col-sm-12"> 
 						<table id="example1" class="table table-striped table-bordered display" style="width:100%">
 							<thead>
@@ -53,7 +76,7 @@
 </div>
  
 <!-- chart.js Chart -->
-<?php //echo '<pre>';  var_dump($data_rumus_deskriptor); echo '</pre>'; ?>
+<?php //echo '<pre>';  var_dump($data_mahasiswa); echo '</pre>'; ?>
 
 
 
