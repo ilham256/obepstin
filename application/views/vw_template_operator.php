@@ -85,7 +85,7 @@
 	<!-- /.header -->
 	<div class="content">
 		<div class="navigation">
-			<h5 class="title">Navigation</h5>
+			<h5 class="title">Operator</h5>
 			<!-- /.title -->
 			<ul class="menu js__accordion">
 
