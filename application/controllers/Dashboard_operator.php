@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller {
+class Dashboard_operator extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -33,7 +33,10 @@ class Dashboard extends CI_Controller {
 
 		$arr['content'] = 'vw_Beranda';
 
-		print_r($this->session->userdata());
-		$this->load->view('vw_template', $arr); 
+		//print_r($this->session->userdata('nama_user'));
+		//$nama = $this->session->userdata('nama_user');
+		//echo '<pre>';  var_dump($nama); echo '</pre>';
+
+		$this->load->view('vw_template_operator', $arr); 
 	}
-}
+} 

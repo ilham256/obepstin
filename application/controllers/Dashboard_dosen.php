@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller {
+class Dashboard_dosen extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -24,7 +24,7 @@ class Dashboard extends CI_Controller {
     if ($this->session->userdata('loggedin') != true) {
       redirect('auth/login');
       
-  }
+  } 
 }
  
 	public function index()
@@ -34,6 +34,6 @@ class Dashboard extends CI_Controller {
 		$arr['content'] = 'vw_Beranda';
 
 		print_r($this->session->userdata());
-		$this->load->view('vw_template', $arr); 
+		$this->load->view('vw_template_dosen', $arr); 
 	}
 }

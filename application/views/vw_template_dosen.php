@@ -88,76 +88,18 @@
 			<h5 class="title">Navigation</h5>
 			<!-- /.title -->
 			<ul class="menu js__accordion">
-				<li <?php echo ($breadcrumbs == 'dashboard' || $breadcrumbs == 'infumum' || $breadcrumbs == 'kinumum' || $breadcrumbs == 'kincpmk' || $breadcrumbs == 'kincpl'? ' class = "current active"' : '') ?>>
-					<a class="waves-effect parent-item js__control" href="<?php echo site_url()?>"><i class="menu-icon ti-dashboard"></i>Dashboard<span class="menu-arrow fa fa-angle-down"></span></a>
-					<ul class="sub-menu js__content">
+				<li <?php echo ($breadcrumbs == 'dashboard' ? ' class = "current active"' : '') ?>>
+					<a class="waves-effect" href="<?php echo site_url('dashboard_dosen') ?>"><i class="menu-icon ti-dashboard"></i>Dashboard</a>
+				</li> 
 
-						<li <?php echo ($breadcrumbs == 'infumum' ? ' class = "current"' : '') ?>>
-							<a href="<?php echo site_url('infumum') ?>">Informasi Umum</a>
-						</li>
-						<li <?php echo ($breadcrumbs == 'kinumum' ? ' class = "current"' : '') ?>>
-							<a href="<?php echo site_url('kinumum') ?>">Kinerja CPL</a>
-						</li>
-						<li <?php echo ($breadcrumbs == 'kincpmk' ? ' class = "current"' : '') ?>>
-							<a href="<?php echo site_url('kincpmk') ?>">Kinerja CPMK</a>
-						</li>
-						<li <?php echo ($breadcrumbs == 'kincpl' ? ' class = "current"' : '') ?>>
-							<a href="<?php echo site_url('kincpl') ?>">Status Pencapaian CPL</a>
-						</li>
-					</ul>
-				</li>
-				<li <?php echo ($breadcrumbs == 'matakuliah' || $breadcrumbs == 'profil_matakuliah' || $breadcrumbs == 'kurikulum' || $breadcrumbs == 'cpmklang' || $breadcrumbs == 'cpmktlang' || $breadcrumbs == 'cpltlang' || $breadcrumbs == 'formula' || $breadcrumbs == 'formula_deskriptor' || $breadcrumbs == 'katkin' || $breadcrumbs == 'cpmk_cpl' || $breadcrumbs == 'efektifitas_cpl' || $breadcrumbs == 'relevansi_ppm' ? ' class = "current active"' : '') ?>>
-					<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon ti-layers-alt"></i>Input Asesmen<span class="menu-arrow fa fa-angle-down"></span></a>
-					<ul class="sub-menu js__content">
-						<li <?php echo ($breadcrumbs == 'kurikulum' ? ' class = "current"' : '') ?>>
-							<a href="<?php echo site_url('kurikulum') ?>">Kurikulum</a>
-						</li>
-						<li <?php echo ($breadcrumbs == 'cpmk_cpl' ? ' class = "current"' : '') ?>>
-							<a href="<?php echo site_url('cpmk_cpl') ?>">CPL dan Deskriptor</a>
-						</li>
-						<li <?php echo ($breadcrumbs == 'matakuliah' ? ' class = "current"' : '') ?>>
-							<a href="<?php echo site_url('matakuliah') ?>">Mata Kuliah menurut Semester</a>
-						</li>
-						<li <?php echo ($breadcrumbs == 'profil_matakuliah' ? ' class = "current"' : '') ?>>
-							<a href="<?php echo site_url('profil_matakuliah') ?>">Profil Mata Kuliah & CPMK</a>
-						</li>
-						<li <?php echo ($breadcrumbs == 'formula' ? ' class = "current"' : '') ?>>
-							<a href="<?php echo site_url('formula') ?>">Formula CPL</a>
-						</li>
-						<li <?php echo ($breadcrumbs == 'katkin' ? ' class = "current"' : '') ?>>
-							<a href="<?php echo site_url('katkin') ?>">Kategori Kinerja</a>
-						</li>
-						<li <?php echo ($breadcrumbs == 'cpmklang' ? ' class = "current"' : '') ?>>
-							<a href="<?php echo site_url('cpmklang') ?>">Nilai CPMK Langsung</a>
-						</li>
-						<li <?php echo ($breadcrumbs == 'cpmktlang' ? ' class = "current"' : '') ?>>
-							<a href="<?php echo site_url('cpmktlang') ?>">Nilai CPMK Tak Langsung</a>
-						</li>
-						<li <?php echo ($breadcrumbs == 'cpltlang' ? ' class = "current"' : '') ?>>
-							<a href="<?php echo site_url('cpltlang') ?>">Nilai CPL Tak Langsung</a>
-						</li>
-						<li <?php echo ($breadcrumbs == 'efektivitas_cpl' ? ' class = "current"' : '') ?>>
-							<a href="<?php echo site_url('efektivitas_cpl') ?>">Evaluasi Efektivitas CPL</a>
-						</li>
-						<li <?php echo ($breadcrumbs == 'relevansi_ppm' ? ' class = "current"' : '') ?>>
-							<a href="<?php echo site_url('relevansi_ppm') ?>">Evaluasi Relevansi PPM</a> 
-						</li>
-						<li <?php echo ($breadcrumbs == 'epbm' ? ' class = "current"' : '') ?>>
-							<a href="<?php echo site_url('epbm') ?>">Rekap EPBM</a> 
-						</li>
-					</ul>
-				</li>
-				<li <?php echo ($breadcrumbs == 'mahasiswa' ? ' class = "current active"' : '') ?>>
-					<a class="waves-effect" href="<?php echo site_url('mahasiswa') ?>"><i class="menu-icon ti-user"></i>Mahasiswa</a>
-				</li>
 				<li <?php echo ($breadcrumbs == 'evaluasi_l'  || $breadcrumbs == 'evaluasi_tl' ? ' class = "current active"' : '') ?>>
 					<a class="waves-effect parent-item js__control" href="<?php echo site_url()?>"><i class="menu-icon ti-dashboard"></i>Analisis & Evaluasi<span class="menu-arrow fa fa-angle-down"></span></a>
 					<ul class="sub-menu js__content">
 						<li <?php echo ($breadcrumbs == 'evaluasi_l' ? ' class = "current"' : '') ?>>
-							<a href="<?php echo site_url('evaluasi_l') ?>">Pengukuran Langsung</a>
+							<a href="<?php echo site_url('evaluasi_l_dosen') ?>">Pengukuran Langsung</a>
 						</li>
 						<li <?php echo ($breadcrumbs == 'evaluasi_l' ? ' class = "current"' : '') ?>>
-							<a href="<?php echo site_url('evaluasi_tl') ?>">Pengukuran Tak Langsung</a>
+							<a href="<?php echo site_url('evaluasi_tl_dosen') ?>">Pengukuran Tak Langsung</a>
 						</li>
 					</ul>
 				</li>
@@ -165,27 +107,16 @@
 					<a class="waves-effect parent-item js__control" href="<?php echo site_url('report') ?>"><i class="menu-icon ti-layers"></i>Laporan<span class="menu-arrow fa fa-angle-down"></span></a>
 					<ul class="sub-menu js__content">
 						<li <?php echo ($breadcrumbs == 'report' ? ' class = "current"' : '') ?>>
-							<a href="<?php echo site_url('report') ?>">Report Mahasiswa</a>
+							<a href="<?php echo site_url('report_dosen') ?>">Report Mahasiswa</a>
 						</li>
 						<li <?php echo ($breadcrumbs == 'relevansi_ppm' ? ' class = "current"' : '') ?>>
-							<a href="<?php echo site_url('report/relevansi_ppm') ?>">Relevansi PPM</a>
+							<a href="<?php echo site_url('report_dosen/relevansi_ppm') ?>">Relevansi PPM</a>
 						</li>
 						<li <?php echo ($breadcrumbs == 'efektivitas_cpl' ? ' class = "current"' : '') ?>>
-							<a href="<?php echo site_url('report/efektivitas_cpl') ?>">Efektifitas PPM</a>
+							<a href="<?php echo site_url('report_dosen/efektivitas_cpl') ?>">Efektifitas PPM</a>
 						</li>
 						<li <?php echo ($breadcrumbs == 'report_epbm' ? ' class = "current"' : '') ?>>
-							<a href="<?php echo site_url('report/report_epbm') ?>">Report EPBM</a>
-						</li>
-					</ul>
-				</li>
-				<li <?php echo ($breadcrumbs == 'data' || $breadcrumbs == 'data_cpmk' ? ' class = "current active"' : '') ?>>
-					<a class="waves-effect parent-item js__control" href="<?php echo site_url('data') ?>"><i class="menu-icon ti-layers"></i>Data<span class="menu-arrow fa fa-angle-down"></span></a>
-					<ul class="sub-menu js__content">
-						<li <?php echo ($breadcrumbs == 'data' ? ' class = "current"' : '') ?>>
-							<a href="<?php echo site_url('data') ?>">Data CPL</a>
-						</li>
-						<li <?php echo ($breadcrumbs == 'data_cpmk' ? ' class = "current"' : '') ?>>
-							<a href="<?php echo site_url('data/data_cpmk') ?>">Data CPMK Mahasiswa</a>
+							<a href="<?php echo site_url('report_dosen/report_epbm') ?>">Report EPBM</a>
 						</li>
 					</ul>
 				</li>

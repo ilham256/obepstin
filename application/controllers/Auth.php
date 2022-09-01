@@ -6,7 +6,7 @@ class Auth extends CI_Controller
 	public function index()
 	{
 		show_404();
-	}
+	} 
  
 	public function login()
 	{ 
@@ -28,8 +28,17 @@ class Auth extends CI_Controller
 
 			if($this->auth_model->login($username, $password)){
 				$this->session->set_userdata( 'loggedin', true );
-				
-				redirect('Dashboard');
+
+
+				if ($_SESSION['level'] == 1) {
+					redirect('Dashboard_dosen');
+				} elseif ($_SESSION['level'] == 2) {
+					redirect('Dashboard_mahasiswa');
+				} elseif ($_SESSION['level'] == 3) {
+					redirect('Dashboard_operator');
+				} else {
+					redirect('Dashboard');	 				
+				}			
 				 
 			} else {
 				$this->session->set_flashdata('message_login_error', 'Login Gagal, pastikan username dan password benar!');
