@@ -85,7 +85,7 @@
 	<!-- /.header -->
 	<div class="content">
 		<div class="navigation">
-			<h5 class="title">Navigation</h5>
+			<h5 class="title">Admin</h5>
 			<!-- /.title -->
 			<ul class="menu js__accordion">
 				<li <?php echo ($breadcrumbs == 'dashboard' || $breadcrumbs == 'infumum' || $breadcrumbs == 'kinumum' || $breadcrumbs == 'kincpmk' || $breadcrumbs == 'kincpl'? ' class = "current active"' : '') ?>>

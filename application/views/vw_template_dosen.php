@@ -85,7 +85,7 @@
 	<!-- /.header -->
 	<div class="content">
 		<div class="navigation">
-			<h5 class="title">Navigation</h5>
+			<h5 class="title">Dosen</h5>
 			<!-- /.title -->
 			<ul class="menu js__accordion">
 				<li <?php echo ($breadcrumbs == 'dashboard' ? ' class = "current active"' : '') ?>>
