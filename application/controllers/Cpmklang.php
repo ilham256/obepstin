@@ -283,6 +283,9 @@ class Cpmklang extends CI_Controller {
 
                     $highestRow = $sheet->getHighestRow();
                     $highestColumn = $sheet->getHighestColumn();
+                    if ($highestRow == 1000) {
+                        $highestRow = 100 ;
+                    }
 
                     $row_mk = $sheet->rangeToArray('A' . 13 . ':' . $highestColumn . 13,
                                                         NULL,
@@ -383,7 +386,7 @@ class Cpmklang extends CI_Controller {
             echo '<pre>';  var_dump($_FILES['file']['type']); echo '</pre>';
 
         }
-        //echo '<pre>';  var_dump($arr['datas']); echo '</pre>';
+        //echo '<pre>';  var_dump($highestRow); echo '</pre>';
         $arr['breadcrumbs'] = 'cpmklang';
         $arr['content'] = 'vw_data_nilai_berhasil_disimpan'; 
         $this->load->view('vw_template', $arr);
