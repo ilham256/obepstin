@@ -33,7 +33,7 @@ class Dashboard extends CI_Controller {
 
 		$arr['content'] = 'vw_Beranda';
 
-		print_r($this->session->userdata());
+		//print_r($this->session->userdata());
 		$this->load->view('vw_template', $arr); 
 	}
 }

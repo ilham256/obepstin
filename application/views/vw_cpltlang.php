@@ -65,7 +65,7 @@
 						</table>
 					</div>
 					<div class="col-md-3 col-sm-12">
-						<form role="form" id="contactform" action="<?php echo site_url('cpltlang/upload')?>" method="post" enctype="multipart/form-data">
+						<form role="form" id="contactform" action="<?php echo site_url('cpltlang/import')?>" method="post" enctype="multipart/form-data">
 						<input type="file" id="input-file-to-destroy" name="file" class="dropify" />
 						<p class="help margin-top-10">Format file Excel (.xls atau .xlsx), Maksimum ukuran file 5 MB</p>
 						<div class="float-start">

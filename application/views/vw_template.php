@@ -161,17 +161,26 @@
 						</li>
 					</ul>
 				</li>
-				<li <?php echo ($breadcrumbs == 'report' || $breadcrumbs == 'relevansi_ppm' || $breadcrumbs == 'efektivitas_cpl' || $breadcrumbs == 'report_epbm' ? ' class = "current active"' : '') ?>>
+				<li <?php echo ($breadcrumbs == 'report' || $breadcrumbs == 'report_kinerja_cpmk_mahasiswa' || $breadcrumbs == 'report_mahasiswa' || $breadcrumbs == 'report_mata_kuliah' || $breadcrumbs == 'report_relevansi_ppm' || $breadcrumbs == 'report_efektivitas_cpl' || $breadcrumbs == 'report_epbm' ? ' class = "current active"' : '') ?>>
 					<a class="waves-effect parent-item js__control" href="<?php echo site_url('report') ?>"><i class="menu-icon ti-layers"></i>Laporan<span class="menu-arrow fa fa-angle-down"></span></a>
 					<ul class="sub-menu js__content">
 						<li <?php echo ($breadcrumbs == 'report' ? ' class = "current"' : '') ?>>
-							<a href="<?php echo site_url('report') ?>">Report Mahasiswa</a>
+							<a href="<?php echo site_url('report') ?>">Kinerja CPL Mahasiswa</a>
 						</li>
-						<li <?php echo ($breadcrumbs == 'relevansi_ppm' ? ' class = "current"' : '') ?>>
+						<li <?php echo ($breadcrumbs == 'report_kinerja_cpmk_mahasiswa' ? ' class = "current"' : '') ?>>
+							<a href="<?php echo site_url('report/kinerja_cpmk_mahasiswa') ?>">Kinerja CPMK Mahasiswa</a>
+						</li>
+						<li <?php echo ($breadcrumbs == 'report_mahasiswa' ? ' class = "current"' : '') ?>>
+							<a href="<?php echo site_url('report/mahasiswa') ?>">Report Mahasiswa</a>
+						</li>
+						<li <?php echo ($breadcrumbs == 'report_mata_kuliah' ? ' class = "current"' : '') ?>>
+							<a href="<?php echo site_url('report/mata_kuliah') ?>">Report Matakuliah</a>
+						</li>
+						<li <?php echo ($breadcrumbs == 'report_relevansi_ppm' ? ' class = "current"' : '') ?>>
 							<a href="<?php echo site_url('report/relevansi_ppm') ?>">Relevansi PPM</a>
 						</li>
-						<li <?php echo ($breadcrumbs == 'efektivitas_cpl' ? ' class = "current"' : '') ?>>
-							<a href="<?php echo site_url('report/efektivitas_cpl') ?>">Efektifitas PPM</a>
+						<li <?php echo ($breadcrumbs == 'report_efektivitas_cpl' ? ' class = "current"' : '') ?>>
+							<a href="<?php echo site_url('report/efektivitas_cpl') ?>">Efektifitas CPL</a>
 						</li>
 						<li <?php echo ($breadcrumbs == 'report_epbm' ? ' class = "current"' : '') ?>>
 							<a href="<?php echo site_url('report/report_epbm') ?>">Report EPBM</a>
