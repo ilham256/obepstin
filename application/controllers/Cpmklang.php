@@ -8,7 +8,7 @@ class Cpmklang extends CI_Controller {
 
 	
  
-	public function __construct()
+	public function __construct() 
   	{
   		parent::__construct(); 
   		//$this->load->library(array('PHPExcel','PHPExcel/IOFactory'));

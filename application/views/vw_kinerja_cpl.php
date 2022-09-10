@@ -24,6 +24,11 @@
 					</div>
 				</div>
 			</form>
+			<hr>
+				<div> 
+					<p >Data Kinerja  <?php echo $simpanan_cpl; ?> </p>
+					<p>Tahun Angkatan (<?php echo $tahun; ?>)</p>
+				</div>	
 			<div class="col-md-12 col-sm-12" style="">
 				<canvas id="pemenuhan_cpl_tahun" class="chartjs-chart" width="480" height="320"></canvas>
 			</div>
@@ -55,35 +60,10 @@
 				position: "bottom"
 			},
 			scales: {
-				xAxes: [{
-					stacked: true,
-					id: "bar-x-axis1",
-				},{
-					display: false,
-					stacked: true,
-					id: "bar-x-axis2",
-					// these are needed because the bar controller defaults set only the first x axis properties
-					type: 'category',
-					gridLines: {
-						offsetGridLines: true
-					},
-					offset: true
-				},{
-					display: false,
-					stacked: true,
-					id: "bar-x-axis3",
-					// these are needed because the bar controller defaults set only the first x axis properties
-					type: 'category',
-					gridLines: {
-						offsetGridLines: true
-					},
-					offset: true
-				}],
 				yAxes: [{
-				stacked: false,
-	                    stacked: false,
-                    ticks: {
-                        beginAtZero: true
+					stacked: false,
+                 	ticks: {
+                        beginAtZero: true 
                     }
 				}]
 
@@ -127,7 +107,7 @@
 				borderColor: "rgba(48,79,254,1)",
 				data: cap,
 				barThickness: 30,
-				xAxisID: "bar-x-axis2",
+
 			},
 			{
 				label: "Target",
@@ -135,15 +115,15 @@
 				borderColor: "rgba(246,14,14,0.3)",
 				data: nt,
 				barThickness: 30,
-				xAxisID: "bar-x-axis1",
+
 			},
 			{
 				label: "Nilai Tertinggi yang dapat dicapai",
 				backgroundColor: "rgba(48,79,254,0.5)",
 				borderColor: "rgba(48,79,254,0.3)",
 				data: ntt,
-				barThickness: 70,
-				xAxisID: "bar-x-axis3",
+				barThickness: 30,
+
 			}]
 		};
 

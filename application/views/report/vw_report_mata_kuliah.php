@@ -7,20 +7,23 @@
 					<a href="<?php echo site_url('report')?>" ><button class="nav-link">Kinerja CPL Mahasiswa</button></a>
 				</li>
 				<li class="nav-item" role="presentation">
-					<a href="<?php echo site_url('report')?>" ><button class="nav-link">Kinerja CPMK Mahasiswa</button></a>
+					<a href="<?php echo site_url('report/kinerja_cpmk_mahasiswa')?>" ><button class="nav-link">Kinerja CPMK Mahasiswa</button></a>
 				</li>
 				<li class="nav-item" role="presentation">
-					<a href="<?php echo site_url('report')?>" ><button class="nav-link">Rapor Mahasiswa</button></a>
-				</li>
+					<a href="<?php echo site_url('report/mahasiswa')?>" ><button class="nav-link">Rapor Mahasiswa</button></a>
+				</li> 
 				<li class="nav-item" role="presentation">
 					<a href="<?php echo site_url('report/mata_kuliah')?>" ><button class="nav-link active" id="cpl-tab" data-bs-toggle="tab" data-bs-target="#cpl" type="button" role="tab" aria-controls="cpl" aria-selected="true">Rapor Mata Kuliah</button></a>
-				</li>
+				</li> 
 				<li class="nav-item" role="presentation">
 					<a href="<?php echo site_url('report/relevansi_ppm')?>" ><button class="nav-link">Relevansi PPM</button></a>
 				</li>
 				<li class="nav-item" role="presentation">
 					<a href="<?php echo site_url('report/efektivitas_cpl')?>" ><button class="nav-link">Efektivitas CPL</button></a>
-				</li> 
+				</li>
+				<li class="nav-item" role="presentation">
+					<a href="<?php echo site_url('report/report_epbm')?>" ><button class="nav-link">Rekap EPBM</button></a>
+				</li>
 			</ul> 
 			<div class="tab-content" id="myTabContent">
 				

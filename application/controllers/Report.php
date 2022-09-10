@@ -40,16 +40,6 @@ class Report extends CI_Controller {
 		$arr['breadcrumbs'] = 'report';
 		$arr['content'] = 'vw_report';
 
-		$arr['status_aktif'] = 'show active';
-		$arr['status_aktif_2'] = '';
-		$arr['status_aktif_3'] = '';
-		$arr['status_aktif_4'] = '';
-
-		$arr['naf'] = 'active'; 
-		$arr['naf_2'] = '';
-		$arr['naf_3'] = '';
-		$arr['naf_4'] = '';
-
 		$arr['mata_kuliah'] =  $this->Matakuliah_model->get_matakuliah();
 		$arr['katkin'] =  $this->katkin_model->get_katkin();
 		$arr['data_cpl'] = $this->report_model->get_cpl();
@@ -198,8 +188,9 @@ class Report extends CI_Controller {
 			array_push($nilai_capaian_mahasiswa, $pnt);
 		}
 
- 
-	
+ 		
+
+ 		$arr['nama_mahasiswa'] = $this->report_model->get_nama_mahasiswa($arr['nim_3']);
 		$arr['capaian'] = $nilai_capaian_mahasiswa;
 		$arr['target'] = $persentase_nilai_target;
 		$arr['nilai_tertinggi'] = $persentase_nilai_maksimal;
@@ -208,7 +199,174 @@ class Report extends CI_Controller {
 			array_push($arr['nama_semester'], "Semester ".$key_0->nama);
 		}
 
+		//echo '<pre>';  var_dump($arr['capaian']); echo '</pre>';
+		//echo '<pre>';  var_dump($arr['target']); echo '</pre>';
+		//echo '<pre>';  var_dump($arr['nilai_tertinggi']); echo '</pre>';
+    //- Sub Menu Rapor Mata Kuliah -
+		//echo '<pre>';  var_dump($arr['nilai_mk_raport']); echo '</pre>';
+		//echo '<pre>';  var_dump($nilai_mahasiswa_tak_langsung); echo '</pre>';
+		//echo '<pre>';  var_dump($arr['nilai_mk_raport']); echo '</pre>';
+		//echo '<pre>';  var_dump($mahasiswa); echo '</pre>';
+		//echo '<pre>';  var_dump($mahasiswa[0]); echo '</pre>';
+		$this->load->view('vw_template', $arr);
+	}
 
+	public function mahasiswa()
+	{
+		$arr['breadcrumbs'] = 'report_mahasiswa';
+		$arr['content'] = 'report/vw_report_mahasiswa';
+
+
+		$arr['mata_kuliah'] =  $this->Matakuliah_model->get_matakuliah();
+		$arr['katkin'] =  $this->katkin_model->get_katkin();
+		$arr['data_cpl'] = $this->report_model->get_cpl();
+
+		$arr['nilai_cpl_mahasiswa'] = [];
+		$arr['status_nilai_cpl_mahasiswa'] = [];
+
+
+		// mengambil data mahasiswa dari API
+		$tgl=date('Y');
+
+    	$th = 2017;
+    	$tahun_report = [];
+    	for ($i=$th; $i < $tgl ; $i++) { 
+    		array_push($tahun_report, $i);
+    	}
+
+		function curl($url){  
+		    $ch = curl_init(); 
+		    $headers = array(
+			   'accept: text/plain',
+			   'X-IPBAPI-TOKEN: Bearer 86f2760d-7293-36f4-833f-1d29aaace42e'
+			 );
+		    curl_setopt($ch, CURLOPT_URL, $url); 
+		    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+ 			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+		    $output = curl_exec($ch);
+ 			curl_close($ch);   
+		    return $output;
+		}
+
+		$dt_mahasiswa_2 = [];
+		foreach ($tahun_report as $key) {
+			$send = curl("https://api.ipb.ac.id/v1/Mahasiswa/DaftarMahasiswa/PerDepartemen?departemenId=160&strata=S1&tahunMasuk=".$key);
+			$dt_mahasisw = json_decode($send, TRUE);
+
+			array_push($dt_mahasiswa_2, $dt_mahasisw);
+		}
+
+		$dt_mahasiswa = array_reduce($dt_mahasiswa_2, 'array_merge', array());
+
+    	//- Sub Menu Rapor Mahasiswa- -
+
+    	$rumus_cpl = $this->kinumum_model->get_cpl_rumus_deskriptor();
+        $rumus_deskriptor = $this->kinumum_model->get_deskriptor_rumus_cpmk();
+        $nilai_cpmk = $this->kinumum_model->get_nilai_cpmk();
+
+		if (!empty($this->input->post('pilih_2', TRUE))) {
+			
+			$arr['status_aktif'] = '';
+			$arr['status_aktif_2'] = 'show active';
+			$arr['status_aktif_3'] = '';
+
+			$arr['naf'] = '';
+			$arr['naf_2'] = 'active';
+			$arr['naf_3'] = '';
+
+			$nim_2 = $this->input->post('nim_2', TRUE); 
+			$arr['nim_2'] = $nim_2;
+
+			foreach ($dt_mahasiswa as $key) {
+				if ($key["Nim"] == $nim_2) {
+					$n_m = $key;
+				}
+			}
+
+ 			
+ 			$arr['nama_rapor_mahasiswa'] = ($n_m["Nama"]);
+	    	$arr['nim_rapor_mahasiswa'] = ($n_m["Nim"]);
+
+	    	$batas_cukup = ($arr['katkin']["0"]->batas_bawah_kategori_cukup_cpl);
+	    	$batas_baik = ($arr['katkin']["0"]->batas_bawah_kategori_baik_cpl);
+	    	$batas_sangat_baik = ($arr['katkin']["0"]->batas_bawah_kategori_sangat_baik_cpl);
+
+	    	foreach ($arr['data_cpl'] as $key_0) {
+
+					$n = 0;
+					foreach ($nilai_cpmk as $key_2) {
+						if ($arr['nim_rapor_mahasiswa'] == $key_2->nim) {
+							$n_1 = 0;
+								foreach ($rumus_cpl as $key_4) {
+									if ($key_0->id_cpl_langsung == $key_4->id_cpl_langsung) {
+										foreach ($rumus_deskriptor as $key_3) {
+											if ($key_4->id_deskriptor == $key_3->id_deskriptor) {
+												if ($key_2->id_matakuliah_has_cpmk == $key_3->id_matakuliah_has_cpmk) {
+													$n_1 += $key_4->persentasi*$key_2->nilai_langsung*$key_3->persentasi;
+												}
+											}											
+										}
+									}
+								}
+							$n += $n_1;
+						}
+					}
+
+				array_push($arr['nilai_cpl_mahasiswa'], $n);
+			}
+	    	
+	    	foreach ($arr['nilai_cpl_mahasiswa'] as $key ) {
+
+	    		if ($key > $batas_sangat_baik) {
+		    		$status_cpl_mahasiswa = 'Sangat Baik';
+		    	} elseif ($key > $batas_baik) {
+		    		$status_cpl_mahasiswa = 'Baik';
+		    	} elseif ($key > $batas_cukup) {
+		    		$status_cpl_mahasiswa= 'Cukup';
+		    	} else {
+		    		$status_cpl_mahasiswa = 'Kurang';
+		    	}
+
+	    		array_push($arr['status_nilai_cpl_mahasiswa'], $status_cpl_mahasiswa);
+	    	}
+ 
+	    	//sistem_lama
+
+	    	
+		} else {
+			foreach ($arr['data_cpl'] as $key) {
+				array_push($arr['nilai_cpl_mahasiswa'], '-');
+				array_push($arr['status_nilai_cpl_mahasiswa'], '-');
+
+			}
+			$arr['nama_rapor_mahasiswa'] = '-';
+	    	$arr['nim_rapor_mahasiswa'] = '-';
+	    	$arr['ttl_rapor_mahasiswa'] = '-';
+	    	$arr['tahun_masuk_rapor_mahasiswa'] = '-';
+		}
+
+
+    //- Sub Menu Rapor Mata Kuliah -
+
+		//echo '<pre>';  var_dump($arr['nilai_mk_raport']); echo '</pre>';
+		//echo '<pre>';  var_dump($nilai_mahasiswa_tak_langsung); echo '</pre>';
+		//echo '<pre>';  var_dump($arr['nilai_mk_raport']); echo '</pre>';
+		//echo '<pre>';  var_dump($mahasiswa); echo '</pre>';
+		//echo '<pre>';  var_dump($mahasiswa[0]); echo '</pre>';
+		$this->load->view('vw_template', $arr);
+	}
+public function kinerja_cpmk_mahasiswa()
+	{
+		$arr['breadcrumbs'] = 'report_kinerja_cpmk_mahasiswa';
+		$arr['content'] = 'report/vw_report_kinerja_cpmk_mahasiswa';
+
+		$arr['mata_kuliah'] =  $this->Matakuliah_model->get_matakuliah();
+		$arr['katkin'] =  $this->katkin_model->get_katkin();
+		$arr['data_cpl'] = $this->report_model->get_cpl();
+		//- Sub Menu Kinerja CPL Mahasiswa -
+		$arr['semester'] =  $this->kincpl_model->get_semester();
+        $nilai_cpmk = $this->kinumum_model->get_nilai_cpmk();
+        $target = $this->katkin_model->get_katkin();
 
 		//echo '<pre>';  var_dump($arr['capaian']); echo '</pre>';
 		//echo '<pre>';  var_dump($arr['target']); echo '</pre>';
@@ -323,103 +481,8 @@ class Report extends CI_Controller {
     		array_push($arr['nilai_cpmk'],$t_n_cpmk);
     	}
  
-
-
-
-
     	//- Sub Menu Rapor Mahasiswa- -
-
-
-    	$rumus_cpl = $this->kinumum_model->get_cpl_rumus_deskriptor();
-        $rumus_deskriptor = $this->kinumum_model->get_deskriptor_rumus_cpmk();
-        $nilai_cpmk = $this->kinumum_model->get_nilai_cpmk();
-
-		if (!empty($this->input->post('pilih_2', TRUE))) {
-			
-			$arr['status_aktif'] = '';
-			$arr['status_aktif_2'] = 'show active';
-			$arr['status_aktif_3'] = '';
-
-			$arr['naf'] = '';
-			$arr['naf_2'] = 'active';
-			$arr['naf_3'] = '';
-
-			$nim_2 = $this->input->post('nim_2', TRUE); 
-			$arr['nim_2'] = $nim_2;
-
-			foreach ($dt_mahasiswa as $key) {
-				if ($key["Nim"] == $nim_2) {
-					$n_m = $key;
-				}
-			}
-
- 			
- 			$arr['nama_rapor_mahasiswa'] = ($n_m["Nama"]);
-	    	$arr['nim_rapor_mahasiswa'] = ($n_m["Nim"]);
-
-	    	$batas_cukup = ($arr['katkin']["0"]->batas_bawah_kategori_cukup_cpl);
-	    	$batas_baik = ($arr['katkin']["0"]->batas_bawah_kategori_baik_cpl);
-	    	$batas_sangat_baik = ($arr['katkin']["0"]->batas_bawah_kategori_sangat_baik_cpl);
-
-	    	foreach ($arr['data_cpl'] as $key_0) {
-
-					$n = 0;
-					foreach ($nilai_cpmk as $key_2) {
-						if ($arr['nim_rapor_mahasiswa'] == $key_2->nim) {
-							$n_1 = 0;
-								foreach ($rumus_cpl as $key_4) {
-									if ($key_0->id_cpl_langsung == $key_4->id_cpl_langsung) {
-										foreach ($rumus_deskriptor as $key_3) {
-											if ($key_4->id_deskriptor == $key_3->id_deskriptor) {
-												if ($key_2->id_matakuliah_has_cpmk == $key_3->id_matakuliah_has_cpmk) {
-													$n_1 += $key_4->persentasi*$key_2->nilai_langsung*$key_3->persentasi;
-												}
-											}											
-										}
-									}
-								}
-							$n += $n_1;
-						}
-					}
-
-				array_push($arr['nilai_cpl_mahasiswa'], $n);
-			}
-	    	
-	    	foreach ($arr['nilai_cpl_mahasiswa'] as $key ) {
-
-	    		if ($key > $batas_sangat_baik) {
-		    		$status_cpl_mahasiswa = 'Sangat Baik';
-		    	} elseif ($key > $batas_baik) {
-		    		$status_cpl_mahasiswa = 'Baik';
-		    	} elseif ($key > $batas_cukup) {
-		    		$status_cpl_mahasiswa= 'Cukup';
-		    	} else {
-		    		$status_cpl_mahasiswa = 'Kurang';
-		    	}
-
-	    		array_push($arr['status_nilai_cpl_mahasiswa'], $status_cpl_mahasiswa);
-	    	}
- 
-	    	//sistem_lama
-
-	    	
-		} else {
-			foreach ($arr['data_cpl'] as $key) {
-				array_push($arr['nilai_cpl_mahasiswa'], '-');
-				array_push($arr['status_nilai_cpl_mahasiswa'], '-');
-
-			}
-			$arr['nama_rapor_mahasiswa'] = '-';
-	    	$arr['nim_rapor_mahasiswa'] = '-';
-	    	$arr['ttl_rapor_mahasiswa'] = '-';
-	    	$arr['tahun_masuk_rapor_mahasiswa'] = '-';
-		}
-
-
-
-
     //- Sub Menu Rapor Mata Kuliah -
-
 		//echo '<pre>';  var_dump($arr['nilai_mk_raport']); echo '</pre>';
 		//echo '<pre>';  var_dump($nilai_mahasiswa_tak_langsung); echo '</pre>';
 		//echo '<pre>';  var_dump($arr['nilai_mk_raport']); echo '</pre>';
@@ -427,10 +490,9 @@ class Report extends CI_Controller {
 		//echo '<pre>';  var_dump($mahasiswa[0]); echo '</pre>';
 		$this->load->view('vw_template', $arr);
 	}
-
 	public function download_report_mahasiswa()
 		{
-			$arr['breadcrumbs'] = 'report';
+			$arr['breadcrumbs'] = 'report_mahasiswa';
 			$arr['content'] = 'report/vw_report_mahasiswa_print';
 	    	
 	    	$rumus_cpl = $this->kinumum_model->get_cpl_rumus_deskriptor();
@@ -553,7 +615,7 @@ class Report extends CI_Controller {
  
 	public function mata_kuliah()
 	{
-		$arr['breadcrumbs'] = 'report';
+		$arr['breadcrumbs'] = 'report_mata_kuliah';
 		$arr['content'] = 'report/vw_report_mata_kuliah';
 
 		$arr['mata_kuliah'] =  $this->Matakuliah_model->get_matakuliah();
@@ -721,7 +783,7 @@ class Report extends CI_Controller {
  
  public function download_report_mata_kuliah()
 	{
-		$arr['breadcrumbs'] = 'report';
+		$arr['breadcrumbs'] = 'report_mata_kuliah';
 		$arr['content'] = 'report/vw_report_mata_kuliah_print';
 
 		$arr['mata_kuliah'] =  $this->Matakuliah_model->get_matakuliah();
@@ -895,7 +957,7 @@ class Report extends CI_Controller {
 	}
 	public function relevansi_ppm()
 	{
-		$arr['breadcrumbs'] = 'report';
+		$arr['breadcrumbs'] = 'report_relevansi_ppm';
 		$arr['content'] = 'report/vw_report_relevansi_ppm';
 
 		$arr['relevansi_ppm'] = $this->report_model->get_relevansi_ppm();
@@ -972,7 +1034,7 @@ class Report extends CI_Controller {
 
 	public function efektivitas_cpl()
 	{
-		$arr['breadcrumbs'] = 'report';
+		$arr['breadcrumbs'] = 'report_efektivitas_cpl';
 		$arr['content'] = 'report/vw_report_efektivitas_cpl';
 
 		$arr['mahasiswa'] = $this->report_model->get_mahasiswa();
@@ -1092,7 +1154,7 @@ class Report extends CI_Controller {
 
 	public function report_epbm()
 	{ 
-		$arr['breadcrumbs'] = 'report';
+		$arr['breadcrumbs'] = 'report_epbm';
 		$arr['content'] = 'report/vw_report_epbm_2';
 
 		$arr['data_epbm_dosen'] = $this->report_model->get_epbm_mata_kuliah_has_dosen();

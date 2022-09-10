@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
+
 class Cpmktlang extends CI_Controller {
 
     /**
@@ -267,7 +270,7 @@ class Cpmktlang extends CI_Controller {
             $extension = end($arr_file);
             if('csv' == $extension){
                 $reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
-                } else {
+                } else { 
                 $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
                 }
             $spreadsheet = $reader->load($_FILES['file']['tmp_name']);
