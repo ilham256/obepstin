@@ -33,7 +33,15 @@ class Dashboard_dosen extends CI_Controller {
 
 		$arr['content'] = 'vw_Beranda';
 
-		print_r($this->session->userdata());
+		//print_r($this->session->userdata());
+		$this->load->view('vw_template_dosen', $arr); 
+	}
+	public function infumum()
+	{
+		$arr['breadcrumbs'] = 'infumum';
+
+		$arr['content'] = 'vw_informasi_umum';
+
 		$this->load->view('vw_template_dosen', $arr); 
 	}
 }

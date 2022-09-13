@@ -79,7 +79,7 @@
 	
 <div class="main-menu">
 	<header class="header">
-		<a href="<?php echo site_url() ?>" class="logo"><img src="<?php echo base_url() ?>assets/images/Logo_web.png" width="170" /></a>
+		<a href="<?php echo site_url('dashboard_dosen') ?>" class="logo"><img src="<?php echo base_url() ?>assets/images/Logo_web.png" width="170" /></a>
 		<button type="button" class="button-close fa fa-times js__menu_close"></button>
 	</header>
 	<!-- /.header -->
@@ -88,9 +88,15 @@
 			<h5 class="title">Dosen</h5>
 			<!-- /.title -->
 			<ul class="menu js__accordion">
-				<li <?php echo ($breadcrumbs == 'dashboard' ? ' class = "current active"' : '') ?>>
-					<a class="waves-effect" href="<?php echo site_url('dashboard_dosen') ?>"><i class="menu-icon ti-dashboard"></i>Dashboard</a>
-				</li> 
+				<li <?php echo ($breadcrumbs == 'dashboard' || $breadcrumbs == 'infumum' || $breadcrumbs == 'kinumum' || $breadcrumbs == 'kincpmk' || $breadcrumbs == 'kincpl'? ' class = "current active"' : '') ?>>
+					<a class="waves-effect parent-item js__control" href="<?php echo site_url()?>"><i class="menu-icon ti-dashboard"></i>Dashboard<span class="menu-arrow fa fa-angle-down"></span></a>
+					<ul class="sub-menu js__content">
+
+						<li <?php echo ($breadcrumbs == 'infumum' ? ' class = "current"' : '') ?>>
+							<a href="<?php echo site_url('dashboard_dosen/infumum') ?>">Informasi Umum</a>
+						</li>
+					</ul>
+				</li>
 
 				<li <?php echo ($breadcrumbs == 'evaluasi_l'  || $breadcrumbs == 'evaluasi_tl' ? ' class = "current active"' : '') ?>>
 					<a class="waves-effect parent-item js__control" href="<?php echo site_url()?>"><i class="menu-icon ti-dashboard"></i>Analisis & Evaluasi<span class="menu-arrow fa fa-angle-down"></span></a>
