@@ -267,7 +267,7 @@ class Epbm extends CI_Controller {
                                                 FALSE);
             $row_nilai_psd = array_reduce($row_psd, 'array_merge', array());
 
-            echo '<pre>';  var_dump($row_nilai_psd); echo '</pre>'; 
+            //echo '<pre>';  var_dump($row_nilai_psd); echo '</pre>'; 
             
 
             $i = 0;
@@ -460,7 +460,7 @@ class Epbm extends CI_Controller {
                                         "kode_mk"=> $kode_mk
                                     );
                                     $insert = $this->epbm_model->update_excel_epbm_mata_kuliah($save_data);
-                                    echo '<pre>';  var_dump($save_data); echo '</pre>'; 
+                                    //echo '<pre>';  var_dump($save_data); echo '</pre>'; 
                                 
                                 }
                             } else {
@@ -492,7 +492,7 @@ class Epbm extends CI_Controller {
             }
 
             // Menyimpan Data Dosen
-
+            /*
             for ($row = 5; $row <= $highestRow; $row++)
             {
                 $rowMk = $sheet->rangeToArray('A' . $row  . ':' . 'B' . $row,
@@ -526,7 +526,7 @@ class Epbm extends CI_Controller {
 
                     }
                 }
-            }
+            } */
             // Menyimpan Data EPMB Matakuliah has dosen
 
             for ($row = 5; $row <= $highestRow; $row++)
