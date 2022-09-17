@@ -3,7 +3,6 @@
 		<div class="box-content">
 			<h4 class="box-title">Laporan</h4>
 			<ul class="nav nav-tabs" id="myTabs" role="tablist">
-
 				<li class="nav-item" role="presentation">
 					<a href="<?php echo site_url('report')?>" ><button class="nav-link">Kinerja CPL Mahasiswa</button></a>
 				</li>
@@ -24,14 +23,12 @@
 				</li>
 				<li class="nav-item" role="presentation">
 					<a href="<?php echo site_url('report/report_epbm')?>" ><button class="nav-link active" id="cpl-tab" data-bs-toggle="tab" data-bs-target="#cpl" type="button" role="tab" aria-controls="cpl" aria-selected="true">Report EPBM</button></a>
-				</li>
- 
+				</li> 
 			</ul> 
-
 			<div class="tab-content" id="myTabContent"> 
 				<div class="row"> 
-				<div class="row mb-3">
-							<form role="form" id="contactform" action="<?php echo site_url('report/report_epbm')?>" method="post">
+					<div class="row mb-3">
+						<form role="form" id="contactform" action="<?php echo site_url('report/report_epbm')?>" method="post">
 							<div class="input-group">
 								<label for="mata_kuliah" class="col-sm-3 col-form-label">Dosen</label>
 								<div class="col-sm-9" class="form-control">
@@ -47,11 +44,11 @@
 							<div class="input-group">
 								<label for="mata_kuliah" class="col-sm-3 col-form-label"></label>
 								<button type="submit" class="btn btn-primary" name="pilih" value="pilih">Pilih</button>
-							</form>	
-							</div>	
-											
+							</div>
+						</form>	
+					</div>											
 				</div>
-				</div> 
+			</div> 
 				<div>
 				<Hr>
 					<p>Evaluasi Proses Belajar Mengajar (EPBM)</p>

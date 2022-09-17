@@ -147,6 +147,9 @@
 						</li>
 					</ul>
 				</li>
+				<li <?php echo ($breadcrumbs == 'dosen' ? ' class = "current active"' : '') ?>>
+					<a class="waves-effect" href="<?php echo site_url('dosen') ?>"><i class="menu-icon ti-user"></i>Dosen</a>
+				</li>
 				<li <?php echo ($breadcrumbs == 'mahasiswa' ? ' class = "current active"' : '') ?>>
 					<a class="waves-effect" href="<?php echo site_url('mahasiswa') ?>"><i class="menu-icon ti-user"></i>Mahasiswa</a>
 				</li>

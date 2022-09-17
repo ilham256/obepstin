@@ -242,7 +242,7 @@
 
 								<div class="row">
 									<div class="col-md-12 col-xs-12 text-center">
-										<p><strong>CPMK Tak Langsung
+										<p><strong> CPMK Tak Langsung
 										</strong>
 										</p>
 									</div>
@@ -253,6 +253,48 @@
 									</div>
 								</div>
 								<br>
+
+								<div class="row">
+									<div class="col-md-12 col-xs-12 text-center">
+										<p><strong> EPBM Matakuliah
+										</strong>
+										</p>
+									</div>
+								</div> 
+								<div class="row">
+									<div class="col-md-12 col-xs-12">
+										 <div>
+										<Hr>
+											<p>Evaluasi Proses Belajar Mengajar (EPBM)</p>
+											<p>Mata Kuliah: <?php  echo $data_mk["0"]->nama_mata_kuliah; ?></p>
+											<Hr>
+											<div class="row row-inline-block small-spacing js__isotope_items">
+											<?php 
+
+								    			$jml_mk = count($kode_epbm_dosen);
+
+												for ($i=0; $i<$jml_mk; $i++) {
+												?>
+													<div class="col-md-6 col-sm-6 col-tb-6 col-xs-12 js__isotope_item beauty" style="">
+														<div class="text-right">
+															<p><?php echo $kode_epbm_dosen[$i]." (".$nama_mata_kuliah[$i].") "."Tahun ".$nama_tahun[$i]." Semester ".$nama_semester[$i]; ?></p>
+															<p><?php  echo $nama_dosen[$i]; ?></p>
+														</div> 
+														<br>
+														<canvas id="pemenuhan_cpl<?php echo $i ?>" class="chartjs-chart" width="480" height="220"></canvas>
+														<br>
+													</div>
+
+												<?php
+												}
+												//echo '<pre>';  var_dump($list_angkatan); echo '</pre>';
+											?>
+											</div>
+										</div>
+									</div>
+								</div>
+								<br>
+
 								<div class="float-end margin-top-50">
 
 									<form role="form" id="contactform" action="<?php echo site_url('report/download_report_mata_kuliah')?>" method="post" target="_blank">
@@ -493,3 +535,116 @@
 	
 </script>
 
+<script>
+
+	var arr = <?php echo json_encode($data_diagram_epbm_dosen); ?>;
+	var arr_mk = <?php echo json_encode($data_diagram_epbm_mk); ?>;
+	var psd = <?php echo json_encode($psd); ?>;
+	var a = arr.length;
+	console.log(arr_mk);
+	console.log(a);
+
+	var datai = [];
+    for (var i = 0; i < a; i++) {
+
+    		datai[i] = {
+				labels: psd[i],
+				datasets: [{
+					label: "Dosen",
+					backgroundColor: "rgba(24,138,226,0)",
+					pointStyle: 'line',
+					borderColor: "rgba(28,138,226,0.7)",
+					data: arr[i],
+
+				}, {
+					label: "Mata Kuliah",
+					backgroundColor: "rgba(0, 128, 128, 0)",
+					pointStyle: 'line',
+					borderColor: "rgba(0, 128, 12, 0.7)",
+					data: arr_mk[i],
+				}]
+			}
+
+	}
+
+	var cpl_descriptions = [" , , , , , , , , , "] ;
+
+	var length_line = 68;
+
+	
+	var options = {
+
+			legend: {
+				position: "right",
+				labels: {  
+			        fontColor:'green',
+			        fontSize: 14,  
+			        boxWidth:27,
+			        usePointStyle: true,			        
+			      } 
+			},
+
+			elements: {
+				line: {
+					borderWidth: 4
+				},
+				
+			},
+			scale: { 
+				reverse: !1,
+				ticks: {
+					beginAtZero: !0,
+				      min: 0,
+				      max: 5,
+				      stepSize: 1,
+				      fontColor: 'blue',
+				      fontSize: 20,
+				},
+			pointLabels: { fontSize: 17 /* must be a number it translates to pixels */ }
+			},
+			plugins: {
+
+				filler: {
+					propagate: false
+				},
+				'samples-filler-analyser': {
+					target: 'chart-analyser'
+				}
+			},
+			interaction: {
+				intersect: false
+			},
+			tooltips: {
+				callbacks: {
+					label: function(tooltipItem, data) {
+						var label = data.datasets[tooltipItem.datasetIndex].label || '';
+						if (label) {
+							label += ': ';
+						}
+						label += Math.round(tooltipItem.yLabel * 100) / 100;
+
+						var labels = [label];
+
+						
+						return labels;
+					}
+				}
+			}
+		}
+		
+
+
+
+	for (var i = 0; i<a; i++) {
+		var ctxEvaluasiCPL = document.getElementById('pemenuhan_cpl' + i);
+
+		if (ctxEvaluasiCPL != null) {
+			var chartCPL = new Chart(ctxEvaluasiCPL, {
+				type: 'radar',
+				data: datai[i],
+				options: options
+			});
+		}
+	}
+
+</script>

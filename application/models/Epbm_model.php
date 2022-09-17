@@ -28,7 +28,7 @@ class epbm_model extends CI_Model
 		$query = $this->db->select('*');
 		$query->from('psd'); 
 		return $query->get()->result();
-	}
+	} 
 
 	public function update_excel_epbm_mata_kuliah($save_data)  
 	{

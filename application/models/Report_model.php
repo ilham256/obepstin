@@ -182,6 +182,16 @@ class report_model extends CI_Model
 		return $query->get()->result();
 	}
 	
+	public function get_nilai_raport_epbm_dosen($tahun,$semester,$d)   
+	{
+		$query = $this->db->select('*');
+		$query->from('nilai_epbm_dosen'); 
+		$query->where('tahun',$tahun);
+		$query->where('semester',$semester);
+		$query->where('kode_epbm_mk_has_dosen',$d);
+		return $query->get()->result();
+	}
+
 	public function get_nilai_epbm_mk($tahun,$semester,$d)   
 	{
 		$query = $this->db->select('*');
@@ -206,6 +216,17 @@ class report_model extends CI_Model
 		$query->join('epbm_mata_kuliah','epbm_mata_kuliah.kode_epbm_mk = epbm_mata_kuliah_has_dosen.kode_epbm_mk');
 		$query->join('mata_kuliah','mata_kuliah.kode_mk = epbm_mata_kuliah.kode_mk');
 		$query->where('NIP',$dosen);
+		return $query->get()->result();
+	}
+
+	public function get_epbm_mata_kuliah_has_dosen_mk_select($mk)   
+	{
+		$query = $this->db->select('*');
+		$query->from('epbm_mata_kuliah_has_dosen'); 
+		$query->join('epbm_mata_kuliah','epbm_mata_kuliah.kode_epbm_mk = epbm_mata_kuliah_has_dosen.kode_epbm_mk');
+		$query->join('dosen','dosen.NIP = epbm_mata_kuliah_has_dosen.NIP');
+		$query->join('mata_kuliah','mata_kuliah.kode_mk = epbm_mata_kuliah.kode_mk');
+		$query->where('epbm_mata_kuliah.kode_mk',$mk);
 		return $query->get()->result();
 	}
 
