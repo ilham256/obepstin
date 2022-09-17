@@ -1080,7 +1080,7 @@ public function kinerja_cpmk_mahasiswa()
 		$arr['title_print'] =  "Report MataKuliah ".$arr['data_mk']["0"]->nama_mata_kuliah." Angkatan ".$arr['tahun_mk'];
 		$this->load->view('vw_template_print', $arr);
 
-	}
+	} 
 	public function relevansi_ppm()
 	{
 		$arr['breadcrumbs'] = 'report_relevansi_ppm';
