@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
+
 class mahasiswa extends CI_Controller {
 
 	/**
@@ -21,7 +24,7 @@ class mahasiswa extends CI_Controller {
 	public function __construct()
   	{
   		parent::__construct(); 
-  		$this->load->library(array('PHPExcel','PHPExcel/IOFactory'));
+  		//$this->load->library(array('PHPExcel','PHPExcel/IOFactory'));
     	$this->load->model('mahasiswa_model');
     	
     	if ($this->session->userdata('loggedin') != true) {
@@ -127,7 +130,7 @@ public function upload(){
         $config['allowed_types'] = 'xls|xlsx|csv';
         $config['max_size'] = '10000';
  
-
+ 
         
         $this->load->library('upload', $config);
         
@@ -183,6 +186,74 @@ public function upload(){
             }
         redirect('mahasiswa','refresh');
     
+
+    }
+
+	public function import(){
+    //echo "dkf";
+    $file_mimes = array('text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'text/plain', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+   // echo '<pre>';  var_dump($_FILES); echo '</pre>'; 
+        if(isset($_FILES['file']['name']) && in_array($_FILES['file']['type'], $file_mimes)) {
+ 
+            $arr_file = explode('.', $_FILES['file']['name']);
+            //echo '<pre>';  var_dump($arr_file); echo '</pre>'; 
+            $extension = end($arr_file);
+            if('csv' == $extension){
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
+                } else { 
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+                }
+            $objPHPExcel = $reader->load($_FILES['file']['tmp_name']);
+            //$sheetData = $spreadsheet->getActiveSheet()->toArray();
+            //$sheetData2 = $spreadsheet->getSheet(2)->toArray();
+            $highestSheet = $objPHPExcel->getSheetCount();
+            //echo "<pre>";
+            //print_r($sheetData2);
+            //echo '<pre>';  var_dump($highestSheet); echo '</pre>';
+            //konfersi dari funsion uploads
+            for ($p=0; $p < $highestSheet; $p++) {
+
+            $sheet = $objPHPExcel->getSheet(0);
+            $highestRow = $sheet->getHighestRow();
+            $highestColumn = $sheet->getHighestColumn();
+
+            for ($row = 2; $row <= $highestRow; $row++){                  //  Read a row of data into an array                 
+                $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row,
+                                                NULL,
+                                                TRUE,
+                                                FALSE);
+                                                 
+                //Sesuaikan sama nama kolom tabel di database   
+
+                $excel_timestamp = $rowData[0][7]-1;
+				$php_timestamp = mktime(0,0,0,1,$excel_timestamp,1900);
+				$mysql_timestamp = date('Y-m-d', $php_timestamp);
+
+                 $save_data = array(
+                    "nim"=> $rowData[0][1],
+                    "nama"=> $rowData[0][2],
+                    "asal_sma"=> $rowData[0][3],
+                    "jalur_masuk"=> $rowData[0][4],
+                    "tahun_masuk"=> $rowData[0][5],
+                    "tempat_lahir"=> $rowData[0][6],
+                    "tanggal_lahir"=> $mysql_timestamp,
+                );
+                //sesuaikan nama dengan nama tabel
+                $insert = $this->mahasiswa_model->update_excel($save_data);
+                //delete_files($media['file_path']);
+            }
+           }
+
+        } else {
+            //echo $_FILES['upload_file']['type'];
+            echo '<pre>';  var_dump($_FILES['file']['type']); echo '</pre>';
+
+        }
+        //echo '<pre>';  var_dump($arr['datas']); echo '</pre>';
+        $arr['breadcrumbs'] = 'relevansi_ppm';
+        $arr['content'] = 'vw_data_nilai_berhasil_disimpan4';
+        $this->load->view('vw_template', $arr);
+
 
     }
 }

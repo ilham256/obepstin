@@ -65,8 +65,7 @@ class Epbm extends CI_Controller {
         $config['allowed_types'] = 'xls|xlsx|csv';
         $config['max_size'] = '10000';
  
-
-        
+       
         $this->load->library('upload', $config);
         
         if ( ! $this->upload->do_upload('file')){
@@ -389,20 +388,15 @@ class Epbm extends CI_Controller {
 
             //konfersi dari funsion uploads
             $arr['datas'] = [];
-        $arr['datas_epbm'] = [];
-        $arr['datas_psd'] = $this->epbm_model->get_psd();;
+            $arr['datas_epbm'] = [];
+            $arr['datas_psd'] = $this->epbm_model->get_psd();
 
-        //Menyimpan Data Persheet
-        //for ($p=0; $p < $highestSheet; $p++) { 
-            
-            $sheet = $objPHPExcel->getSheet(0);
+
+            $sheet_tahun = $objPHPExcel->getSheet(0);
  
-            $highestRow = $sheet->getHighestRow();
-            $highestColumn = $sheet->getHighestColumn();
-
             // Menyimpan Data EPBM Matakuliah has Dosen
             //$kode_mk = str_replace(":", "", $kode_mk_2 );
-            $row_tahun_semester = $sheet->rangeToArray('A' . 2 . ':' . 'C' . 2,
+            $row_tahun_semester = $sheet_tahun->rangeToArray('A' . 2 . ':' . 'C' . 2,
                                                 NULL,
                                                 TRUE,
                                                 FALSE);
@@ -412,8 +406,18 @@ class Epbm extends CI_Controller {
             $data_tahun1 = preg_replace("/[^0-9]/","",$data_tahun_semester);
             $data_tahun = substr($data_tahun1,0,4);
             
-            // mencari data semester
 
+        //Menyimpan Data Persheet
+        for ($p=0; $p < $highestSheet; $p++) { 
+            
+            $sheet = $objPHPExcel->getSheet($p);
+  
+            $highestRow = $sheet->getHighestRow();
+            $highestColumn = $sheet->getHighestColumn();
+
+            // Menyimpan Data EPBM Matakuliah has Dosen
+            //echo '<pre>';  var_dump($row_tahun_semester); echo '</pre>'; 
+            // mencari data semester
             if (strpos($data_tahun_semester, 'Ganjil')) {
                 $data_semester = 'Ganjil';
             }else {
@@ -421,9 +425,9 @@ class Epbm extends CI_Controller {
             }
 
             // Menyimpan Data EPMB Matakuliah
-            for ($row = 11; $row <= $highestRow; $row++)
+            for ($row = 5; $row <= $highestRow; $row++)
             {
-                $rowMk = $sheet->rangeToArray('B' . $row  . ':' . 'C' . $row,
+                $rowMk = $sheet->rangeToArray('A' . $row  . ':' . 'B' . $row,
                                                         NULL,
                                                         TRUE,
                                                         FALSE);
@@ -431,8 +435,9 @@ class Epbm extends CI_Controller {
                 $data_cek = [];
                 $data_cek =  $this->epbm_model->cek_epbm_mata_kuliah($rowMk[0][0]);
                 $data_cek_kode_mk = substr($rowMk[0][0],0,-4);
-                //echo '<pre>';  var_dump(substr($rowMk[0][0],0,-4)); echo '</pre>'; 
-                if ($rowMk[0][0]  != NULL ) {
+                
+
+                if ($rowMk[0][0] != NULL and $rowMk[0][0] != "Mata Kuliah" and $rowMk[0][0] != "NIP" and $rowMk[0][0] != "Departemen Teknologi Industri Pertanian") {
                     if (empty($data_cek)) {
                         $data_cek3 = [];
                         $data_cek3 =  $this->epbm_model->cek_mata_kuliah_kode_3($data_cek_kode_mk);
@@ -455,6 +460,7 @@ class Epbm extends CI_Controller {
                                         "kode_mk"=> $kode_mk
                                     );
                                     $insert = $this->epbm_model->update_excel_epbm_mata_kuliah($save_data);
+                                    echo '<pre>';  var_dump($save_data); echo '</pre>'; 
                                 
                                 }
                             } else {
@@ -487,9 +493,9 @@ class Epbm extends CI_Controller {
 
             // Menyimpan Data Dosen
 
-            for ($row = 11; $row <= $highestRow; $row++)
+            for ($row = 5; $row <= $highestRow; $row++)
             {
-                $rowMk = $sheet->rangeToArray('B' . $row  . ':' . 'C' . $row,
+                $rowMk = $sheet->rangeToArray('A' . $row  . ':' . 'B' . $row,
                                                         NULL,
                                                         TRUE,
                                                         FALSE);
@@ -498,91 +504,95 @@ class Epbm extends CI_Controller {
                 $data_cek =  $this->epbm_model->cek_epbm_mata_kuliah($rowMk[0][0]);
                 //echo '<pre>';  var_dump(substr($rowMk[0][0],0,-4)); echo '</pre>'; 
 
-                if ($rowMk[0][0]  != NULL ) {
+                if ($rowMk[0][0] != NULL and $rowMk[0][0] != "Mata Kuliah" and $rowMk[0][0] != "NIP" and $rowMk[0][0] != "Departemen Teknologi Industri Pertanian") {
                     if (empty($data_cek)) {
                         $data_cek3 = [];
                         $data_cek3 =  $this->epbm_model->cek_dosen($rowMk[0][0]);
 
                         if (empty($data_cek3)) {
-                            $save_data = array(
-                                "NIP"=> $rowMk[0][0],
-                                "nama_dosen"=> $rowMk[0][1],
-                                "password"=> "123456"
-                            );
-                            $insert = $this->epbm_model->update_excel_dosen($save_data);
 
+                            $nip_cek = substr($rowMk[0][0],0,1);
+                            if (is_numeric($nip_cek)) {
+
+                                $save_data = array(
+                                    "NIP"=> $rowMk[0][0],
+                                    "nama_dosen"=> $rowMk[0][1],
+                                    "password"=> "123456"
+                                );
+
+                                $insert = $this->epbm_model->update_excel_dosen($save_data);                      
+                            }                
                         } 
 
                     }
                 }
             }
-
             // Menyimpan Data EPMB Matakuliah has dosen
 
-            for ($row = 11; $row <= $highestRow; $row++)
+            for ($row = 5; $row <= $highestRow; $row++)
             {
-                $rowMk = $sheet->rangeToArray('B' . $row  . ':' . 'C' . $row,
+                $rowMk = $sheet->rangeToArray('A' . $row  . ':' . 'B' . $row,
                                                         NULL,
                                                         TRUE,
                                                         FALSE);
-
+ 
                 $data_cek = [];
                 $data_cek =  $this->epbm_model->cek_epbm_mata_kuliah($rowMk[0][0]);
                 //echo '<pre>';  var_dump(substr($rowMk[0][0],0,-4)); echo '</pre>'; 
-                if (empty($data_cek)) {
-                    $data_cek3 = [];
-                    $data_cek3 =  $this->epbm_model->cek_epbm_mata_kuliah_has_dosen($d.'_'.$rowMk[0][0]);
+ 
+                if ($rowMk[0][0] != NULL and $rowMk[0][0] != "Mata Kuliah" and $rowMk[0][0] != "NIP" and $rowMk[0][0] != "Departemen Teknologi Industri Pertanian") {
+                    if (empty($data_cek)) {
+                        $data_cek3 = [];
+                        $data_cek3 =  $this->epbm_model->cek_epbm_mata_kuliah_has_dosen($d.'_'.$rowMk[0][0]);
 
-                    if (empty($data_cek3)) {
+                        if (empty($data_cek3)) {
 
-                        $data_cek2 = [];
-                        $data_cek2 =  $this->epbm_model->cek_dosen($rowMk[0][0]);
+                            $data_cek2 = [];
+                            $data_cek2 =  $this->epbm_model->cek_dosen($rowMk[0][0]);
 
-                        if (!empty($data_cek2)) {
-                            $save_data = array(
-                                "kode_epbm_mk_has_dosen"=> $d.'_'.$rowMk[0][0],
-                                "kode_epbm_mk"=> $d,
-                                "NIP"=> $rowMk[0][0]
-                            );
-                            $insert = $this->epbm_model->update_excel_epbm_mata_kuliah_has_dosen($save_data);
-                        }
-                        
+                            if (!empty($data_cek2)) {
+                                $save_data = array(
+                                    "kode_epbm_mk_has_dosen"=> $d.'_'.$rowMk[0][0],
+                                    "kode_epbm_mk"=> $d,
+                                    "NIP"=> $rowMk[0][0]
+                                );
+                                $insert = $this->epbm_model->update_excel_epbm_mata_kuliah_has_dosen($save_data);
+                            }
+                        } 
 
-                    } 
-
-                } else {
-                    $d = $rowMk[0][0];
-                }
-
+                    } else {
+                        $d = $rowMk[0][0];
+                    }
+                }                
             }
 
 
             // Menyimpan Nilai Epbm
-            $row_psd = $sheet->rangeToArray('D' . 10 . ':' . 'Q' . 10,
+            
+            $row_psd = $sheet->rangeToArray('C' . 4 . ':' . 'Q' . 10,
                                                 NULL,
                                                 TRUE,
                                                 FALSE);
-            $row_nilai_psd = array_reduce($row_psd, 'array_merge', array());
-
+            if ($row_psd[0][0] == NULL) {
+                $row_nilai_psd = $row_psd[6];
+            } else {
+                $row_nilai_psd = $row_psd[0];
+            }
+            //$row_nilai_psd = array_reduce($row_psd, 'array_merge', array());
             //echo '<pre>';  var_dump($row_nilai_psd); echo '</pre>'; 
-            
-
             $i = 0;
              foreach ($row_nilai_psd as $key) {
-                 # code...
-                if ($key != NULL) {
-                    for ($row = 11; $row <= $highestRow; $row++){                  //  Read a row of data into an array                 
-                        $rowData = $sheet->rangeToArray('B' . $row  . ':' . 'C' . $row,
-                                                        NULL,
-                                                        TRUE,
-                                                        FALSE);
-                        $rowNilai = $sheet->rangeToArray('D' . $row . ':' . 'Q' . $row,
-                                                        NULL,
-                                                        TRUE,
-                                                        FALSE);
+                if ($key != NULL and $key != "Semua") {
+                    for ($row = 5; $row <= $highestRow; $row++){
 
-                        // 
-                        //
+                        $rowData = $sheet->rangeToArray('A' . $row  . ':' . 'B' . $row,
+                                                        NULL,
+                                                        TRUE,
+                                                        FALSE);
+                        $rowNilai = $sheet->rangeToArray('C' . $row . ':' . 'Q' . $row,
+                                                        NULL,
+                                                        TRUE,
+                                                        FALSE);
 
                         if ($rowData[0][0] != NULL) {
 
@@ -593,14 +603,14 @@ class Epbm extends CI_Controller {
                                     $data_cek2 = []; 
                                     $data_cek2 =  $this->epbm_model->cek_epbm_mata_kuliah_has_dosen($d.'_'.$rowData[0][0]);
                                     if (empty($data_cek2)) {
-                                        $save_data = array(
-                                            "kode_nilai_epbm_mk_has_dosen"=>"Data_nilai_Kosong",
-                                            "kode_epbm_mk_has_dosen"=> 0,
-                                            "kode_psd"=> 0,
-                                            "tahun"=> 0,
-                                            "semester"=> 0,                                        
-                                            "nilai"=>  0
-                                        );
+                                            $save_data = array(
+                                                "kode_nilai_epbm_mk_has_dosen"=>"Data_nilai_Kosong",
+                                                "kode_epbm_mk_has_dosen"=> 0,
+                                                "kode_psd"=> 0,
+                                                "tahun"=> 0,
+                                                "semester"=> 0,                                        
+                                                "nilai"=>  0
+                                            );
                                         }
                                     else {                            
                                          $save_data = array(                            
@@ -626,13 +636,13 @@ class Epbm extends CI_Controller {
                                  $d = $rowData[0][0];
                                  $insert = $this->epbm_model->update_excel_nilai_epbm_mata_kuliah($save_data);
                                 }
+                            $masukan = $save_data;
+                            array_push($arr['datas'],$masukan);
                         }                    
-                
-
-                        $masukan = $save_data;
+                                        
                         //sesuaikan nama dengan nama tabel
                          
-                        array_push($arr['datas'],$masukan);
+                    
                         
                         //delete_files($media['file_path']);
                              
@@ -640,6 +650,7 @@ class Epbm extends CI_Controller {
                     }
                     $i++;
                 }
+            }
 
         } else {
             //echo $_FILES['upload_file']['type'];

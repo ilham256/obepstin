@@ -673,7 +673,7 @@ public function kinerja_cpmk_mahasiswa()
 		foreach ($mk_raport as $key_0) {
 			array_push($arr['mk_raport'], $key_0->id_cpmk_langsung);
 		}
-
+		// Perhitungan CPMK Langsung
 		foreach ($mk_raport as $key) {
 			$nilai_mk_raport_s = [];
 			$nilai_mk_raport_s_tl = [];
@@ -731,7 +731,7 @@ public function kinerja_cpmk_mahasiswa()
 			array_push($arr['nilai_mk_raport_keseluruhan'], $nilai_mk_raport_s);
 			array_push($arr['jumlah'], $j);
 		}
-
+		//perhitungan CPMK tak langsung
 		foreach ($mk_raport as $key) {
 			$nilai_mk_raport_tak_langsung_s = [];
 			foreach ($mahasiswa as $key_2) {				
@@ -771,6 +771,70 @@ public function kinerja_cpmk_mahasiswa()
 			array_push($arr['nilai_mk_raport_tak_langsung'], $dt_avg);
 	
 		}
+
+
+		// EPBM mata_kuliah
+
+		$arr['data_epbm_dosen'] = $this->report_model->get_epbm_mata_kuliah_has_dosen();
+		$arr['data_epbm_mk'] = $this->report_model->get_epbm_mata_kuliah();
+		$arr['data_dosen'] = $this->report_model->get_dosen();
+		$arr['data_psd'] = $this->report_model->get_psd();
+		$arr['psd'] = [];
+
+		//$arr['tahun'] = '2015'; 
+		//$arr['semester'] = 'Ganjil';
+		//$arr['dosen'] = '196106301986032003';
+
+		//$arr['data_epbm_dosen_select'] = $this->report_model->get_epbm_mata_kuliah_has_dosen_select($arr['dosen']);
+		$arr['data_epbm_mk_select'] = $this->report_model->get_epbm_mata_kuliah_has_dosen_mk_select($arr['simpanan_mk']);
+		$arr['data_tahun'] = $this->report_model->get_tahun();
+		$arr['data_semester'] = ['Ganjil','Genap'];
+
+		$arr['data_nilai_epbm_mk'] = [];
+		$arr['data_nilai_epbm_dosen'] = [];
+		$arr['data_diagram_epbm_mk'] = [];
+		$arr['data_diagram_epbm_dosen'] = [];
+		$arr['kode_epbm_dosen'] = [];
+		$arr['nama_mata_kuliah'] = [];
+		$arr['nama_tahun'] = [];
+		$arr['nama_semester'] = [];
+		$arr['nama_dosen'] = [];
+		$arr['NIP_dosen'] = [];
+
+		//echo '<pre>';  var_dump($arr['data_epbm_mk_select']); echo '</pre>';
+
+		foreach ($arr['data_semester'] as $key2) {
+			foreach ($arr['data_epbm_mk_select'] as $key) {
+				$data_nilai_epbm_mk = $this->report_model->get_nilai_epbm_mk($arr['tahun_mk'],$key2,$key->kode_epbm_mk);
+				$data_nilai_epbm_dosen = $this->report_model->get_nilai_raport_epbm_dosen($arr['tahun_mk'],$key2,$key->kode_epbm_mk_has_dosen);
+
+				$data_diagram_epbm_mk = [];
+				$data_diagram_epbm_dosen = [];
+				$psd = [];
+				//echo '<pre>';  var_dump($data_nilai_epbm_mk); echo '</pre>';		
+
+				if (!empty($data_nilai_epbm_dosen)) {
+					for ($i=1; $i < count($data_nilai_epbm_mk); $i++) { 
+						array_push($psd, $arr['data_psd'][$i]->nama);
+						array_push($data_diagram_epbm_mk, $data_nilai_epbm_mk[$i]->nilai);
+						array_push($data_diagram_epbm_dosen, $data_nilai_epbm_dosen[$i]->nilai);
+					}
+
+					array_push($arr['data_nilai_epbm_mk'], $data_nilai_epbm_mk);
+					array_push($arr['data_nilai_epbm_dosen'], $data_nilai_epbm_dosen);
+					array_push($arr['psd'], $psd);
+					array_push($arr['data_diagram_epbm_mk'], $data_diagram_epbm_mk);
+					array_push($arr['data_diagram_epbm_dosen'], $data_diagram_epbm_dosen);
+					array_push($arr['kode_epbm_dosen'], $key->kode_epbm_mk);
+					array_push($arr['nama_mata_kuliah'], $key->nama_mata_kuliah);
+					array_push($arr['nama_tahun'], $arr['tahun_mk']);
+					array_push($arr['nama_semester'], $key2);
+					array_push($arr['nama_dosen'], $key->nama_dosen);
+					array_push($arr['NIP_dosen'], $key->NIP);
+				}
+			}
+		}
+
 		//echo '<pre>';  var_dump($arr['cpl']); echo '</pre>';
 		//echo '<pre>';  var_dump($arr['nilai_diagram_cpl']); echo '</pre>';
 		//echo '<pre>';  var_dump($mahasiswa_2); echo '</pre>';
@@ -945,6 +1009,68 @@ public function kinerja_cpmk_mahasiswa()
 			$dt_avg = array_sum($nilai_mk_raport_tak_langsung_s)/$j;
 			array_push($arr['nilai_mk_raport_tak_langsung'], $dt_avg);
 	
+		}
+
+				// EPBM mata_kuliah
+
+		$arr['data_epbm_dosen'] = $this->report_model->get_epbm_mata_kuliah_has_dosen();
+		$arr['data_epbm_mk'] = $this->report_model->get_epbm_mata_kuliah();
+		$arr['data_dosen'] = $this->report_model->get_dosen();
+		$arr['data_psd'] = $this->report_model->get_psd();
+		$arr['psd'] = [];
+
+		//$arr['tahun'] = '2015'; 
+		//$arr['semester'] = 'Ganjil';
+		//$arr['dosen'] = '196106301986032003';
+
+		//$arr['data_epbm_dosen_select'] = $this->report_model->get_epbm_mata_kuliah_has_dosen_select($arr['dosen']);
+		$arr['data_epbm_mk_select'] = $this->report_model->get_epbm_mata_kuliah_has_dosen_mk_select($arr['simpanan_mk']);
+		$arr['data_tahun'] = $this->report_model->get_tahun();
+		$arr['data_semester'] = ['Ganjil','Genap'];
+
+		$arr['data_nilai_epbm_mk'] = [];
+		$arr['data_nilai_epbm_dosen'] = [];
+		$arr['data_diagram_epbm_mk'] = [];
+		$arr['data_diagram_epbm_dosen'] = [];
+		$arr['kode_epbm_dosen'] = [];
+		$arr['nama_mata_kuliah'] = [];
+		$arr['nama_tahun'] = [];
+		$arr['nama_semester'] = [];
+		$arr['nama_dosen'] = [];
+		$arr['NIP_dosen'] = [];
+
+		//echo '<pre>';  var_dump($arr['data_epbm_mk_select']); echo '</pre>';
+
+		foreach ($arr['data_semester'] as $key2) {
+			foreach ($arr['data_epbm_mk_select'] as $key) {
+				$data_nilai_epbm_mk = $this->report_model->get_nilai_epbm_mk($arr['tahun_mk'],$key2,$key->kode_epbm_mk);
+				$data_nilai_epbm_dosen = $this->report_model->get_nilai_raport_epbm_dosen($arr['tahun_mk'],$key2,$key->kode_epbm_mk_has_dosen);
+
+				$data_diagram_epbm_mk = [];
+				$data_diagram_epbm_dosen = [];
+				$psd = [];
+				//echo '<pre>';  var_dump($data_nilai_epbm_mk); echo '</pre>';		
+
+				if (!empty($data_nilai_epbm_dosen)) {
+					for ($i=1; $i < count($data_nilai_epbm_mk); $i++) { 
+						array_push($psd, $arr['data_psd'][$i]->nama);
+						array_push($data_diagram_epbm_mk, $data_nilai_epbm_mk[$i]->nilai);
+						array_push($data_diagram_epbm_dosen, $data_nilai_epbm_dosen[$i]->nilai);
+					}
+
+					array_push($arr['data_nilai_epbm_mk'], $data_nilai_epbm_mk);
+					array_push($arr['data_nilai_epbm_dosen'], $data_nilai_epbm_dosen);
+					array_push($arr['psd'], $psd);
+					array_push($arr['data_diagram_epbm_mk'], $data_diagram_epbm_mk);
+					array_push($arr['data_diagram_epbm_dosen'], $data_diagram_epbm_dosen);
+					array_push($arr['kode_epbm_dosen'], $key->kode_epbm_mk);
+					array_push($arr['nama_mata_kuliah'], $key->nama_mata_kuliah);
+					array_push($arr['nama_tahun'], $arr['tahun_mk']);
+					array_push($arr['nama_semester'], $key2);
+					array_push($arr['nama_dosen'], $key->nama_dosen);
+					array_push($arr['NIP_dosen'], $key->NIP);
+				}
+			}
 		}
 		//echo '<pre>';  var_dump($arr['cpl']); echo '</pre>';
 		//echo '<pre>';  var_dump($arr['nilai_diagram_cpl']); echo '</pre>';
