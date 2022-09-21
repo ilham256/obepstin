@@ -36,6 +36,8 @@ class Auth extends CI_Controller
 					redirect('Dashboard_mahasiswa');
 				} elseif ($_SESSION['level'] == 3) {
 					redirect('Dashboard_operator');
+				} elseif ($_SESSION['level'] == 4) {
+					redirect('Dashboard_guest');
 				} else {
 					redirect('Dashboard');	 				
 				}			

@@ -5,7 +5,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 class Efektivitas_cpl extends CI_Controller {
-
+ 
     /**
      * Index Page for this controller. 
      *

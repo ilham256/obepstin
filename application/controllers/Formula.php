@@ -11,7 +11,7 @@ class Formula extends CI_Controller {
   		if ($this->session->userdata('loggedin') != true) {
       redirect('auth/login');
       }
-	}
+	} 
 
 	public function index()
 	{
