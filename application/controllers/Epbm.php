@@ -5,7 +5,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 class Epbm extends CI_Controller {
-
+ 
     /**
      * Index Page for this controller. 
      *
@@ -40,9 +40,7 @@ class Epbm extends CI_Controller {
     { 
         $arr['breadcrumbs'] = 'epbm';
         $arr['content'] = 'vw_epbm';
-
         //$arr['datas'] =  $this->epbm_model->get_epbm();
-
         //echo '<pre>';  var_dump($data_mata_kuliah); echo '</pre>';
         //echo '<pre>';  var_dump($data_tahun_masuk); echo '</pre>';
         //echo '<pre>';  var_dump($arr['datas'] ); echo '</pre>';

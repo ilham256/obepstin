@@ -10,7 +10,7 @@
 					<label for="semester" class="col-sm-3 col-form-label">Silahkan Pilih Semester</label>
 					<div class="col-sm-3">
 
-						<form role="form" id="contactform" action="<?php echo site_url('profil_matakuliah')?>" method="post">
+						<form role="form" id="contactform" action="<?php echo site_url('input_asesmen_guest/profil_matakuliah')?>" method="post">
 						<div class="input-group">
 						<select class="form-control select" name="semester">
 							<option value="1">- Pilih Semester - </option>
