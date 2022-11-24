@@ -8,7 +8,7 @@
 					<button class="nav-link active" id="cpl-tab" data-bs-toggle="tab" data-bs-target="#cpl" type="button" role="tab" aria-controls="cpl" aria-selected="true">Analisis Kinerja CPL</button>
 				</li> 
 				<li class="nav-item" role="presentation">
-					<a href="<?php echo site_url('evaluasi_l/evaluasi_kinerja_cpl')?>" ><button class="nav-link">Evaluasi Kinerja CPL</button></a>
+					<a href="<?php echo site_url('evaluasi_l/evaluasi_kinerja_cpl')?>" ><button class="nav-link">Analisis Status Pencapaian CPL</button></a>
 				</li> 
 			</ul>
 			<div class="tab-content" id="myTabContent">
@@ -38,8 +38,8 @@
 							</div> 
 						</div>
 
-						
 					</form> 
+					
 					<div class="box-content">		 
 						<div class="row row-inline-block small-spacing js__isotope_items">
 						<?php 
@@ -65,7 +65,47 @@
 						?>
 						</div>
 					</div>
-				</div>
+
+
+					<div class="text-right">
+						<?php 
+
+						//$data_tahun = array_map('intval', explode(',', str_replace(array('[', ']'),'', $tahun)));
+						//echo '<pre>';  var_dump($tahun_masuk_select); echo '</pre>'; ?>
+
+					<form role="form" id="contactform" action="<?php echo site_url('evaluasi_l/evaluasi_ketercapaian')?>" method="post">
+						<?php foreach($tahun_masuk_select as $key2) { ?>
+						<input type="hidden" name="tahun[]" value="<?php echo json_encode($key2); ?>">
+						<?php }; ?>
+						<?php foreach ($nilai_cpl as $key) {
+							# code...
+						
+
+						foreach($key as $key2) { ?>
+						<input type="hidden" name="nilai_cpl[]" value="<?php echo json_encode($key2); ?>">
+						<?php }}; ?>
+						<button style="width: 300px" type="submit" class="btn btn-primary" name="pilih" value="pilih">Evaluasi Ketercapaian CPL</button> 
+
+					</form>
+					<br>
+					<form role="form" id="contactform" action="<?php echo site_url('evaluasi_l/evaluasi_trend')?>" method="post">
+						<?php foreach($tahun_masuk_select as $key2) { ?>
+						<input type="hidden" name="tahun[]" value="<?php echo json_encode($key2); ?>">
+						<?php }; ?>
+						<?php foreach ($nilai_cpl as $key) {
+							# code...
+						
+
+						foreach($key as $key2) { ?>
+						<input type="hidden" name="nilai_cpl[]" value="<?php echo json_encode($key2); ?>">
+						<?php }}; ?>
+						<button style="width: 300px" type="submit" class="btn btn-success" name="pilih" value="pilih">Evaluasi Trend</button> 
+
+					</form>
+
+					
+					</div>
+
 				
 			</div>
 			
@@ -97,7 +137,7 @@
 
 	var title = 'Nilai'
 	var data_target_cpl = <?php echo $katkin[0]->nilai_target_pencapaian_cpl; ?>;
-	var warna = ['#FF8C00','#DC143C', '#946b3a', '#7a5931','#614729', '#493620', '#322618','#1d170f','#7209b7', '#560bad', '#480ca8','#3a0ca3', '#3f37c9', '#4361ee','#4895ef', '#4cc9f0'];
+	var warna = ['#1C9B8E','#0F1E64', '#53DFD1', '#50655B','#614729', '#493620', '#322618','#1d170f','#7209b7', '#560bad', '#480ca8','#3a0ca3', '#3f37c9', '#4361ee','#4895ef', '#4cc9f0'];
 
 
 	

@@ -147,9 +147,15 @@
 						</li>
 					</ul>
 				</li>
+				
+				<li <?php echo ($breadcrumbs == 'mahasiswa' ? ' class = "current active"' : '') ?>>
+					<a class="waves-effect" href="<?php echo site_url('perbaikan_matakuliah') ?>"><i class="menu-icon ti-user"></i>Asesmen dan Tindak Lanjut Perbaikan Matakuliah </a>
+				</li>
+
 				<li <?php echo ($breadcrumbs == 'dosen' ? ' class = "current active"' : '') ?>>
 					<a class="waves-effect" href="<?php echo site_url('dosen') ?>"><i class="menu-icon ti-user"></i>Dosen</a>
 				</li>
+
 				<li <?php echo ($breadcrumbs == 'mahasiswa' ? ' class = "current active"' : '') ?>>
 					<a class="waves-effect" href="<?php echo site_url('mahasiswa') ?>"><i class="menu-icon ti-user"></i>Mahasiswa</a>
 				</li>
@@ -373,7 +379,7 @@
     //Initialize Select2 Elements
     $('.select2bs4').select2({
       theme: 'bootstrap4'
-    })
+    }) 
 
     //Datemask dd/mm/yyyy
     $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })

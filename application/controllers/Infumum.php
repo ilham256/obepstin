@@ -23,10 +23,9 @@ class Infumum extends CI_Controller {
   { 
     parent::__construct(); 
     if ($this->session->userdata('loggedin') != true) {
-      redirect('auth/login');
-      
+      redirect('auth/login');      
+  	}
   }
-}
 
 	public function index()
 	{

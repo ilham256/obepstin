@@ -9,7 +9,7 @@
 					<a href="<?php echo site_url('evaluasi_l')?>" ><button class="nav-link">Analisis Kinerja CPL</button></a>
 				</li>
 				<li class="nav-item" role="presentation">
-					<button class="nav-link active" id="cpl-tab" data-bs-toggle="tab" data-bs-target="#cpl" type="button" role="tab" aria-controls="cpl" aria-selected="true">Evaluasi Kinerja CPL</button>
+					<button class="nav-link active" id="cpl-tab" data-bs-toggle="tab" data-bs-target="#cpl" type="button" role="tab" aria-controls="cpl" aria-selected="true">Analisis Status Pencapaian CPL</button>
 				</li>
 			</ul>
 			<div class="tab-content" id="myTabContent"> 

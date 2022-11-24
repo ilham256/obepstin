@@ -29,6 +29,7 @@ class Evaluasi_l extends MY_Controller {
         $this->load->model('mahasiswa_model');
         $this->load->model('kinumum_model');
         $this->load->model('kincpl_model');
+        $this->load->model('kincpmk_model');
         $this->load->model('report_model');
 
 
@@ -80,11 +81,11 @@ class Evaluasi_l extends MY_Controller {
 
         if (!empty($this->input->post('pilih', TRUE))) {
 
-            $tahun_min = $this->input->post('tahun_masuk_min', TRUE);
+            $tahun_min = intval($this->input->post('tahun_masuk_min', TRUE));
             $arr['simpanan_tahun_min'] = $tahun_min;
             $arr['t_simpanan_tahun_min'] = ((int)$tahun_min)+1;
 
-            $tahun_max = $this->input->post('tahun_masuk_max', TRUE);
+            $tahun_max = intval($this->input->post('tahun_masuk_max', TRUE));
             $arr['simpanan_tahun_max'] = $tahun_max;
             $arr['t_simpanan_tahun_max'] = ((int)$tahun_max)+1;
 
@@ -106,20 +107,6 @@ class Evaluasi_l extends MY_Controller {
         $nilai_target = [];
         //$mahasiswa = $this->kinumum_model->get_mahasiswa_tahun($tahun);
 
-        function curl($url){
-            $ch = curl_init(); 
-            $headers = array(
-               'accept: text/plain',
-               'X-IPBAPI-TOKEN: Bearer 86f2760d-7293-36f4-833f-1d29aaace42e'
-             );
-            curl_setopt($ch, CURLOPT_URL, $url); 
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-            $output = curl_exec($ch);
-            curl_close($ch);    
-            return $output;
-        }
-   
         foreach ($arr['tahun_masuk_select'] as $tahun) {
             
             $nilai_std_max_1 = [];
@@ -128,10 +115,22 @@ class Evaluasi_l extends MY_Controller {
             $nilai_cpl_mahasiswa_1 = [];
             $target_1 = [];
         
-            $send = $this->curl("https://api.ipb.ac.id/v1/Mahasiswa/DaftarMahasiswa/PerDepartemen?departemenId=160&strata=S1&tahunMasuk=".$tahun); 
+            $mahasiswa_2 = $this->kinumum_model->get_mahasiswa_tahun($tahun);
+            $mahasiswa = [];
 
-            // mengubah JSON menjadi array
-            $mahasiswa = json_decode($send, TRUE);
+            //echo '<pre>';  var_dump($mahasiswa_2); echo '</pre>';
+     
+            foreach ($mahasiswa_2 as $key) { 
+                $data_m = array(
+                            "Nim" => $key->nim,
+                            "Nama" => $key->nama ,
+                            "SemesterMahasiswa" => $key->SemesterMahasiswa,
+                            "StatusAkademik" => $key->StatusAkademik,
+                            "tahun" => $key->tahun_masuk
+
+                        );
+                array_push($mahasiswa , $data_m);
+            }
 
  
             // Menentukan Nilai yang dimasukan kedalam diagram
@@ -170,7 +169,7 @@ class Evaluasi_l extends MY_Controller {
                         $j += 1;
                     }
                 }
-
+ 
                 if ($j == 0) {
                     $j = 1;
                 }
@@ -200,10 +199,300 @@ class Evaluasi_l extends MY_Controller {
         $arr['nilai_std_min'] = $nilai_std_min;
 
         //echo '<pre>';  var_dump($arr['target']); echo '</pre>';
-        //echo '<pre>';  var_dump($arr['cpl_2']); echo '</pre>';
-        //echo '<pre>';  var_dump($arr['tahun_masuk_select']); echo '</pre>';
+        //echo '<pre>';  var_dump($tahun_min); echo '</pre>';
+       // echo '<pre>';  var_dump($tahun_max); echo '</pre>';
+       // echo '<pre>';  var_dump($arr['tahun_masuk_select']); echo '</pre>';
         $this->load->view('vw_template', $arr);
     }
+
+    public function index2() {
+
+
+        $arr['breadcrumbs'] = 'evaluasi_l';
+        $arr['content'] = 'analisis_evaluasi_pengukuran_langsung/analisis_kinerja_cpl_vw';
+
+        $arr['data_semester'] =  $this->Matakuliah_model->get_semester();
+        $arr['tahun_masuk'] =  $this->mahasiswa_model->get_tahun_masuk();
+        $arr['tahun_masuk_max'] =  $this->mahasiswa_model->get_tahun_masuk_max();
+        $arr['katkin'] =  $this->katkin_model->get_katkin();
+  
+        $arr['data_cpl'] = $this->kinumum_model->get_cpl();
+        $arr['nama_cpl'] = [];
+
+        foreach ($arr['data_cpl'] as $key ) {
+            array_push($arr['nama_cpl'], $key->nama);
+        }
+
+
+
+        $rumus_cpl = $this->kinumum_model->get_cpl_rumus_deskriptor();
+        $rumus_deskriptor = $this->kinumum_model->get_deskriptor_rumus_cpmk();
+        $nilai_cpmk = $this->kinumum_model->get_nilai_cpmk();
+
+        $tahun_min = 2017;
+        $tahun_max = 2019;
+        //$tahun_max=date('Y');
+        
+        $target = $this->katkin_model->get_katkin();
+
+        $arr['simpanan_tahun_min'] = $tahun_min;
+        $arr['t_simpanan_tahun_min'] = ((int)$tahun_min)+1;
+        $arr['simpanan_tahun_max'] = $tahun_max;
+        $arr['t_simpanan_tahun_max'] = ((int)$tahun_max)+1;
+
+
+        // Sub-Menu Analisis Kinerja CPL
+
+        if (!empty($this->input->post('pilih', TRUE))) {
+
+            $tahun_min = intval($this->input->post('tahun_masuk_min', TRUE));
+            $arr['simpanan_tahun_min'] = $tahun_min;
+            $arr['t_simpanan_tahun_min'] = ((int)$tahun_min)+1;
+
+            $tahun_max = intval($this->input->post('tahun_masuk_max', TRUE));
+            $arr['simpanan_tahun_max'] = $tahun_max;
+            $arr['t_simpanan_tahun_max'] = ((int)$tahun_max)+1;
+
+        }  
+
+        $arr['tahun_masuk_select'] = [];
+
+        for ($i=$tahun_min; $i < $tahun_max ; $i++) { 
+            array_push($arr['tahun_masuk_select'] , $i);
+        }
+
+
+        $select_tahun = [];
+        $simpan = [];
+        $nilai_std_max = [];
+        $nilai_std_min = [];
+        $nilai_cpl_average = []; 
+        $nilai_cpl_mahasiswa = [];
+        $nilai_target = [];
+        //$mahasiswa = $this->kinumum_model->get_mahasiswa_tahun($tahun);
+
+        foreach ($arr['tahun_masuk_select'] as $tahun) {
+            
+            $nilai_std_max_1 = [];
+            $nilai_std_min_1 = [];
+            $nilai_cpl_average_1 = []; 
+            $nilai_cpl_mahasiswa_1 = [];
+            $target_1 = [];
+        
+            $mahasiswa_2 = $this->kinumum_model->get_mahasiswa_tahun($tahun);
+            $mahasiswa = [];
+
+            //echo '<pre>';  var_dump($mahasiswa_2); echo '</pre>';
+     
+            foreach ($mahasiswa_2 as $key) { 
+                $data_m = array(
+                            "Nim" => $key->nim,
+                            "Nama" => $key->nama ,
+                            "SemesterMahasiswa" => $key->SemesterMahasiswa,
+                            "StatusAkademik" => $key->StatusAkademik,
+                            "tahun" => $key->tahun_masuk
+
+                        );
+                array_push($mahasiswa , $data_m);
+            }
+
+ 
+            // Menentukan Nilai yang dimasukan kedalam diagram
+
+            foreach ($arr['data_cpl'] as $key_0) {
+
+                $dt = [];
+                foreach ($mahasiswa as $key) {
+
+                    $n = 0;
+                    foreach ($nilai_cpmk as $key_2) {
+
+                        if ($key["Nim"] == $key_2->nim) {
+                            $n_1 = 0;
+                                foreach ($rumus_cpl as $key_4) {
+                                    if ($key_0->id_cpl_langsung == $key_4->id_cpl_langsung) {
+                                        foreach ($rumus_deskriptor as $key_3) {
+                                            if ($key_4->id_deskriptor == $key_3->id_deskriptor) {
+                                                if ($key_2->id_matakuliah_has_cpmk == $key_3->id_matakuliah_has_cpmk) {
+                                                    $n_1 += $key_4->persentasi*$key_2->nilai_langsung*$key_3->persentasi;
+                                                    //echo '<pre>';  var_dump($n_1); echo '</pre>';
+
+                                                }
+                                            }                                           
+                                        }
+                                    }
+                                }
+                            $n += $n_1;
+                        }
+                    }
+                    array_push($dt, $n);
+                }
+                $j = 0;
+                foreach ($dt as $k) {
+                    if ($k > 0.0) {
+                        $j += 1;
+                    }
+                }
+ 
+                if ($j == 0) {
+                    $j = 1;
+                }
+
+                $dt_avg = array_sum($dt)/$j;
+            
+                array_push($nilai_cpl_mahasiswa_1, $dt);
+                array_push($nilai_cpl_average_1, round($dt_avg));
+                array_push($nilai_std_max_1, $dt_avg+5);
+                array_push($nilai_std_min_1, $dt_avg-5);
+                array_push($target_1, $target["0"]->nilai_target_pencapaian_cpl);
+            }
+
+
+            array_push($nilai_cpl_mahasiswa, $nilai_cpl_mahasiswa_1);
+            array_push($nilai_cpl_average, $nilai_cpl_average_1);
+            array_push($nilai_std_max, $nilai_std_max_1);
+            array_push($nilai_std_min, $nilai_std_min_1);
+            array_push($nilai_target, $target_1);
+        }
+ 
+
+        
+        $arr['target'] =  $nilai_target;
+        $arr['nilai_cpl'] = $nilai_cpl_average;
+        $arr['nilai_std_max'] = $nilai_std_max;
+        $arr['nilai_std_min'] = $nilai_std_min;
+
+        //echo '<pre>';  var_dump($arr['target']); echo '</pre>';
+        //echo '<pre>';  var_dump($tahun_min); echo '</pre>';
+       // echo '<pre>';  var_dump($tahun_max); echo '</pre>';
+       // echo '<pre>';  var_dump($arr['tahun_masuk_select']); echo '</pre>';
+        $this->load->view('vw_template', $arr);
+    }
+
+    public function evaluasi_ketercapaian(){
+        $arr['breadcrumbs'] = 'evaluasi_l';
+        $arr['content'] = 'analisis_evaluasi_pengukuran_langsung/evaluasi_ketercapaian_vw';
+
+        if (!empty($this->input->post('pilih', TRUE))) {
+
+           $arr['tahun'] = $this->input->post('tahun', TRUE);
+           $arr['data_cpl'] = $this->kinumum_model->get_cpl();
+           $arr['nilai_cpl2'] = $this->input->post('nilai_cpl', TRUE);
+
+           $arr['nilai_cpl'] = [];
+
+           $p = count($arr['data_cpl']);
+           $i = 0;
+           foreach ($arr['tahun'] as $key) {
+                $ds = [];
+                foreach ($arr['data_cpl'] as $key2) {
+                    array_push($ds, $arr['nilai_cpl2'][$i]);
+                    $i++;
+                }
+                array_push($arr['nilai_cpl'], $ds);
+                
+           }
+
+           $arr['target_cpl'] = $this->katkin_model->get_katkin();
+        }
+
+        $this->load->view('vw_template', $arr);
+    }
+
+    public function evaluasi_trend(){
+        $arr['breadcrumbs'] = 'evaluasi_l';
+        $arr['content'] = 'analisis_evaluasi_pengukuran_langsung/evaluasi_trend_vw';
+
+        if (!empty($this->input->post('pilih', TRUE))) {
+
+           $arr['tahun'] = $this->input->post('tahun', TRUE);
+           $arr['data_cpl'] = $this->kinumum_model->get_cpl();
+           $arr['nilai_cpl2'] = $this->input->post('nilai_cpl', TRUE);
+
+           $arr['nilai_cpl'] = [];
+
+           $p = count($arr['data_cpl']);
+           $i = 0;
+           foreach ($arr['tahun'] as $key) {
+                $ds = [];
+                foreach ($arr['data_cpl'] as $key2) {
+                    array_push($ds, $arr['nilai_cpl2'][$i]);
+                    $i++;
+                }
+                array_push($arr['nilai_cpl'], $ds);
+                
+           }
+
+           $arr['target_cpl'] = $this->katkin_model->get_katkin();
+        }
+
+        $this->load->view('vw_template', $arr);
+    }
+     public function identifikasi($tahun){
+        $arr['breadcrumbs'] = 'evaluasi_l';
+        $arr['content'] = 'analisis_evaluasi_pengukuran_langsung/identifikasi_vw';
+
+        $arr['data_cpl'] = $this->kinumum_model->get_cpl();
+        $rumus_cpl = $this->kinumum_model->get_cpl_rumus_deskriptor();
+        $arr['data_rumus_deskriptor'] = $this->kinumum_model->get_deskriptor_rumus_cpmk();
+        $arr['nilai'] = [];
+        $nim = "-";
+        $arr['tahun'] = $tahun;
+        $mahasiswa_2 = $this->kinumum_model->get_mahasiswa_tahun($tahun);
+
+        $arr['target_cpl'] = $this->katkin_model->get_katkin();
+
+        foreach ($arr['data_rumus_deskriptor'] as $key) {
+
+                    $n_cpmk = [];
+                    foreach ($mahasiswa_2 as $key_4) {
+                        $n_cpmk_1 = $this->kinumum_model->get_nilai_cpmk_select($key_4->nim."_".$key->id_matakuliah_has_cpmk);
+                        //$n_cpmk_1 = $this->kincpmk_model->get_nilai_cpmk($key->id_matakuliah_has_cpmk,$key_4->nim);
+                        //echo '<pre>';  var_dump($n_cpmk_1); echo '</pre>'; 
+
+                        if (!empty($n_cpmk_1)) {
+                            $n_cpmk_2 = $n_cpmk_1["0"];
+                            $n_cpmk_1 = $n_cpmk_2;
+                        }
+                        
+                        array_push($n_cpmk, $n_cpmk_1);
+                    }
+                    
+                    if (empty($n_cpmk)) { 
+                      $n_cpmk = 0;
+                    }       
+                    
+                    //echo '<pre>';  var_dump($n_cpmk); echo '</pre>'; 
+
+                    if ($n_cpmk == 0) {
+                        array_push($t_n_cpmk, $n_cpmk);
+                    } else {
+
+                        $nilai_sementara = [];
+                        foreach ($n_cpmk as $key_2) {
+                            if (!empty($key_2)) {
+                                array_push($nilai_sementara, $key_2->nilai_langsung);
+                            }
+                            
+                        }
+                        if (count($nilai_sementara) == 0) {
+                            $average = 0;
+                        }else { 
+                            $average = array_sum($nilai_sementara)/count($nilai_sementara);
+                        }
+                        
+                        array_push($arr['nilai'], round($average));
+                    }
+        }
+
+        //echo '<pre>';  var_dump($arr['nilai']); echo '</pre>'; 
+       $this->load->view('vw_template', $arr);
+        
+    }
+
+
+
+
 
      public function curl($url){
         $ch = curl_init(); 
