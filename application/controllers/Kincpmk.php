@@ -28,6 +28,7 @@ class Kincpmk extends CI_Controller {
     	$this->load->model('Matakuliah_model');
     	$this->load->model('mahasiswa_model'); 
     	$this->load->model('kincpmk_model'); 
+    	$this->load->model('kinumum_model');
     	
 
     }
@@ -63,24 +64,22 @@ class Kincpmk extends CI_Controller {
         	$arr['simpanan_semester'] = $semester;
 		}
  		
-		function curl($url){
-		    $ch = curl_init(); 
-		    $headers = array(
-			   'accept: text/plain',
-			   'X-IPBAPI-TOKEN: Bearer 86f2760d-7293-36f4-833f-1d29aaace42e'
-			 );
-		    curl_setopt($ch, CURLOPT_URL, $url); 
-		    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
- 			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-		    $output = curl_exec($ch);
- 			curl_close($ch);   
-		    return $output;
-		}
+		$mahasiswa_2 = $this->kinumum_model->get_mahasiswa_tahun($tahun);
+        $mahasiswa = [];
 
-		$send = curl("https://api.ipb.ac.id/v1/Mahasiswa/DaftarMahasiswa/PerDepartemen?departemenId=160&strata=S1&tahunMasuk=".$tahun);
+        //echo '<pre>';  var_dump($mahasiswa_2); echo '</pre>';
+ 
+        foreach ($mahasiswa_2 as $key) { 
+            $data_m = array(
+                        "Nim" => $key->nim,
+                        "Nama" => $key->nama ,
+                        "SemesterMahasiswa" => $key->SemesterMahasiswa,
+                        "StatusAkademik" => $key->StatusAkademik,
+                        "tahun" => $key->tahun_masuk
 
-		// mengubah JSON menjadi array
-		$mahasiswa = json_decode($send, TRUE);
+                    );
+            array_push($mahasiswa , $data_m);
+        }
  
 
 
@@ -100,8 +99,8 @@ class Kincpmk extends CI_Controller {
 	    		foreach ($mk_cpmk as $key) {
 	    			array_push($t_mk_cpmk, $key->id_cpmk_langsung);
 	    			$n_cpmk = [];
-	    			foreach ($mahasiswa as $key_4) {
-	    				$n_cpmk_1 = $this->kincpmk_model->get_nilai_cpmk($key->id_matakuliah_has_cpmk,$key_4["Nim"]);
+	    			foreach ($mahasiswa_2 as $key_4) {
+	    				$n_cpmk_1 = $this->kincpmk_model->get_nilai_cpmk_select($key_4->nim."_".$key->id_matakuliah_has_cpmk);
 
 	    				if (!empty($n_cpmk_1)) {
 	    					$n_cpmk_2 = $n_cpmk_1["0"];

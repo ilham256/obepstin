@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+ 
 class Data extends CI_Controller {
 
 	/** 
@@ -66,24 +66,22 @@ class Data extends CI_Controller {
 		$simpan = [];
 		//$mahasiswa = $this->kinumum_model->get_mahasiswa_tahun($tahun);
 
-		function curl($url){
-		    $ch = curl_init(); 
-		    $headers = array(
-			   'accept: text/plain',
-			   'X-IPBAPI-TOKEN: Bearer 86f2760d-7293-36f4-833f-1d29aaace42e'
-			 );
-		    curl_setopt($ch, CURLOPT_URL, $url); 
-		    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
- 			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-		    $output = curl_exec($ch);
- 			curl_close($ch);    
-		    return $output;
-		}
+		$mahasiswa_2 = $this->kinumum_model->get_mahasiswa_tahun($tahun);
+        $mahasiswa = [];
 
-		$send = curl("https://api.ipb.ac.id/v1/Mahasiswa/DaftarMahasiswa/PerDepartemen?departemenId=160&strata=S1&tahunMasuk=".$tahun);
+        //echo '<pre>';  var_dump($mahasiswa_2); echo '</pre>';
+ 
+        foreach ($mahasiswa_2 as $key) { 
+            $data_m = array(
+                        "Nim" => $key->nim,
+                        "Nama" => $key->nama ,
+                        "SemesterMahasiswa" => $key->SemesterMahasiswa,
+                        "StatusAkademik" => $key->StatusAkademik,
+                        "tahun" => $key->tahun_masuk
 
-		// mengubah JSON menjadi array
-		$mahasiswa = json_decode($send, TRUE);
+                    );
+            array_push($mahasiswa , $data_m);
+        }
         $arr['data_mahasiswa'] =  $mahasiswa;
 
  
@@ -179,24 +177,22 @@ class Data extends CI_Controller {
 		$simpan = [];
 		//$mahasiswa = $this->kinumum_model->get_mahasiswa_tahun($tahun);
 
-		function curl($url){
-		    $ch = curl_init(); 
-		    $headers = array(
-			   'accept: text/plain',
-			   'X-IPBAPI-TOKEN: Bearer 86f2760d-7293-36f4-833f-1d29aaace42e'
-			 );
-		    curl_setopt($ch, CURLOPT_URL, $url); 
-		    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
- 			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-		    $output = curl_exec($ch);
- 			curl_close($ch);    
-		    return $output;
-		}
+		$mahasiswa_2 = $this->kinumum_model->get_mahasiswa_tahun($tahun);
+        $mahasiswa = [];
 
-		$send = curl("https://api.ipb.ac.id/v1/Mahasiswa/DaftarMahasiswa/PerDepartemen?departemenId=160&strata=S1&tahunMasuk=".$tahun);
+        //echo '<pre>';  var_dump($mahasiswa_2); echo '</pre>';
+ 
+        foreach ($mahasiswa_2 as $key) { 
+            $data_m = array(
+                        "Nim" => $key->nim,
+                        "Nama" => $key->nama ,
+                        "SemesterMahasiswa" => $key->SemesterMahasiswa,
+                        "StatusAkademik" => $key->StatusAkademik,
+                        "tahun" => $key->tahun_masuk
 
-		// mengubah JSON menjadi array
-		$mahasiswa = json_decode($send, TRUE);
+                    );
+            array_push($mahasiswa , $data_m);
+        }
         $arr['data_mahasiswa'] =  $mahasiswa;
 
  
