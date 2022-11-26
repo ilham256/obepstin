@@ -30,7 +30,7 @@ class Dashboard_guest extends CI_Controller {
     $this->load->model('kincpl_model');
     
 
-    if ($this->session->userdata('loggedin') != true) {
+    if ($this->session->userdata('loggedin') != true || $_SESSION['level'] != 4) {
       redirect('auth/login');
       
   }

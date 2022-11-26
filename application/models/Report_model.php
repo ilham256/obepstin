@@ -64,7 +64,7 @@ class report_model extends CI_Model
 	}
 
 
-// Nilai Cpmk Mahasiswa
+// Nilai Cpmk Mahasiswa 
 
 	public function get_mk_cpmk($key)  
 	{
@@ -80,6 +80,14 @@ class report_model extends CI_Model
 		$query->from('nilai_cpmk');	
 		$query->where('id_matakuliah_has_cpmk',$key);
 		$query->where('nim',$nim);
+		return $query->get()->result();
+	}
+
+	public function get_nilai_cpmk_select($id)  
+	{
+		$query = $this->db->select('*');
+		$query->from('nilai_cpmk');
+		$query->where('id_nilai',$id);
 		return $query->get()->result();
 	}
 

@@ -21,7 +21,7 @@ class Dashboard_operator extends CI_Controller {
 	public function __construct()
   { 
     parent::__construct(); 
-    if ($this->session->userdata('loggedin') != true) {
+    if ($this->session->userdata('loggedin') != true || $_SESSION['level'] != 3) {
       redirect('auth/login');
       
   }

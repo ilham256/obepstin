@@ -396,7 +396,7 @@ public function kinerja_cpmk_mahasiswa()
     		array_push($tahun_report, $i);
     	}
     	
-    	
+    	 
 
     	function curl($url){  
 		    $ch = curl_init(); 
@@ -454,11 +454,11 @@ public function kinerja_cpmk_mahasiswa()
 
     		$t_mk_cpmk = [];
     		$t_n_cpmk = [];
-
+ 
 	    	foreach ($mk_cpmk as $key) {
 	    			array_push($t_mk_cpmk, $key->id_cpmk_langsung); 
 
-	    			$n_cpmk = $this->report_model->get_nilai_cpmk($key->id_matakuliah_has_cpmk,$arr['nim']);
+	    			$n_cpmk = $this->report_model->get_nilai_cpmk_select($arr['nim']."_".$key->id_matakuliah_has_cpmk);
 	    			if (empty($n_cpmk)) { 
 					  $n_cpmk = 0;
 					}		
