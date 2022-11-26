@@ -11,7 +11,19 @@ class Auth extends CI_Controller
 	public function login()
 	{ 
 		if (isset($_SESSION['loggedin']) ) {
-			redirect('Dashboard'); 
+			
+			if ($_SESSION['level'] == 1) {
+					redirect('Dashboard_dosen');
+				} elseif ($_SESSION['level'] == 2) {
+					redirect('Dashboard_mahasiswa');
+				} elseif ($_SESSION['level'] == 3) {
+					redirect('Dashboard_operator');
+				} elseif ($_SESSION['level'] == 4) {
+					redirect('Dashboard_guest');
+				} else {
+					redirect('Dashboard');	 				
+				}
+
 		} else { 
 			$this->load->model('auth_model');
 			$this->load->library('form_validation');

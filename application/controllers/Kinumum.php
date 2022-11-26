@@ -167,7 +167,7 @@ class Kinumum extends CI_Controller {
 
 	}
  	
-
+ 	
 
 
 

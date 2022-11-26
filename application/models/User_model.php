@@ -25,6 +25,13 @@ class user_model extends CI_Model
 		return $query->get()->result();
 	}
 
+	public function update_password($save_data, $id)
+	{
+		$this->db->where('id', $id);
+		$this->db->update('user', $save_data);
+		return true;
+	}
+
 	public function get_admin()  
 	{
 		$query = $this->db->select('*');
@@ -39,7 +46,13 @@ class user_model extends CI_Model
 		$query->where('id',$id);
 		return $query->get()->result();
 	}
-
+	public function get_user_select($id)  
+	{
+		$query = $this->db->select('*');
+		$query->from('user');
+		$query->where('id',$id);
+		return $query->get()->result();
+	}
 	public function submit_tambah_admin($save_data)  
 	{
 		$result = $this->db->insert('user',$save_data);

@@ -92,6 +92,9 @@
 				<li <?php echo ($breadcrumbs == 'dashboard' ? ' class = "current active"' : '') ?>>
 					<a class="waves-effect" href="<?php echo site_url('dashboard_mahasiswa') ?>"><i class="menu-icon ti-dashboard"></i>Dashboard</a>
 				</li>
+				<li <?php echo ($breadcrumbs == 'dashboard' ? ' class = "current active"' : '') ?>>
+					<a class="waves-effect" href="<?php echo site_url('dashboard_mahasiswa/akun') ?>"><i class="menu-icon ti-dashboard"></i>Akun</a>
+				</li>
 				<li <?php echo ($breadcrumbs == 'report' || $breadcrumbs == 'relevansi_ppm' || $breadcrumbs == 'efektivitas_cpl' || $breadcrumbs == 'report_epbm' ? ' class = "current active"' : '') ?>>
 					<a class="waves-effect parent-item js__control" href="<?php echo site_url('report_mahasiswa') ?>"><i class="menu-icon ti-layers"></i>Laporan<span class="menu-arrow fa fa-angle-down"></span></a>
 					<ul class="sub-menu js__content">
