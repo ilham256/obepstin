@@ -90,7 +90,7 @@
 									<div class="col-md-6 col-xs-12" style='font-weight: bold; color: grey;'>
 										-
 									</div>
-								</div>
+								</div> 
 								<br>
 								<table class="table"> 
 									<thead style="background-color: darkblue; color: white; vertical-align: middle; ">

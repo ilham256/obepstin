@@ -69,39 +69,14 @@
 
 	if (ctxCPLTahun != null) {
 		var options = {
-			legend: { 
+			legend: {
 				position: "bottom"
 			},
 			scales: {
-				xAxes: [{
-					stacked: true,
-					id: "bar-x-axis1",
-				},{
-					display: false,
-					stacked: true,
-					id: "bar-x-axis2",
-					// these are needed because the bar controller defaults set only the first x axis properties
-					type: 'category',
-					gridLines: {
-						offsetGridLines: true
-					},
-					offset: true
-				},{
-					display: false,
-					stacked: true,
-					id: "bar-x-axis3",
-					// these are needed because the bar controller defaults set only the first x axis properties
-					type: 'category',
-					gridLines: {
-						offsetGridLines: true
-					},
-					offset: true
-				}],
 				yAxes: [{
-				stacked: false,
-	                    stacked: false,
-                    ticks: {
-                        beginAtZero: true
+					stacked: false,
+                 	ticks: {
+                        beginAtZero: true 
                     }
 				}]
 
@@ -145,23 +120,23 @@
 				borderColor: "rgba(48,79,254,1)",
 				data: cap,
 				barThickness: 30,
-				xAxisID: "bar-x-axis1",
+
 			},
 			{
 				label: "Target",
 				backgroundColor: "rgba(246,14,14,1)",
-				borderColor: "rgba(246,14,14,1)",
+				borderColor: "rgba(246,14,14,0.3)",
 				data: nt,
 				barThickness: 30,
-				xAxisID: "bar-x-axis2",
+
 			},
 			{
 				label: "Nilai Tertinggi yang dapat dicapai",
 				backgroundColor: "rgba(48,79,254,0.5)",
-				borderColor: "rgba(48,79,254,1)",
+				borderColor: "rgba(48,79,254,0.3)",
 				data: ntt,
-				barThickness: 70,
-				xAxisID: "bar-x-axis3",
+				barThickness: 30,
+
 			}]
 		};
 
