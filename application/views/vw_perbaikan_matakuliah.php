@@ -12,9 +12,9 @@
 				<thead>
 					<tr> 
 						<th >No.</th>
-						<th style="width: 100px">NIP</th> 
-						<th style="width: 100px">Nama</th>
+						
 						<th style="width: 100px">Mata Kuliah</th>
+						<th style="width: 100px">Dosen</th>
 						<th>Analisis & Evaluasi</th>
 						<th>Perbaikan</th>
 						<th></th>
@@ -26,9 +26,9 @@
                     <?php $i = 1; foreach($datas as $r) { ?>
                     <tr>
                         <td scope="row"><?php echo $i; ?></td>
-                        <td><?php echo $r->NIP; ?></td>
-                        <td><?php echo $r->nama_dosen; ?></td>
                         <td><?php echo $r->nama_mata_kuliah; ?></td>
+                           <td><?php echo $r->nama_dosen; ?></td>
+                        
                         
                         <td><textarea class="form-control" rows="10" placeholder="<?= $r->analisis; ?>" disabled></textarea></td>
                         <td> <textarea class="form-control" rows="10" placeholder="<?= $r->perbaikan; ?>" disabled></textarea></td>
