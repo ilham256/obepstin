@@ -106,7 +106,7 @@
 						</li>
 					</ul>
 				</li>
-				<li <?php echo ($breadcrumbs == 'matakuliah' || $breadcrumbs == 'profil_matakuliah' || $breadcrumbs == 'kurikulum' || $breadcrumbs == 'cpmklang' || $breadcrumbs == 'cpmktlang' || $breadcrumbs == 'cpltlang' || $breadcrumbs == 'formula' || $breadcrumbs == 'formula_deskriptor' || $breadcrumbs == 'katkin' || $breadcrumbs == 'cpmk_cpl' || $breadcrumbs == 'efektifitas_cpl' || $breadcrumbs == 'relevansi_ppm' ? ' class = "current active"' : '') ?>>
+				<li <?php echo ($breadcrumbs == 'matakuliah' || $breadcrumbs == 'profil_matakuliah' || $breadcrumbs == 'kurikulum' || $breadcrumbs == 'cpmklang' || $breadcrumbs == 'cpmktlang' || $breadcrumbs == 'cpltlang' || $breadcrumbs == 'formula' || $breadcrumbs == 'formula_deskriptor' || $breadcrumbs == 'katkin' || $breadcrumbs == 'cpmk_cpl' || $breadcrumbs == 'efektivitas_cpl' || $breadcrumbs == 'relevansi_ppm' || $breadcrumbs == 'epbm' ? ' class = "current active"' : '') ?>>
 					<a class="waves-effect parent-item js__control" href="#"><i class="menu-icon ti-layers-alt"></i>Input Asesmen<span class="menu-arrow fa fa-angle-down"></span></a>
 					<ul class="sub-menu js__content">
 						<li <?php echo ($breadcrumbs == 'kurikulum' ? ' class = "current"' : '') ?>>
@@ -148,7 +148,7 @@
 					</ul>
 				</li>
 				
-				<li <?php echo ($breadcrumbs == 'mahasiswa' ? ' class = "current active"' : '') ?>>
+				<li <?php echo ($breadcrumbs == 'tindak_lanjut' ? ' class = "current active"' : '') ?>>
 					<a class="waves-effect" href="<?php echo site_url('perbaikan_matakuliah') ?>"><i class="menu-icon ti-user"></i>Asesmen dan Tindak Lanjut Perbaikan Matakuliah </a>
 				</li>
 
@@ -346,6 +346,10 @@
 
 	<!-- Select2 -->
 	<script src="<?php echo base_url();?>assets/Adminlte/plugins/select2/js/select2.full.min.js"></script>
+	<script src="<?php echo base_url();?>assets/Adminlte/dist/js/adminlte.js"></script>
+
+<script src="dist/js/adminlte.js"></script>
+
 
 	<script>
 

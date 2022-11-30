@@ -24,10 +24,10 @@
 						//echo '<pre>';  var_dump($tahun); echo '</pre>'; ?>
 
 						<?php $i=0; foreach($tahun as $key) { ?>
-						<table class="table table-striped table-bordered display" style="width:100%">
+						<table class="table table-bordered display" style="width:100%; vertical-align: middle;">
 							<p><?php echo "Evaluasi Ketercapaian CPL Tahun ".$key ?></p>
 
-							<thead>
+							<thead style="background-color: darkblue; color: white; vertical-align: middle; ">
 								<tr>
 									<th></th>
 									<th>Nilai CPL</th>
