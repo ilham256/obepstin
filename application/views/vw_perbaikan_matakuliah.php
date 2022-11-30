@@ -18,6 +18,7 @@
 						<th>Analisis & Evaluasi</th>
 						<th>Perbaikan</th>
 						<th></th>
+						<th></th>
 						<th></th> 
 					</tr>
 				</thead>
@@ -31,6 +32,9 @@
                         
                         <td><textarea class="form-control" rows="10" placeholder="<?= $r->analisis; ?>" disabled></textarea></td>
                         <td> <textarea class="form-control" rows="10" placeholder="<?= $r->perbaikan; ?>" disabled></textarea></td>
+                        <td>
+                        <a onclick="return confirm('Apakah Anda Ingin Mencetak Data?')" href="<?php echo site_url('perbaikan_matakuliah/download/'.$r->id); ?>" target="_blank"><i class="ti-printer" title="download" ></i></a>
+                        </td>
                         <td>
                         <a onclick="return confirm('Apakah Anda Ingin Mengubah Data?')" href="<?php echo site_url('perbaikan_matakuliah/edit/'.$r->id); ?>"><i class="fa fa-edit" title="Edit Data"></i></a>
                         </td>
