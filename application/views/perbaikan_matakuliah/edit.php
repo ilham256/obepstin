@@ -3,7 +3,7 @@
 		<div class="box-content">
   
  
-			            <div class="card card-primary">
+			 <div class="card card-primary">
               <div class="card-header" >
                 <h3 class="card-title" >Edit Perbaikan Matakuliah</h3>
               </div>
@@ -50,8 +50,13 @@
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary" name="simpan" value="simpan">Simpan</button>
                 </div>
-              </form>
 
+              </form>
+              	<div class="card-body">
+              	<a onclick="return confirm('Apakah Anda Ingin Mencetak Data?')" href="<?php echo site_url('perbaikan_matakuliah/download/'.$data->id); ?>" target="_blank">
+              		<button class="btn btn-default waves-effect waves-light"><i class='fa fa-download'></i> Download</button>
+              	</a>
+              	</div>
 
             </div>
 
