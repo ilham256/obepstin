@@ -18,7 +18,7 @@ class Data extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-		public function __construct()
+		public function __construct() 
   	{ 
   		parent::__construct(); 
   		
@@ -229,6 +229,7 @@ class Data extends CI_Controller {
 					          'id_cpl_langsung' => $key_0->id_cpl_langsung,  
 					          'nilai_cpl' => $n,         
 					    ];
+					    
 				array_push($data_nilai_cpl, $save_data);
 			}			
 		}

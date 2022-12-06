@@ -4,10 +4,9 @@
 							<div class="invoice-box" style="font-style: 'calibri'; ">
 								<div class="row">
 									<div class="col-md-12 col-xs-12" style="color: black; font-size: 20px;">
-										<p><strong>HASIL EVALUASI
-										<br><br> 
+										<p style="text-align: center;"><strong>HASIL EVALUASI </p>
 										</strong>
-										<b>A. EVALUASI PENCAPAIAN CAPAIAN PEMBELAJARAN MATA KULIAH</b>
+										<p><b>A. EVALUASI PENCAPAIAN CAPAIAN PEMBELAJARAN MATA KULIAH</b>
 										<br>
 										</p>
 									</div>
@@ -196,6 +195,24 @@
 								<div style="color: black; font-size: 20px;">
 									<p><pre style="font-family: 'Calibri'; white-space:pre-line;"><?php print_r($data->perbaikan);?></pre></p>
 									
+								</div>
+								<hr>
+								<div>
+									<p>Diperiksa Oleh</p>
+									<p>Bogor,_____________</p>
+									<p>Komisi Pendidikan</p>
+									<br>
+									<br>
+									<p style="margin-left: 700px">__________________________________</p>
+									<p>NIP.</p>
+									<br>
+									<br>
+									<p>Disetujui Oleh</p>
+									<p>Ketua Departemen</p>
+									<br>
+									<br>
+									<p style="margin-left: 700px">__________________________________</p>
+									<p>NIP.</p>
 								</div>
 							</div>
 							<!-- /.invoice-box -->

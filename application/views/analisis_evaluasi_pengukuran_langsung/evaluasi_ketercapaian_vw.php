@@ -24,7 +24,7 @@
 						//echo '<pre>';  var_dump($tahun); echo '</pre>'; ?>
 
 						<?php $i=0; foreach($tahun as $key) { ?>
-						<table class="table table-bordered display" style="width:100%; vertical-align: middle;">
+						<table class="table table-bordered display" style="width:100%; vertical-align: middle; text-align: center; ">
 							<p><?php echo "Evaluasi Ketercapaian CPL Tahun ".$key ?></p>
 
 							<thead style="background-color: darkblue; color: white; vertical-align: middle; ">
@@ -33,7 +33,7 @@
 									<th>Nilai CPL</th>
 									<th>Target</th>
 									<th>Status</th>
-									<th></th>
+									<th style="width: 350px;"></th>
 								</tr>
 							</thead>
 						
@@ -47,11 +47,9 @@
 										echo "Lebih dari target"; 
 									} 
 									else { echo "Kurang dari target"; }  ?></td>
-									<td><?php if ($nilai_cpl[$i][$j]>$target_cpl[0]->nilai_target_pencapaian_cpl) { ?>
-										<a class="btn btn-success waves-effect waves-light" href="<?php echo site_url('katkin') ?>" > Sesuaikan Target </a> 
-									<?php } else { ?> 
-										<a class="btn btn-warning waves-effect waves-light" href="<?php echo site_url('evaluasi_l/identifikasi/'.$key) ?>" > Identifikasi CPMK </a>
-									<?php } ?></td>
+									<td>
+										<a class="btn waves-effect waves-light" style="color: white; background-color: darkorange;" href="<?php echo site_url('evaluasi_l/identifikasi/'.$key) ?>" > Perlihatkan Nilai CPMK Pendukung </a>
+									</td> 
 
 								</tr>
 								<?php $j++;}; ?>

@@ -34,13 +34,13 @@
 					            <br>
 
 					            <div class="form-group">
-					              <label for="exampleInputEmail1">Analisis Dan Evaluasi</label><br>
+					              <label for="exampleInputEmail1">Hasil Analisis dan Evaluasi</label><br>
 					              <textarea class="form-control" rows="5" name="analisis"><?= $data->analisis; ?></textarea>
 					            </div>
 					            <br>
 
 					            <div class="form-group">
-					              <label for="exampleInputEmail1">Tindak Lanjut Perbaikan </label>
+					              <label for="exampleInputEmail1">Tindak Lanjut dan Bukti Perbaikan</label>
 					              <textarea class="form-control" rows="5" name="perbaikan"><?= $data->perbaikan; ?></textarea>
                     			</div>
 
