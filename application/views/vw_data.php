@@ -12,7 +12,7 @@
 								<button type="submit" class="btn btn-primary" name="pilih" value="pilih">Pilih</button>
 							</div> 
 					</form> 
-			<br>
+			<br> 
 			<div class="col-md-12 col-sm-12"> 
 						<table id="example1" class="table table-striped table-bordered display" style="width:100%">
 							<thead>

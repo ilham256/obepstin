@@ -72,6 +72,11 @@
 								<div class="alert alert-<?php echo $stat; ?> alert-dismissible" >
 				                  <h4 style="text-align: center;"><i class="menu-icon <?php echo $icon; ?>"></i><?php echo "  ".$trend; ?></h4>
 				                </div>
+				                <a href="<?php echo site_url('katkin') ?>">
+				                <div class="alert alert-dismissible" style="background-color: #FCF9BE; text-align: center; color: black;" >
+				                  <h4 style="text-align: center;"> &nbsp;  &nbsp; Ubah Target</h4>
+				                </div>
+				                </a>		                
 							</div>
 							<div class="col-md-1 col-sm-6" style="vertical-align: center;">
 							</div>

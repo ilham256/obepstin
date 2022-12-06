@@ -8,7 +8,7 @@
 
 			<br>
 			<div class="col-md-12 col-sm-12"> 
-						<table id="example1" class="table table-striped table-bordered display" style="width:100%">
+						<table id="example1" class="table table-bordered display" style="width:100%">
 							<thead>
 								<tr>
 									<th>CPL</th>
@@ -24,11 +24,12 @@
  
 							<tbody>
 			                    <?php $i = 0; foreach($data_rumus_deskriptor as $r) { ?>
-			                    	<?php if ($r->persentasi > 0) { 
+			                    	<?php $warna = "white"; 
+			                    		if ($r->persentasi > 0) { 
 			                    			if ($nilai[$i]<$target_cpl[0]->nilai_target_pencapaian_cpl) {
-			                    			 	# code...
+			                    			 	$warna = "#FFD1D1"; }
 			                    			  ?>
-			                    <tr>
+			                    <tr style="background-color: <?php echo $warna ; ?>;">
 			                        <td><?php echo "CPL ".substr($r->id_deskriptor,11,1)	; ?></td>
 			                        <td><?php echo $r->nama_kode ; ?></td>
 			                        <td><?php echo $r->nama_kode_2 ; ?></td>
@@ -44,7 +45,7 @@
 			                        	echo "Tidak Terpenuhi" ;
 			                        } else{echo "Terpenuhi" ;} ?></td>
                                 </tr>
-			                    <?php }} $i++; } ?> 
+			                    <?php } $i++; } ?> 
 							</tbody>
 						</table>
 

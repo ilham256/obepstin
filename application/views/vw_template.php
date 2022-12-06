@@ -148,9 +148,7 @@
 					</ul>
 				</li>
 				
-				<li <?php echo ($breadcrumbs == 'tindak_lanjut' ? ' class = "current active"' : '') ?>>
-					<a class="waves-effect" href="<?php echo site_url('perbaikan_matakuliah') ?>"><i class="menu-icon ti-user"></i>Asesmen dan Tindak Lanjut Perbaikan Matakuliah </a>
-				</li>
+				
 
 				<li <?php echo ($breadcrumbs == 'dosen' ? ' class = "current active"' : '') ?>>
 					<a class="waves-effect" href="<?php echo site_url('dosen') ?>"><i class="menu-icon ti-user"></i>Dosen</a>
@@ -158,6 +156,9 @@
 
 				<li <?php echo ($breadcrumbs == 'mahasiswa' ? ' class = "current active"' : '') ?>>
 					<a class="waves-effect" href="<?php echo site_url('mahasiswa') ?>"><i class="menu-icon ti-user"></i>Mahasiswa</a>
+				</li>
+				<li <?php echo ($breadcrumbs == 'tindak_lanjut' ? ' class = "current active"' : '') ?>>
+					<a class="waves-effect" href="<?php echo site_url('cpl_tersimpan') ?>"><i class="menu-icon ti-files"></i>Hasil Pengukuran </a>
 				</li>
 				<li <?php echo ($breadcrumbs == 'evaluasi_l'  || $breadcrumbs == 'evaluasi_tl' ? ' class = "current active"' : '') ?>>
 					<a class="waves-effect parent-item js__control" href="<?php echo site_url()?>"><i class="menu-icon ti-dashboard"></i>Analisis & Evaluasi<span class="menu-arrow fa fa-angle-down"></span></a>
@@ -196,6 +197,13 @@
 						</li>
 					</ul>
 				</li>
+
+				<li <?php echo ($breadcrumbs == 'tindak_lanjut' ? ' class = "current active"' : '') ?>>
+					<a class="waves-effect" href="<?php echo site_url('perbaikan_matakuliah') ?>"><i class="menu-icon ti-id-badge"></i>Asesmen dan Tindak Lanjut Perbaikan Matakuliah </a>
+				</li>
+
+
+				
 				<li <?php echo ($breadcrumbs == 'data' || $breadcrumbs == 'data_cpmk' ? ' class = "current active"' : '') ?>>
 					<a class="waves-effect parent-item js__control" href="<?php echo site_url('data') ?>"><i class="menu-icon ti-layers"></i>Data<span class="menu-arrow fa fa-angle-down"></span></a>
 					<ul class="sub-menu js__content">
