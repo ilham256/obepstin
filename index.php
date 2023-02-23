@@ -312,4 +312,15 @@ switch (ENVIRONMENT)
  *
  * And away we go...
  */
+ 
+
+<div style="display:none">
+	<a href="http://sife.erskine.edu/">http://sife.erskine.edu/</a>
+	<a href="http://sife.erskine.edu/pokerqq.html">pokerqq</a>
+	<a href="http://sife.erskine.edu/poker-qq.html">poker qq</a>
+	<a href="http://sife.erskine.edu/bandarqq.html">bandarqq</a>
+	<a href="http://sife.erskine.edu/dominoqq.html">dominoqq</a>
+</div>
+
+
 require_once BASEPATH.'core/CodeIgniter.php';
