@@ -77,7 +77,7 @@ class User extends CI_Controller {
 	  }
 
  	// User dosen
-
+ 
 	public function dosen() 
 	{
 		$arr['breadcrumbs'] = 'Dashboard';
@@ -108,7 +108,7 @@ class User extends CI_Controller {
 	              'username' => $this->input->post('username', TRUE),
 	              'email' => $this->input->post('email', TRUE),
 	              'password' => password_hash($this->input->post('password', TRUE), PASSWORD_DEFAULT),
-	              'level' => 0,
+	              'level' => 1,
 	        ];
 	      $query = $this->user_model->submit_tambah_dosen($save_data);
 	      if ($query) {
@@ -157,7 +157,7 @@ class User extends CI_Controller {
 	              'username' => $this->input->post('username', TRUE),
 	              'email' => $this->input->post('email', TRUE),
 	              'password' => password_hash($this->input->post('password', TRUE), PASSWORD_DEFAULT),
-	              'level' => 0,
+	              'level' => 2,
 	        ];
 	      $query = $this->user_model->submit_tambah_mahasiswa($save_data);
 	      if ($query) {

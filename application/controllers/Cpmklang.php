@@ -21,7 +21,7 @@ class Cpmklang extends CI_Controller {
       redirect('auth/login');}
       
     } 
-
+ 
  
 
 	public function index() 
@@ -73,6 +73,7 @@ class Cpmklang extends CI_Controller {
             curl_close($ch);    
             return $output;
         }
+
 
         $send = curl("https://api.ipb.ac.id/v1/Mahasiswa/DaftarMahasiswa/PerDepartemen?departemenId=160&strata=S1&tahunMasuk=".$arr['tahun']);
 
