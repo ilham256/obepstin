@@ -54,7 +54,7 @@
 
       <form role="form" method="post" action="<?php echo site_url('Auth/login') ?>" enctype="multipart/form-data">
         <div class="input-group mb-4">
-          <input type="text" name="username" class="form-control" placeholder="Username" class="<?= form_error('username') ? 'invalid' : '' ?>" value="<?= set_value('username') ?>" required />
+          <input type="text" name="username" class="form-control" placeholder="Username" class="<?= form_error('username') ? 'invalid' : '' ?>" value="<?= set_value('username') ?>" maxlength="12" minlength="2" required />
 				<div class="invalid-feedback">
 					<?= form_error('username') ?>
 				</div>
@@ -65,7 +65,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" name="password" class="form-control" placeholder="Password" class="<?= form_error('password') ? 'invalid' : '' ?>" value="<?= set_value('password') ?>" required />
+          <input type="password" name="password" class="form-control" placeholder="Password" class="<?= form_error('password') ? 'invalid' : '' ?>" value="<?= set_value('password') ?>" maxlength="12" minlength="2" required />
 				<div class="invalid-feedback">
 					<?= form_error('password') ?>
 				</div>
