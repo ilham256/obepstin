@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>Home - SpaceX Template</title>
+
+	<!-- Main Styles -->
+	<link rel="stylesheet" href="assets/styles/style.min.css">
+	
+	<!-- Themify Icon -->
+	<link rel="stylesheet" href="assets/fonts/themify-icons/themify-icons.css">
+
+	<!-- mCustomScrollbar -->
+	<link rel="stylesheet" href="assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.min.css">
+
+	<!-- Waves Effect -->
+	<link rel="stylesheet" href="assets/plugin/waves/waves.min.css">
+
+	<!-- Sweet Alert -->
+	<link rel="stylesheet" href="assets/plugin/sweet-alert/sweetalert.css">
+	
+	<!-- Percent Circle -->
+	<link rel="stylesheet" href="assets/plugin/percircle/css/percircle.css">
+
+	<!-- Chartist Chart -->
+	<link rel="stylesheet" href="assets/plugin/chart/chartist/chartist.min.css">
+
+	<!-- FullCalendar -->
+	<link rel="stylesheet" href="assets/plugin/fullcalendar/fullcalendar.min.css">
+	<link rel="stylesheet" href="assets/plugin/fullcalendar/fullcalendar.print.css" media='print'>
+
+</head>
+
+<body>
+<div class="main-menu">
+	<header class="header">
+		<a href="#" class="logo"><img src="./assets/images/Logo_web.png" width="170" /></a>
+		<button type="button" class="button-close fa fa-times js__menu_close"></button>
+	</header>
+	<!-- /.header -->
+	<div class="content">
+
+		<div class="navigation">
+			<h5 class="title">Navigation</h5>
+			<!-- /.title -->
+			<ul class="menu js__accordion">
+				<li>
+					<a class="waves-effect" href="index.html"><i class="menu-icon ti-dashboard"></i><span>Dashboard</span></a>
+				</li>
+				<li>
+					<a class="waves-effect" href="vw_mahasiswa_index.html"><i class="menu-icon ti-user"></i><span>Daftar Mahasiswa</span></a>
+				</li>
+				<li>
+					<a class="waves-effect" href="vw_matakuliah.html"><i class="menu-icon ti-layers-alt"></i><span>Mata Kuliah & RPS</span></a>
+				</li>
+				<li>
+					<a class="waves-effect" href="vw_formula_cpl.html"><i class="menu-icon ti-desktop"></i><span>Formula Pencapaian CPL</span></a>
+				</li>
+				<li class="current">
+					<a class="waves-effect" href="vw_input_nilai.html"><i class="menu-icon ti-layers"></i><span>Input Nilai CPMK</span></a>
+				</li>
+			</ul>
+		</div>
+		<!-- /.navigation -->
+	</div>
+	<!-- /.content -->
+</div>
+<!-- /.main-menu -->
+
+<div class="fixed-navbar">
+	<div class="pull-left">
+		<button type="button" class="menu-mobile-button glyphicon glyphicon-menu-hamburger js__menu_mobile"></button>
+		<h1 class="page-title">Input Nilai CPMK</h1>
+		<!-- /.page-title -->
+	</div>
+	<!-- /.pull-left -->
+	<div class="pull-right">
+		<div class="ico-item">
+			<a href="#" class="ico-item ti-search js__toggle_open" data-target="#searchform-header"></a>
+			<form action="#" id="searchform-header" class="searchform js__toggle"><input type="search" placeholder="Search..." class="input-search"><button class="ti-search button-search" type="submit"></button></form>
+			<!-- /.searchform -->
+		</div>
+		<!-- /.ico-item -->
+		<a href="#" class="ico-item ti-email notice-alarm js__toggle_open" data-target="#message-popup"></a>
+		<a href="#" class="ico-item ti-bell notice-alarm js__toggle_open" data-target="#notification-popup"></a>
+		<div class="ico-item">
+			<i class="ti-user"></i>
+			<ul class="sub-ico-item">
+				<li><a href="#">Settings</a></li>
+				<li><a class="js__logout" href="#">Log Out</a></li>
+			</ul>
+			<!-- /.sub-ico-item -->
+		</div>
+	</div>
+	<!-- /.pull-right -->
+</div>
+<!-- /.fixed-navbar -->
+
+<div id="notification-popup" class="notice-popup js__toggle" data-space="75">
+	<h2 class="popup-title">Your Notifications</h2>
+	<!-- /.popup-title -->
+	<div class="content">
+		<ul class="notice-list">
+			<li>
+				<a href="#">
+					<span class="avatar"><img src="http://placehold.it/80x80" alt=""></span>
+					<span class="name">John Doe</span>
+					<span class="desc">Like your post: “Contact Form 7 Multi-Step”</span>
+					<span class="time">10 min</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<span class="avatar"><img src="http://placehold.it/80x80" alt=""></span>
+					<span class="name">Anna William</span>
+					<span class="desc">Like your post: “Facebook Messenger”</span>
+					<span class="time">15 min</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<span class="avatar bg-warning"><i class="fa fa-warning"></i></span>
+					<span class="name">Update Status</span>
+					<span class="desc">Failed to get available update data. To ensure the please contact us.</span>
+					<span class="time">30 min</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<span class="avatar"><img src="http://placehold.it/128x128" alt=""></span>
+					<span class="name">Jennifer</span>
+					<span class="desc">Like your post: “Contact Form 7 Multi-Step”</span>
+					<span class="time">45 min</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<span class="avatar"><img src="http://placehold.it/80x80" alt=""></span>
+					<span class="name">Michael Zenaty</span>
+					<span class="desc">Like your post: “Contact Form 7 Multi-Step”</span>
+					<span class="time">50 min</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<span class="avatar"><img src="http://placehold.it/80x80" alt=""></span>
+					<span class="name">Simon</span>
+					<span class="desc">Like your post: “Facebook Messenger”</span>
+					<span class="time">1 hour</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<span class="avatar bg-violet"><i class="fa fa-flag"></i></span>
+					<span class="name">Account Contact Change</span>
+					<span class="desc">A contact detail associated with your account has been changed.</span>
+					<span class="time">2 hours</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<span class="avatar"><img src="http://placehold.it/80x80" alt=""></span>
+					<span class="name">Helen 987</span>
+					<span class="desc">Like your post: “Facebook Messenger”</span>
+					<span class="time">Yesterday</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<span class="avatar"><img src="http://placehold.it/128x128" alt=""></span>
+					<span class="name">Denise Jenny</span>
+					<span class="desc">Like your post: “Contact Form 7 Multi-Step”</span>
+					<span class="time">Oct, 28</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<span class="avatar"><img src="http://placehold.it/80x80" alt=""></span>
+					<span class="name">Thomas William</span>
+					<span class="desc">Like your post: “Facebook Messenger”</span>
+					<span class="time">Oct, 27</span>
+				</a>
+			</li>
+		</ul>
+		<!-- /.notice-list -->
+		<a href="#" class="notice-read-more">See more messages <i class="fa fa-angle-down"></i></a>
+	</div>
+	<!-- /.content -->
+</div>
+<!-- /#notification-popup -->
+
+<div id="message-popup" class="notice-popup js__toggle" data-space="75">
+	<h2 class="popup-title">Recent Messages<a href="#" class="pull-right text-danger">New message</a></h2>
+	<!-- /.popup-title -->
+	<div class="content">
+		<ul class="notice-list">
+			<li>
+				<a href="#">
+					<span class="avatar"><img src="http://placehold.it/80x80" alt=""></span>
+					<span class="name">John Doe</span>
+					<span class="desc">Amet odio neque nobis consequuntur consequatur a quae, impedit facere repellat voluptates.</span>
+					<span class="time">10 min</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<span class="avatar"><img src="http://placehold.it/80x80" alt=""></span>
+					<span class="name">Harry Halen</span>
+					<span class="desc">Amet odio neque nobis consequuntur consequatur a quae, impedit facere repellat voluptates.</span>
+					<span class="time">15 min</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<span class="avatar"><img src="http://placehold.it/80x80" alt=""></span>
+					<span class="name">Thomas Taylor</span>
+					<span class="desc">Amet odio neque nobis consequuntur consequatur a quae, impedit facere repellat voluptates.</span>
+					<span class="time">30 min</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<span class="avatar"><img src="http://placehold.it/128x128" alt=""></span>
+					<span class="name">Jennifer</span>
+					<span class="desc">Amet odio neque nobis consequuntur consequatur a quae, impedit facere repellat voluptates.</span>
+					<span class="time">45 min</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<span class="avatar"><img src="http://placehold.it/80x80" alt=""></span>
+					<span class="name">Helen Candy</span>
+					<span class="desc">Amet odio neque nobis consequuntur consequatur a quae, impedit facere repellat voluptates.</span>
+					<span class="time">45 min</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<span class="avatar"><img src="http://placehold.it/128x128" alt=""></span>
+					<span class="name">Anna Cavan</span>
+					<span class="desc">Amet odio neque nobis consequuntur consequatur a quae, impedit facere repellat voluptates.</span>
+					<span class="time">1 hour ago</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<span class="avatar bg-success"><i class="fa fa-user"></i></span>
+					<span class="name">Jenny Betty</span>
+					<span class="desc">Amet odio neque nobis consequuntur consequatur a quae, impedit facere repellat voluptates.</span>
+					<span class="time">1 day ago</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<span class="avatar"><img src="http://placehold.it/128x128" alt=""></span>
+					<span class="name">Denise Peterson</span>
+					<span class="desc">Amet odio neque nobis consequuntur consequatur a quae, impedit facere repellat voluptates.</span>
+					<span class="time">1 year ago</span>
+				</a>
+			</li>
+		</ul>
+		<!-- /.notice-list -->
+		<a href="#" class="notice-read-more">See more messages <i class="fa fa-angle-down"></i></a>
+	</div>
+	<!-- /.content -->
+</div>
+<!-- /#message-popup -->
+<div id="wrapper">
+	<div class="main-content">
+		<div class="row small-spacing">
+			<div class="col-xs-12">
+				<div class="box-content">
+					<h4 class="box-title">Default</h4>
+					<!-- /.box-title -->
+					<div class="dropdown js__drop_down">
+						<a href="#" class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button"></a>
+						<ul class="sub-menu">
+							<li><a href="#">Tambah Baru</a></li>
+							<li><a href="#">Unduh ke PDF</a></li>
+						</ul>
+						<!-- /.sub-menu -->
+					</div>
+					<!-- /.dropdown js__dropdown -->
+					<table id="example" class="table table-striped table-bordered display" style="width:100%">
+						<thead>
+							<tr>
+								<th>Smt</th>
+								<th>Kode MK</th>
+								<th>Nama Mata Kuliah</th>
+								<th>Bobot sks</th>
+								<th>#</th>
+							</tr>
+						</thead>
+						<tfoot>
+							<tr>
+								<th>Smt</th>
+								<th>Kode MK</th>
+								<th>Nama Mata Kuliah</th>
+								<th>Bobot sks</th>
+								<th>#</th>
+							</tr>
+						</tfoot>
+						<tbody>
+							<tr>
+							<td>(1)</td>
+							<td>(2)</td>
+							<td width="291">(3)</td>
+							<td width="68">(4)</td>
+							<td width="87">(5)</td>
+							</tr>
+							<tr>
+							<td rowspan="15" width="56">I</td>
+							<td width="119">14C31C101</td>
+							<td style="text-align: left" width="291">Pendidikan Agama Islam</td>
+							<td rowspan="5" width="68">2</td>
+							<td width="87"><a href="vw_input_nilai_detail.html" rel="noopener">Input&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C102</td>
+							<td style="text-align: left" width="291">Pendidikan Agama Kristen. Pro</td>
+							<td width="87"><a href="vw_input_nilai_detail.html" rel="noopener">Input&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C103</td>
+							<td style="text-align: left" width="291">Pendidikan Agama Kristen. Kat</td>
+							<td width="87"><a href="vw_input_nilai_detail.html" rel="noopener">Input&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C104</td>
+							<td style="text-align: left" width="291">Pendidikan Agama Hindu</td>
+							<td width="87"><a href="vw_input_nilai_detail.html" rel="noopener">Input&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C105</td>
+							<td style="text-align: left" width="291">Pendidikan Agama Budha</td>
+							<td width="87"><a href="vw_input_nilai_detail.html" rel="noopener">Input&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C106</td>
+							<td style="text-align: left" width="291">Pendidikan Pancasila</td>
+							<td width="68">2</td>
+							<td width="87"><a href="vw_input_nilai_detail.html" rel="noopener">Input&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C107</td>
+							<td style="text-align: left" width="291">Bahasa Inggris</td>
+							<td width="68">2</td>
+							<td width="87"><a href="vw_input_nilai_detail.html" rel="noopener">Input&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C108</td>
+							<td style="text-align: left" width="291">Kebugaran Jasmani</td>
+							<td width="68">1</td>
+							<td width="87"><a href="vw_input_nilai_detail.html" rel="noopener">Input&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C109</td>
+							<td style="text-align: left" width="291">Anatomi 1</td>
+							<td width="68">2</td>
+							<td width="87"><a href="vw_input_nilai_detail.html" rel="noopener">Input&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C110</td>
+							<td style="text-align: left" width="291">Fisiologi 1</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-FISIOLOGI-1.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C111</td>
+							<td style="text-align: left" width="291">Matematika</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-MATEMATIKA-DASAR.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C112</td>
+							<td style="text-align: left" width="291">Sejarah Olahraga</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-SEJARAH-NEW-2020.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C113</td>
+							<td style="text-align: left" width="291">Atletik 1</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/Atletik-1.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C114</td>
+							<td style="text-align: left" width="291">Senam 1</td>
+							<td width="68">2</td>
+							<td width="87"><a href="vw_input_nilai_detail.html" rel="noopener">Input&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C115</td>
+							<td style="text-align: left" width="291">Renang 1</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-RENANG-2.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="56"></td>
+							<td width="119"></td>
+							<td width="291"> <em><strong>Jumlah</strong></em></td>
+							<td width="68"><em><strong>20</strong></em></td>
+							<td width="87"></td>
+							</tr>
+							<tr>
+							<td rowspan="11" width="56">II</td>
+							<td width="119">14C31C201</td>
+							<td style="text-align: left" width="291">Pendidikan Kewarganegaraan</td>
+							<td width="68">2</td>
+							<td width="87"><a href="vw_input_nilai_detail.html" rel="noopener">Input&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C202</td>
+							<td style="text-align: left" width="291">Tekhnologi Informasi dan Komunikasi</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-TIK.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C203</td>
+							<td style="text-align: left" width="291">Anatomi 2</td>
+							<td width="68">2</td>
+							<td width="87"><a href="vw_input_nilai_detail.html" rel="noopener">Input&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C204</td>
+							<td style="text-align: left" width="291">Fisiologi 2</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/IMG_0007.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C205</td>
+							<td style="text-align: left" width="291">Biokomia Olahraga</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-BIOKIMIA-OR.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C206</td>
+							<td style="text-align: left" width="291">Histologi</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-HISTOLOGI.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C207</td>
+							<td style="text-align: left" width="291">Atletik 2</td>
+							<td width="68">2</td>
+							<td width="87"><a href="vw_input_nilai_detail.html" rel="noopener">Input&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C208</td>
+							<td style="text-align: left" width="291">Senam 2</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-SENAM-2.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C209</td>
+							<td style="text-align: left" width="291">Renang 2</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-RENANG-2.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C2010</td>
+							<td style="text-align: left" width="291">Stastika</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-STATISTIKA.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C2011</td>
+							<td style="text-align: left" width="291">Magang 1 (Instansi Keolahragaan)</td>
+							<td width="68">0</td>
+							<td width="87"></td>
+							</tr>
+							<tr>
+							<td width="56"></td>
+							<td width="119"></td>
+							<td width="291"> <em><strong>Jumlah</strong></em></td>
+							<td width="68"><em><strong>20</strong></em></td>
+							<td width="87"></td>
+							</tr>
+							<tr>
+							<td rowspan="11" width="56">III</td>
+							<td width="119">14C31C301</td>
+							<td style="text-align: left" width="291">Bahasa Indonesia</td>
+							<td width="68">2</td>
+							<td width="87"><a href="vw_input_nilai_detail.html" rel="noopener">Input&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C302</td>
+							<td style="text-align: left" width="291">Fisiologi Olahraga 1</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-FISIOLOGI-1.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C303</td>
+							<td style="text-align: left" width="291">Biomekanika Olahraga</td>
+							<td width="68">3</td>
+							<td width="87"><a href="vw_input_nilai_detail.html" rel="noopener">Input&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C304</td>
+							<td style="text-align: left" width="291">Bola Voli</td>
+							<td width="68">2</td>
+							<td width="87"><a href="vw_input_nilai_detail.html" rel="noopener">Input&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C305</td>
+							<td style="text-align: left" width="291">Bola Basket</td>
+							<td width="68">2</td>
+							<td width="87"><a href="vw_input_nilai_detail.html" rel="noopener">Input&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C306</td>
+							<td style="text-align: left" width="291">Pencak Silat</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-KARATE.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C307</td>
+							<td style="text-align: left" width="291">Sosiologi Olahraga</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-WAHYUDIN-SOSIOLOGI-IKOR.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C308</td>
+							<td style="text-align: left" width="291">Metodelogi Penelitian</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-METODOLOGI-PENELITIAN.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C309</td>
+							<td style="text-align: left" width="291">Dasar-dasar Fitnes</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-DASAR-DASAR-FITNES.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C3010</td>
+							<td style="text-align: left" width="291">Filsafat Olahraga</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-WAHYUDIN-FILSAFAT-OR-IKOR.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C3011</td>
+							<td style="text-align: left" width="291">Biofisika</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-Biofisika.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="56"></td>
+							<td width="119"></td>
+							<td width="291"> <em><strong>Jumlah</strong></em></td>
+							<td width="68"><em><strong>23</strong></em></td>
+							<td width="87"></td>
+							</tr>
+							<tr>
+							<td rowspan="17" width="56">IV</td>
+							<td width="119">14C31C401</td>
+							<td style="text-align: left" width="291">Fisiologi Olahraga 2</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-FISIOLOGI-1.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C402</td>
+							<td style="text-align: left" width="291">Kinesiologi Olahraga</td>
+							<td width="68">3</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-KINESIOLOGI.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C403</td>
+							<td style="text-align: left" width="291">Sepak Bola</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-SEPAKBOLA.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C404</td>
+							<td style="text-align: left" width="291">BuluTangkis</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-BULUTANGKIS-1.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C405</td>
+							<td style="text-align: left" width="291">Ilmu Gizi Olahraga</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-ILMU-GIZI-OLAHRAGA.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C406</td>
+							<td style="text-align: left" width="291">Psikologi Olahraga</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-PSIKOLOGI-OLAHRAGA-2020.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C407</td>
+							<td style="text-align: left" width="291">Metode Penelitian Olahraga</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-METODOLOGI-PENELITIAN.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C408</td>
+							<td style="text-align: left" width="291">Seminar Keolahragaan</td>
+							<td width="68">1</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-seminar-keolahragaan.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C409</td>
+							<td style="text-align: left" width="291">Jurnalistik Olahraga</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-WAHYUDIN-JURNALISTIK-OR.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C4010</td>
+							<td style="text-align: left" width="291">Kewirausahaan Or</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-KEWIRAUSAHAAN-OLAHRAGA.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C4011</td>
+							<td style="text-align: left" width="291">Sepak Takrow</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-SEPAKTAKRAW.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C4012</td>
+							<td style="text-align: left" width="291">Tenis Lapangan</td>
+							<td rowspan="5" width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-TENIS-MEJA.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C4013</td>
+							<td style="text-align: left" width="291">Karate</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-KARATE.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C4015</td>
+							<td style="text-align: left" width="291">Panahan</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-PANAHAN.pdf" rel="noopener">Lihat&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C4014</td>
+							<td style="text-align: left" width="291">Anggar</td>
+							<td width="87"><a href="vw_input_nilai_detail.html" rel="noopener">Input&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C4016</td>
+							<td style="text-align: left" width="291">Judo</td>
+							<td width="87"><a href="vw_input_nilai_detail.html" rel="noopener">Input&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C4017</td>
+							<td style="text-align: left" width="291">Magang 2 (Club Fitness)</td>
+							<td width="68">0</td>
+							<td width="87"></td>
+							</tr>
+							<tr>
+							<td width="56"></td>
+							<td width="119"></td>
+							<td width="291"> <em><strong>Jumlah</strong></em></td>
+							<td width="68"><em><strong>24</strong></em></td>
+							<td width="87"></td>
+							</tr>
+							<tr>
+							<td rowspan="13" width="56">V</td>
+							<td width="119">14C31C501</td>
+							<td style="text-align: left" width="291">Olahraga Usia Lanjut</td>
+							<td width="68">2</td>
+							<td width="87"><a href="vw_input_nilai_detail.html" rel="noopener">Input&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C502</td>
+							<td style="text-align: left" width="291">Kesehatan Olahraga</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-IKOR-KESEHATAN-OLAHRAGA-20201.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C503</td>
+							<td style="text-align: left" width="291">Cedera Olahraga</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-IKOR-KESEHATAN-OLAHRAGA-20201.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C504</td>
+							<td style="text-align: left" width="291">Fisioterapi Olahraga</td>
+							<td width="68">2</td>
+							<td width="87"><a href="vw_input_nilai_detail.html" rel="noopener">Input&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C505</td>
+							<td style="text-align: left" width="291">Wanita dan Olahraga</td>
+							<td width="68">2</td>
+							<td width="87"><a href="vw_input_nilai_detail.html" rel="noopener">Input&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C506</td>
+							<td style="text-align: left" width="291">Praktik Lab.  kesehatan Olahraga</td>
+							<td width="68">2</td>
+							<td width="87"><a href="vw_input_nilai_detail.html" rel="noopener">Input&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C507</td>
+							<td style="text-align: left" width="291">Administrasi dan Organisasi Pertandingan Olahraga</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/rps-administrasi-dan-pengorganisasian-dalam-olahraga.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C508</td>
+							<td style="text-align: left" width="291">Dasar-dasar Manajemen Olahraga</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/rps-manajemen-olahraga.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C5012</td>
+							<td style="text-align: left" width="291">Sarana &amp; Prasarana Klub Kebugaran</td>
+							<td width="68">2</td>
+							<td width="87"><a href="vw_input_nilai_detail.html" rel="noopener">Input&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C5011</td>
+							<td style="text-align: left" width="291">Senam Aerobik</td>
+							<td style="text-align: center" width="68">2</td>
+							<td style="text-align: center" width="87">Lihat&gt;&gt;&gt;</td>
+							</tr>
+							<tr>
+							<td style="text-align: center" width="119">14C31C5010</td>
+							<td style="text-align: left" width="291">Manejemen Klub Kebugaran</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-MANAJEMEN-KLUB-KEBUGARAN.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C5013</td>
+							<td style="text-align: left" width="291">Tinju</td>
+							<td rowspan="2" width="68">2</td>
+							<td width="87"><a href="vw_input_nilai_detail.html" rel="noopener">Input&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C5014</td>
+							<td style="text-align: left" width="291">Softball</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/rps-softball.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="56"></td>
+							<td width="119"></td>
+							<td width="291"> <strong><em>Jumlah</em></strong></td>
+							<td width="68"><em><strong>24</strong></em></td>
+							<td width="87"></td>
+							</tr>
+							<tr>
+							<td rowspan="16" width="56">VI</td>
+							<td width="119">14C31C601</td>
+							<td style="text-align: left" width="291">Massage Olahraga</td>
+							<td width="68">2</td>
+							<td width="87"> <a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-sport-massage.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C602</td>
+							<td style="text-align: left" width="291">Farmakologi dan Doping</td>
+							<td width="68">2</td>
+							<td width="87"> <a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-FARMAKOLOGI-DAN-DOPING.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C603</td>
+							<td style="text-align: left" width="291">Olahraga Adaptif</td>
+							<td width="68">2</td>
+							<td width="87"> <a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-OLAHRAGA-ADAPTIF.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31c509</td>
+							<td style="text-align: left" width="291">Olahraga Rekreasi</td>
+							<td width="68">2</td>
+							<td width="87"><a href="vw_input_nilai_detail.html" rel="noopener">Input&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C604</td>
+							<td style="text-align: left" width="291">Dasar-dasar Kepelatihan Olahraga</td>
+							<td width="68">2</td>
+							<td width="87"> <a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-Dasar-dasar-Kepelatihan-Olahraga.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C605</td>
+							<td style="text-align: left" width="291">Perk. Belajar dan Belajar Motorik</td>
+							<td width="68">3</td>
+							<td width="87"> <a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-PERKEMB-BELAJAR-MOTORIK.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C606</td>
+							<td style="text-align: left" width="291">Paedagogi Olahraga</td>
+							<td width="68">2</td>
+							<td width="87"> <a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-PAEDAGOGI-OLAHRAGA.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C607</td>
+							<td style="text-align: left" width="291">Tes dan Pengukuran Olahraga</td>
+							<td width="68">3</td>
+							<td width="87"> <a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-TES-DAN-PENGUKURAN-OLAHRAGA.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C608</td>
+							<td style="text-align: left" width="291">Pembinaan Olahraga Usia Dini</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-pembinaan-olahraga-usia-dini.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C609</td>
+							<td style="text-align: left" width="291">OR dan Lingkungan Hidup</td>
+							<td width="68">2</td>
+							<td width="87"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-OLAHRAGA-DAN-LINGK-HIDUP.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C610</td>
+							<td style="text-align: left" width="291">Tennis Meja</td>
+							<td width="68">2</td>
+							<td width="87"> <a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-TENIS-MEJA.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C611</td>
+							<td style="text-align: left" width="291">Hoki</td>
+							<td rowspan="4" width="68">2</td>
+							<td width="87"> <a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-CONTOH-HOCKEY-OK.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C612</td>
+							<td style="text-align: left" width="291">Tes Bakat Olahraga</td>
+							<td width="87"> <a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/RPS-TES-BAKAT-OLAHRAGA.pdf" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+							<tr>
+							<td width="119">14C31C613</td>
+							<td style="text-align: left" width="291">Dayung</td>
+							<td width="87"> Lihat&gt;&gt;&gt;</td>
+							</tr>
+							<tr>
+							<td width="119">14C31C614</td>
+							<td style="text-align: left" width="291">Gulat</td>
+							<td width="87"> Lihat&gt;&gt;&gt;</td>
+							</tr>
+							<tr>
+							<td width="119">14C31C615</td>
+							<td style="text-align: left" width="291">Magang 3 (RumahSakit)</td>
+							<td width="68">0</td>
+							<td width="87"></td>
+							</tr>
+							<tr>
+							<td width="56"></td>
+							<td width="119"></td>
+							<td width="291"> <em><strong>Jumlah</strong></em></td>
+							<td width="68"><em><strong>20</strong></em></td>
+							<td width="87"></td>
+							</tr>
+							<tr>
+							<td rowspan="2" width="56">VII</td>
+							<td width="119">14C31C701</td>
+							<td style="text-align: left" width="291">Praktek Kerja Lapangan (PKL)</td>
+							<td width="68">4</td>
+							<td width="87">
+							<ul>
+							<li style="text-align: left"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/Buku-Jurnal-Harian-Dan-Penilaian-Mahasiswa-PPL-II.pdf" rel="noopener">Logbook dan Penilaian Mahasiswa PKL</a></li>
+							<li style="text-align: left"><a href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/Buku-Panduan-PPL-II-1.pdf" rel="noopener">Panduan-PPL/PKL</a></li>
+							</ul>
+							</td>
+							</tr>
+							<tr>
+							<td width="119">14C31C702</td>
+							<td style="text-align: left" width="291">Kuliah Kerja Nyata (KKN)</td>
+							<td width="68">4</td>
+							<td width="87">
+							<ul>
+							<li style="text-align: left"> <a style="font-family: inherit;font-size: inherit" href="http://ikor.fik.unm.ac.id/wp-content/uploads/sites/5/2020/09/Petunjuk_Teknis_Pelaksanaan_KKN_PPL_Terp.docx" rel="noopener">Juknis KKN UNM</a></li>
+							</ul>
+							</td>
+							</tr>
+							<tr>
+							<td width="56"></td>
+							<td width="119"></td>
+							<td style="text-align: left" width="291"> <em><strong>Jumlah</strong></em></td>
+							<td width="68"><em><strong>8</strong></em></td>
+							<td width="87"></td>
+							</tr>
+							<tr>
+							<td width="56"> VIII</td>
+							<td width="119"> 14C31C801</td>
+							<td width="291"> Skripsi/Tugas Akhir</td>
+							<td width="68"><strong>6</strong></td>
+							<td width="87"> <a href="http://ikor.fik.unm.ac.id/sistem_infomasi/layanan-judul/" rel="noopener">Lihat&gt;&gt;&gt;</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- /.box-content -->
+			</div>
+		</div>
+		<!-- /.row small-spacing -->
+		<!-- /.row -->		
+		<footer class="footer">
+			<ul class="list-inline">
+				<li>2016 © NinjaAdmin.</li>
+				<li><a href="#">Privacy</a></li>
+				<li><a href="#">Terms</a></li>
+				<li><a href="#">Help</a></li>
+			</ul>
+		</footer>
+	</div>
+	<!-- /.main-content -->
+</div><!--/#wrapper -->
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script src="assets/script/html5shiv.min.js"></script>
+		<script src="assets/script/respond.min.js"></script>
+	<![endif]-->
+	<!-- 
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="assets/scripts/jquery.min.js"></script>
+	<script src="assets/scripts/modernizr.min.js"></script>
+	<script src="assets/plugin/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/plugin/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="assets/plugin/nprogress/nprogress.js"></script>
+	<script src="assets/plugin/sweet-alert/sweetalert.min.js"></script>
+	<script src="assets/plugin/waves/waves.min.js"></script>
+	<!-- Sparkline Chart -->
+	<script src="assets/plugin/chart/sparkline/jquery.sparkline.min.js"></script>
+	<script src="assets/scripts/chart.sparkline.init.min.js"></script>
+
+	<!-- Percent Circle -->
+	<script src="assets/plugin/percircle/js/percircle.js"></script>
+
+	<!-- Google Chart -->
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+	<!-- Chartist Chart -->
+	<script src="assets/plugin/chart/chartist/chartist.min.js"></script>
+	<script src="assets/scripts/jquery.chartist.init.min.js"></script>
+
+	<!-- FullCalendar -->
+	<script src="assets/plugin/moment/moment.js"></script>
+	<script src="assets/plugin/fullcalendar/fullcalendar.min.js"></script>
+	<script src="assets/scripts/fullcalendar.init.js"></script>
+
+	<script src="assets/scripts/main.min.js"></script>
+</body>
+</html>
