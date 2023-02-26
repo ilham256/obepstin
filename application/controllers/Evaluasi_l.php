@@ -33,7 +33,7 @@ class Evaluasi_l extends MY_Controller {
         $this->load->model('report_model');
 
 
-        if ($this->session->userdata('loggedin') != true) {
+        if ($this->session->userdata('loggedin') != true || $_SESSION['level'] != 0) {
       redirect('auth/login');
       }
     	

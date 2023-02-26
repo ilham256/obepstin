@@ -8,7 +8,7 @@
 	<meta name="author" content=""> 
 
 	<title>Home - Sistem Asesmen OBE PS TIN (Mahasiswa)</title> 
-
+ 
 	<!-- Themify Icon -->
 	<link rel="stylesheet" href="<?php echo base_url() ?>assets/fonts/themify-icons/themify-icons.css">
 
@@ -103,6 +103,10 @@
 						</li>
 					</ul>
 				</li>
+				<li <?php echo ($breadcrumbs == 'akun' ? ' class = "current active"' : '') ?>>
+					<a class="waves-effect" href="<?php echo site_url('akun_mahasiswa') ?>"><i class="menu-icon ti-user"></i>Akun</a>
+				</li>
+
 				<li <?php echo ($breadcrumbs == 'logout' ? ' class = "current active"' : '') ?>>
 					<a class="waves-effect" href="<?php echo site_url('Auth/logout') ?>"  onclick="return confirm('apakah anda ingin Keluar ?')"><i class="menu-icon"></i>Logout</a>
 				</li>

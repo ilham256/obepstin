@@ -38,7 +38,7 @@
 <div class="login-box">
   <div class="login-logo">
     <a ><b> <strong>DIPLOMACY </strong> </b></a>
-    <p style="font-size: 30px;"> Sistem Assesmen OBE PS TIN.</p>
+    <p style="font-size: 30px;"> Sistem Assesmen OBE PS TIN</p>
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -54,7 +54,7 @@
 
       <form role="form" method="post" action="<?php echo site_url('Auth/login') ?>" enctype="multipart/form-data">
         <div class="input-group mb-4">
-          <input type="text" name="username" class="form-control" placeholder="Username" class="<?= form_error('username') ? 'invalid' : '' ?>" value="<?= set_value('username') ?>" maxlength="12" minlength="2" required />
+          <input type="text" name="username" class="form-control" placeholder="Username" class="<?= form_error('username') ? 'invalid' : '' ?>" value="<?= set_value('username') ?>" maxlength="30" minlength="2" required />
 				<div class="invalid-feedback">
 					<?= form_error('username') ?>
 				</div>

@@ -23,7 +23,7 @@ class Katkin extends CI_Controller {
   		parent::__construct(); 
     	$this->load->model('katkin_model');
     	
-  		if ($this->session->userdata('loggedin') != true) {
+  		if ($this->session->userdata('loggedin') != true || $_SESSION['level'] != 0) {
       redirect('auth/login');
       }
     } 

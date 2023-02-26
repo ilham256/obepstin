@@ -32,7 +32,7 @@ class Evaluasi_l_dosen extends MY_Controller {
         $this->load->model('report_model');
 
 
-        if ($this->session->userdata('loggedin') != true) {
+        if ($this->session->userdata('loggedin') != true || $_SESSION['level'] != 1) {
       redirect('auth/login');
       }
     	

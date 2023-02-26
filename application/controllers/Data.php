@@ -26,7 +26,7 @@ class Data extends CI_Controller {
     	$this->load->model('katkin_model');
     	$this->load->model('kinumum_model');
 
-    	if ($this->session->userdata('loggedin') != true) {
+    	if ($this->session->userdata('loggedin') != true || $_SESSION['level'] != 0) {
       redirect('auth/login'); 
 
       }

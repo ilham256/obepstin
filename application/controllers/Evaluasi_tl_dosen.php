@@ -27,7 +27,7 @@ class Evaluasi_tl_dosen extends CI_Controller {
     	$this->load->model('evaluasi_tl_model'); 
     	$this->load->model('katkin_model'); 
         
-        if ($this->session->userdata('loggedin') != true) {
+        if ($this->session->userdata('loggedin') != true || $_SESSION['level'] != 1) {
       redirect('auth/login');
       }
 

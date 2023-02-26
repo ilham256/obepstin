@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
-class akun extends CI_Controller {
+class akun_guest extends CI_Controller {
 
 	/**
 	 * Index Page for this controller. 
@@ -28,7 +28,7 @@ class akun extends CI_Controller {
     	$this->load->model('dosen_model');
     	$this->load->model('user_model'); 
     	
-    	if ($this->session->userdata('loggedin') != true || $_SESSION['level'] != 0) {
+    	if ($this->session->userdata('loggedin') != true) {
       redirect('auth/login');
  		 }
     }
@@ -36,21 +36,21 @@ class akun extends CI_Controller {
 	public function index()	
 	{ 
 		$arr['breadcrumbs'] = 'akun'; 
-		$arr['content'] = 'vw_akun';
+		$arr['content'] = 'vw_akun_guest';
 		$arr['datas'] =  $_SESSION;
 
 		//echo '<pre>';  var_dump($_SESSION); echo '</pre>';
 
-		$this->load->view('vw_template', $arr); 
+		$this->load->view('vw_template_guest', $arr); 
 	}
 
 	public function ganti_password()
 	{
 		$arr['breadcrumbs'] = 'akun'; 
-		$arr['content'] = 'vw_akun_ganti_password';
+		$arr['content'] = 'vw_akun_ganti_password_guest';
 		$arr['konfirmasi'] = 'masuk';
 		//	echo '<pre>';  var_dump($arr); echo '</pre>';
-		$this->load->view('vw_template', $arr);
+		$this->load->view('vw_template_guest', $arr);
 	}
  
 	public function submit_ganti_password()
@@ -74,9 +74,9 @@ class akun extends CI_Controller {
 	    	}
 
 	    	$arr['breadcrumbs'] = 'akun'; 
-			$arr['content'] = 'vw_akun_ganti_password';
+			$arr['content'] = 'vw_akun_ganti_password_guest';
 			//	echo '<pre>';  var_dump($arr); echo '</pre>';
-			$this->load->view('vw_template', $arr);
+			$this->load->view('vw_template_guest', $arr);
 	    }
 	}
 

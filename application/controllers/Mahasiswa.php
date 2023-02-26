@@ -27,7 +27,7 @@ class mahasiswa extends CI_Controller {
   		//$this->load->library(array('PHPExcel','PHPExcel/IOFactory'));
     	$this->load->model('mahasiswa_model');
     	
-    	if ($this->session->userdata('loggedin') != true) {
+    	if ($this->session->userdata('loggedin') != true || $_SESSION['level'] != 0) {
       redirect('auth/login');
  		 }
     }

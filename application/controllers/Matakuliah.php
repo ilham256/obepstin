@@ -23,7 +23,7 @@ class Matakuliah extends CI_Controller {
   	{
   		parent::__construct(); 
     	$this->load->model('Matakuliah_model');
-    	if ($this->session->userdata('loggedin') != true) {
+    	if ($this->session->userdata('loggedin') != true || $_SESSION['level'] != 0) {
       redirect('auth/login');}
     }
     /*$this->load->model('auth_model');

@@ -22,7 +22,7 @@ class Report_guest extends CI_Controller {
 		 public function __construct()
   	{
   		parent::__construct(); 
-  		if ($this->session->userdata('loggedin') != true) {
+  		if ($this->session->userdata('loggedin') != true || $_SESSION['level'] != 4) {
       redirect('auth/login');} 
     	$this->load->model('Matakuliah_model');
     	$this->load->model('mahasiswa_model'); 

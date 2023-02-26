@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta name="description" content="">
 	<meta name="author" content=""> 
-
+ 
 	<title>Home - Sistem Asesmen OBE PS TIN</title> 
 
 	<!-- Themify Icon -->
@@ -201,8 +201,6 @@
 				<li <?php echo ($breadcrumbs == 'tindak_lanjut' ? ' class = "current active"' : '') ?>>
 					<a class="waves-effect" href="<?php echo site_url('perbaikan_matakuliah') ?>"><i class="menu-icon ti-id-badge"></i>Asesmen dan Tindak Lanjut Perbaikan Matakuliah </a>
 				</li>
-
-
 				
 				<li <?php echo ($breadcrumbs == 'data' || $breadcrumbs == 'data_cpmk' ? ' class = "current active"' : '') ?>>
 					<a class="waves-effect parent-item js__control" href="<?php echo site_url('data') ?>"><i class="menu-icon ti-layers"></i>Data<span class="menu-arrow fa fa-angle-down"></span></a>

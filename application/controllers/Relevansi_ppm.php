@@ -30,7 +30,7 @@ class Relevansi_ppm extends CI_Controller {
         $this->load->model('Matakuliah_model'); 
         $this->load->model('mahasiswa_model');
          
-        if ($this->session->userdata('loggedin') != true) {
+        if ($this->session->userdata('loggedin') != true || $_SESSION['level'] != 0) {
       redirect('auth/login');}
       
     }

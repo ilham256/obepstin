@@ -35,7 +35,7 @@ class Analisis_evaluasi_guest extends MY_Controller {
 
 
 
-        if ($this->session->userdata('loggedin') != true) {
+        if ($this->session->userdata('loggedin') != true || $_SESSION['level'] != 4) {
       redirect('auth/login');
       }
     	

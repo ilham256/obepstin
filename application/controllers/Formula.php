@@ -8,7 +8,7 @@ class Formula extends CI_Controller {
     	$this->load->model('formula_model');
     	$this->load->model('formula_deskriptor_model');
     	
-  		if ($this->session->userdata('loggedin') != true) {
+  		if ($this->session->userdata('loggedin') != true || $_SESSION['level'] != 0) {
       redirect('auth/login');
       }
 	} 
