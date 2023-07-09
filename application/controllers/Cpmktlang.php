@@ -309,6 +309,12 @@ class Cpmktlang extends CI_Controller {
 
                 if (!empty($cek_kode_mk)) {
                     $kode_mk = $cek_kode_mk["0"]->kode_mk;
+                }else {
+                    $cek_kode_mk = $this->cpmktlang_model->cek_matakuliah_kode_1($kode_mk);
+                }
+
+                if (!empty($cek_kode_mk)) {
+                    $kode_mk = $cek_kode_mk["0"]->kode_mk;
                 }
 
                 $row_cpmk = $sheet->rangeToArray('D' . 19 . ':' . $highestColumn . 19,

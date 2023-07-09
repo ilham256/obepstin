@@ -4,7 +4,7 @@
 			<h4 class="box-title">User - Dosen</h4>
 			<div class="form-group">
 				<div class="text-right">
-					<a class="btn btn-success waves-effect waves-light" href="<?php echo site_url('user/tambah_admin') ?>" >+ User Dosen</a>
+					<a class="btn btn-success waves-effect waves-light" href="<?php echo site_url('user/tambah_dosen') ?>" >+ User Dosen</a>
 				</div>
 				<br>
 			</div> 

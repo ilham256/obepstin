@@ -45,13 +45,15 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
- 		<?php if($this->session->flashdata('message_login_error')): ?>
-			<div class="invalid-feedback">
-					<?= $this->session->flashdata('message_login_error') ?>
-			</div>
-		<?php endif ?>
-		<?php //echo password_hash("admin", PASSWORD_DEFAULT) ?>
+      <?php if($this->session->flashdata('message_login_error')) { ?>
+			<div style="color: red;">
+					<?php echo 'Login Gagal, pastikan username dan password benar!'; ?>
 
+			</div>
+      <?php } ?>
+
+		<?php //echo password_hash("admin", PASSWORD_DEFAULT) ?>
+      <br>
       <form role="form" method="post" action="<?php echo site_url('Auth/login') ?>" enctype="multipart/form-data">
         <div class="input-group mb-4">
           <input type="text" name="username" class="form-control" placeholder="Username" class="<?= form_error('username') ? 'invalid' : '' ?>" value="<?= set_value('username') ?>" maxlength="30" minlength="2" required />
@@ -68,7 +70,7 @@
           <input type="password" name="password" class="form-control" placeholder="Password" class="<?= form_error('password') ? 'invalid' : '' ?>" value="<?= set_value('password') ?>" maxlength="12" minlength="2" required />
 				<div class="invalid-feedback">
 					<?= form_error('password') ?>
-				</div>
+				</div> 
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

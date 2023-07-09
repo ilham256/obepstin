@@ -19,8 +19,13 @@
 			                  </div>
 			                  <br>
 	                  <div class="form-group">
-	                    <label for="exampleInputEmail1">Kode Mata Kuliah TM-2018 & 2019</label>
+	                    <label for="exampleInputEmail1">Kode Mata Kuliah TM-2018</label>
 	                    <input type="text" class="form-control" id="exampleInputEmail1" value="<?= $data->nama_kode ?>" name="kode_mata_kuliah">
+	                  </div>
+	                  <br> 
+	                  <div class="form-group">
+	                    <label for="exampleInputEmail1">Kode Mata Kuliah TM-2019</label>
+	                    <input type="text" class="form-control" id="exampleInputEmail1" value="<?= $data->nama_kode_3 ?>" name="kode_mata_kuliah_3">
 	                  </div>
 	                  <br> 
 	                  <div class="form-group">

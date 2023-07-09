@@ -132,7 +132,7 @@ class Report extends CI_Controller {
 						}											
 					}
 				}
-			}
+			} 
 			array_push($nilai_maksimal, $n_m);
 		}
 
@@ -280,12 +280,18 @@ class Report extends CI_Controller {
 			foreach ($dt_mahasiswa as $key) {
 				if ($key["Nim"] == $nim_2) {
 					$n_m = $key;
-				}
+				} else {$n_m = []; }
 			}
 
+ 			//echo '<pre>';  var_dump($n_m); echo '</pre>';
+ 			if (!empty($n_m)) {
+ 				$arr['nama_rapor_mahasiswa'] = ($n_m["Nama"]);
+	    		$arr['nim_rapor_mahasiswa'] = ($n_m["Nim"]);
+ 			} else {
+ 				$arr['nama_rapor_mahasiswa'] = 'Nama Mahasiswa Tidak Terdaftar';
+	    		$arr['nim_rapor_mahasiswa'] = 'NIM Mahasiswa Tidak Terdaftar';
+ 			}
  			
- 			$arr['nama_rapor_mahasiswa'] = ($n_m["Nama"]);
-	    	$arr['nim_rapor_mahasiswa'] = ($n_m["Nim"]);
 
 	    	$batas_cukup = ($arr['katkin']["0"]->batas_bawah_kategori_cukup_cpl);
 	    	$batas_baik = ($arr['katkin']["0"]->batas_bawah_kategori_baik_cpl);
@@ -437,10 +443,15 @@ public function kinerja_cpmk_mahasiswa()
 					$n_m = $key;
 				}
 			}
-
-			$arr['nama'] = ($n_m["Nama"]); 
- 
-			$arr['ns'] = 'Nilai CPMK '.$arr['nama'].' ('.$arr['nim'].')';
+			//echo '<pre>';  var_dump($n_m); echo '</pre>';
+			if (!empty($n_m)) {
+				$arr['nama'] = ($n_m["Nama"]); 
+				$arr['ns'] = 'Nilai CPMK '.$arr['nama'].' ('.$arr['nim'].')';
+			} else {
+				$arr['nama'] = 'Nama Mahasiswa Tidak Terdaftar'; 
+				$arr['ns'] = $arr['nama'];
+			}
+			
 
 		} else {
 

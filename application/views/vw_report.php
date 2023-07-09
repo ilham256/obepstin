@@ -32,7 +32,7 @@
 							<div class="row mb-3">
 								<label for="mata_kuliah" class="col-sm-3 col-form-label">Silahkan Masukkan NIM</label>
 								<div class="col-sm-3">
-									<input type="text" name="nim_3" class="form-control" placeholder="NIM" required>					
+									<input type="text" name="nim_3" class="form-control" placeholder="NIM" maxlength="30" required>					
 								</div>
 							</div>
 							<div class="row mb-3">
@@ -53,7 +53,15 @@
 							<hr>
 							<div> 
 								<p >Data Kinerja  <?php echo $simpanan_cpl; ?> </p>
-								<p><?php echo $nama_mahasiswa[0]->nama; ?> (<?php echo $nim_3; ?>)</p>
+								<p>
+								<?php 
+								if (!empty($nama_mahasiswa)) {
+  									echo $nama_mahasiswa[0]->nama;
+  									echo " (".$nim_3.")";
+								}else {
+									echo "Kode Mahasiswa (".$nim_3.") Tidak terdaftar";
+								}  ?>
+								</p>
 							</div>		 	 				
 						
 

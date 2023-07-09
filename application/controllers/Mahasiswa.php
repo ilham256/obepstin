@@ -32,7 +32,7 @@ class mahasiswa extends CI_Controller {
  		 }
     }
 
-	public function index()
+	public function index() 
 	{ 
 		$arr['breadcrumbs'] = 'mahasiswa'; 
 		$arr['content'] = 'vw_mahasiswa';
@@ -93,6 +93,22 @@ class mahasiswa extends CI_Controller {
 			array_push($masukan, $save_data);
 			//$query = $this->mahasiswa_model->submit_tambah($save_data);
 			$insert = $this->mahasiswa_model->update_mahasiwa($save_data);
+
+            $cek_id = $this->mahasiswa_model->cek_user_mahasiswa($key["Nim"]);
+            //echo '<pre>';  var_dump($cek_id); echo '</pre>';
+            
+            if (empty($cek_id)) {
+
+                $save_data_user = [
+                  'id' => $key["Nim"],
+                  'username' => $key["Nim"],
+                  'email' => '',
+                  'password' => password_hash('admin', PASSWORD_DEFAULT),
+                  'level' => 2,
+                ];
+
+                $insert = $this->mahasiswa_model->update_user_mahasiswa($save_data_user);
+            }
 		}
 	
 	    //$query = $this->mahasiswa_model->submit_tambah($save_data);
@@ -238,9 +254,27 @@ public function upload(){
                     "tempat_lahir"=> $rowData[0][6],
                     "tanggal_lahir"=> $mysql_timestamp,
                 );
+
+                
+
                 //sesuaikan nama dengan nama tabel
                 $insert = $this->mahasiswa_model->update_excel($save_data);
                 //delete_files($media['file_path']);
+                $cek_id = $this->mahasiswa_model->cek_user_mahasiswa($rowData[0][1]);
+                echo '<pre>';  var_dump($cek_id); echo '</pre>';
+
+                if (empty($cek_id)) {
+
+                    $save_data_user = [
+                      'id' => $rowData[0][1],
+                      'username' => $rowData[0][1],
+                      'email' => '',
+                      'password' => password_hash('admin', PASSWORD_DEFAULT),
+                      'level' => 2,
+                    ];
+
+                    $insert = $this->mahasiswa_model->update_user_mahasiswa($save_data_user);
+                }
             }
            }
 
@@ -252,9 +286,47 @@ public function upload(){
         //echo '<pre>';  var_dump($arr['datas']); echo '</pre>';
         $arr['breadcrumbs'] = 'relevansi_ppm';
         $arr['content'] = 'vw_data_nilai_berhasil_disimpan4';
-        $this->load->view('vw_template', $arr);
+       //$this->load->view('vw_template', $arr);
 
 
+    }
+
+    public function reset_password() 
+    { 
+        $arr['breadcrumbs'] = 'mahasiswa'; 
+        $arr['content'] = 'mahasiswa/reset_password';
+        //$arr['datas'] =  $this->mahasiswa_model->get_mahasiswa();
+        //  echo '<pre>';  var_dump($arr); echo '</pre>';
+
+        //echo '<pre>';  var_dump($arr['datas']); echo '</pre>';
+        //echo '<pre>';  var_dump($arr['data']); echo '</pre>';
+        $this->load->view('vw_template', $arr); 
+    }
+
+    public function submit_reset_password() 
+    {   
+        if (($this->input->post('simpan', TRUE))) {
+            $save_data = [
+                  'nama_kode' => $this->input->post('kode_mata_kuliah', TRUE),
+            ];
+            $id_edit = $this->input->post('NIM', TRUE);
+
+            $query = $this->mahasiswa_model->submit_reset_password($save_data,$id_edit);
+            
+            if ($query) {
+              redirect('Matakuliah','refresh');
+            }
+         }
+
+
+        $arr['breadcrumbs'] = 'mahasiswa'; 
+        $arr['content'] = 'mahasiswa/reset_password';
+        //$arr['datas'] =  $this->mahasiswa_model->get_mahasiswa();
+        //  echo '<pre>';  var_dump($arr); echo '</pre>';
+
+        //echo '<pre>';  var_dump($arr['datas']); echo '</pre>';
+        //echo '<pre>';  var_dump($arr['data']); echo '</pre>';
+        $this->load->view('vw_template', $arr); 
     }
 }
 

@@ -51,6 +51,14 @@ class cpmklang_model extends CI_Model
 		return $query->get()->result();
 	}
 
+	public function cek_matakuliah_kode_1($data)  
+	{
+		$query = $this->db->select('kode_mk');
+		$query->from('mata_kuliah');
+		$query->where('nama_kode',$data);
+		return $query->get()->result();
+	}
+
 	public function cek_matakuliah_kode_2($data)  
 	{
 		$query = $this->db->select('kode_mk');

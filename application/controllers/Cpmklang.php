@@ -148,11 +148,19 @@ class Cpmklang extends CI_Controller {
                         $kode_mk = $cek_kode_mk["0"]->kode_mk;
                     }else {
                         $cek_kode_mk = $this->cpmklang_model->cek_matakuliah_kode_3($kode_mk);
-                    } 
+                    }  
+
+                    if (!empty($cek_kode_mk)) {
+                        $kode_mk = $cek_kode_mk["0"]->kode_mk;
+                    }else {
+                        $cek_kode_mk = $this->cpmklang_model->cek_matakuliah_kode_1($kode_mk);
+                    }
 
                     if (!empty($cek_kode_mk)) {
                         $kode_mk = $cek_kode_mk["0"]->kode_mk;
                     }
+
+
 
                     $row_cpmk = $sheet->rangeToArray('F' . 19 . ':' . $highestColumn . 19,
                                                         NULL,
@@ -302,11 +310,18 @@ class Cpmklang extends CI_Controller {
                         $kode_mk = $cek_kode_mk["0"]->kode_mk;
                     }else {
                         $cek_kode_mk = $this->cpmklang_model->cek_matakuliah_kode_3($kode_mk);
-                    } 
+                    }  
+
+                    if (!empty($cek_kode_mk)) {
+                        $kode_mk = $cek_kode_mk["0"]->kode_mk;
+                    }else {
+                        $cek_kode_mk = $this->cpmklang_model->cek_matakuliah_kode_1($kode_mk);
+                    }
 
                     if (!empty($cek_kode_mk)) {
                         $kode_mk = $cek_kode_mk["0"]->kode_mk;
                     }
+
 
                     $row_cpmk = $sheet->rangeToArray('F' . 19 . ':' . $highestColumn . 19,
                                                         NULL,

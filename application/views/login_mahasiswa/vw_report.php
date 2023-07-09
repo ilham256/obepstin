@@ -155,7 +155,7 @@
 								</table>
 								<div class="float-end margin-top-50">
 
-									<form role="form" id="contactform" action="<?php echo site_url('report/download_report_mahasiswa')?>" method="post" target="_blank">
+									<form role="form" id="contactform" action="<?php echo site_url('Report_mahasiswa/download_report_mahasiswa')?>" method="post" target="_blank">
 
 										<input type="hidden" name="nim_2" value="<?php echo $nim_rapor_mahasiswa; ?>">
 

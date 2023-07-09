@@ -109,7 +109,7 @@ class Report_mahasiswa extends CI_Controller {
 			}
 			array_push($nilai_target, $n_target);
 		}
-
+ 
 		
 		for ($i=0; $i < count($nilai_target) ; $i++) { 
 			$pnt = 0;

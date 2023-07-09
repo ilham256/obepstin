@@ -4,7 +4,8 @@
 			<h4 class="box-title">Mahasiswa</h4>
 			<div class="form-group">
 				<div class="text-right">
-					<a class="btn btn-info waves-effect waves-light" href="<?php echo site_url('mahasiswa/tambah') ?>" > + Update Data Mahasiswa</a>
+					<a class="btn btn-info waves-effect waves-light" href="<?php echo site_url('mahasiswa/tambah') ?>" > + Update Data Mahasiswa</a> &nbsp; &nbsp;
+					<a class="btn waves-effect waves-light" href="<?php echo site_url('mahasiswa/reset_password') ?>" > Reset Password Mahasiswa </a>
 				</div>
 				<br>
 			</div> 
@@ -17,6 +18,7 @@
 						<th>Semester</th>
 						<th>Tahun Angkatan</th>
 						<th>Status</th>
+						
 					</tr>
 				</thead>
 				<tfoot>

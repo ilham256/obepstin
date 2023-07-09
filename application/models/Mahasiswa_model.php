@@ -16,7 +16,7 @@ class mahasiswa_model extends CI_Model
 	//	$query = $this->db->query($sql);
 	//	return $query->result();
 	//}
-
+ 
 	public function get_mahasiswa()  
 	{
 		$query = $this->db->select('*');
@@ -86,5 +86,19 @@ class mahasiswa_model extends CI_Model
 		$this->db->delete('mahasiswa');
 		return true;
 	}
+
+	public function cek_user_mahasiswa($data)  
+	{
+		$query = $this->db->select('id');
+		$query->from('user');
+		$query->where('id',$data);
+		return $query->get()->result();
+	}
+	public function update_user_mahasiswa($save_data_user)  
+	{
+		$result = $this->db->replace('user',$save_data_user);
+		return true;
+	}
+
 }
 ?>

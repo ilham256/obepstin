@@ -146,6 +146,7 @@ class Matakuliah extends CI_Controller {
         $save_data = [
               'nama_kode' => $this->input->post('kode_mata_kuliah', TRUE),
               'nama_kode_2' => $this->input->post('kode_mata_kuliah_2', TRUE),
+              'nama_kode_3' => $this->input->post('kode_mata_kuliah_3', TRUE),
 	          'id_semester' => $this->input->post('semester', TRUE),
 	          'nama_mata_kuliah' => $this->input->post('nama_mata_kuliah', TRUE),
 	          'sks' => $this->input->post('sks', TRUE),
@@ -175,7 +176,7 @@ class Matakuliah extends CI_Controller {
 	     $arr = [
 	        'data' => $row
 	      ];
-	    }
+	    } 
 	    $arr['cpmk'] = $this->Matakuliah_model->get_matakuliah_has_cpmk_by_mk($id); 
 	    $arr['breadcrumbs'] = 'matakuliah';
 		$arr['content'] = 'matakuliah/edit';
