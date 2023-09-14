@@ -278,7 +278,7 @@ class Report extends CI_Controller {
 			$arr['nim_2'] = $nim_2;
 
 			foreach ($dt_mahasiswa as $key) {
-				if ($key["Nim"] == $nim_2) {
+				if ($key["Nim"] = $nim_2) {
 					$n_m = $key;
 				} else {$n_m = []; }
 			}
