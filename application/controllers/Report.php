@@ -278,10 +278,10 @@ class Report extends CI_Controller {
 			$arr['nim_2'] = $nim_2;
 
 			foreach ($dt_mahasiswa as $key) {
-				if ($key["Nim"] = $nim_2) {
-					$n_m = $key;
-				} else {$n_m = []; }
-			}
+					if ($key["Nim"] == $nim_2) {
+						$n_m = $key;
+					}
+				}
 
  			//echo '<pre>';  var_dump($n_m); echo '</pre>';
  			if (!empty($n_m)) {
