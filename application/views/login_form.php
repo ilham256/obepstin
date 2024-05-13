@@ -89,7 +89,15 @@
     <!-- /.login-card-body -->
   </div>
 </div>
-
+    <footer class="footer">
+      <div class="row">
+        <div class="col-lg-5 mb-3">
+          <ul class="list-unstyled">
+            <li class="mb-2">v.1.1</li>
+          </ul>
+        </div>
+      </div>
+    </footer>
 </body>
 
 </html>
